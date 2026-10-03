@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>الفرص المتاحة | من الجامعة إلى المصنع</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+            background: #071426;
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #071426;
+            border-bottom: 1px solid rgba(212, 175, 55, .25);
+        }
+
+        .logo-en {
+            color: #d4af37;
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .logo-ar {
+            font-size: 13px;
+            color: #ddd;
+            margin-top: 4px;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background:
+                radial-gradient(circle at top, rgba(212,175,55,.10), transparent 45%);
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 span {
+            color: #d4af37;
+        }
+
+        .hero p {
+            color: #aeb8c5;
+            font-size: 17px;
+        }
+
+        .search-box {
+            width: min(700px, 90%);
+            margin: 30px auto;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 17px 22px;
+            border-radius: 10px;
+            border: 1px solid rgba(212,175,55,.4);
+            background: #0c2038;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #d4af37;
+            box-shadow: 0 0 15px rgba(212,175,55,.12);
+        }
+
+        .container {
+            width: min(1150px, 90%);
+            margin: 20px auto 80px;
+        }
+
+        #opportunities {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: #0c2038;
+            border: 1px solid rgba(212,175,55,.2);
+            border-radius: 16px;
+            padding: 25px;
+            transition: .3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,.15);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: #d4af37;
+        }
+
+        .badge {
+            display: inline-block;
+            color: #071426;
+            background: #d4af37;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            color: white;
+            font-size: 21px;
+            margin-bottom: 18px;
+        }
+
+        .info {
+            color: #b7c1cd;
+            line-height: 2;
+            font-size: 14px;
+        }
+
+        .info strong {
+            color: #d4af37;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .btn {
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            padding: 11px 8px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: .3s;
+        }
+
+        .details {
+            border: 1px solid #d4af37;
+            color: #d4af37;
+        }
+
+        .details:hover {
+            background: #d4af37;
+            color: #071426;
+        }
+
+        .apply {
+            background: #d4af37;
+            color: #071426;
+        }
+
+        .apply:hover {
+            box-shadow: 0 7px 18px rgba(212,175,55,.2);
+            transform: translateY(-2px);
+        }
+
+        .message {
+            text-align: center;
+            padding: 50px 20px;
+            color: #9daaba;
+            font-size: 17px;
+            grid-column: 1 / -1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #8995a5;
+            border-top: 1px solid rgba(212,175,55,.2);
+        }
+
+        footer span {
+            color: #d4af37;
+        }
+
+        @media (max-width: 900px) {
+            #opportunities {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            header {
+                flex-direction: column;
+                gap: 18px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            #opportunities {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            nav {
+                gap: 14px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div>
+            <div class="logo-en">FROM UNIVERSITY TO FACTORY</div>
+            <div class="logo-ar">من الجامعة إلى المصنع</div>
+        </div>
+
+        <nav>
+            <a href="../index.html">الرئيسية</a>
+            <a href="./Opportunities.html">الفرص</a>
+            <a href="./Company-register.html">الشركات</a>
+            <a href="./Login.html">تسجيل الدخول</a>
+        </nav>
+
+    </header>
+
+
+    <section class="hero">
+
+        <h1>
+            الفرص <span>المتاحة</span>
+        </h1>
+
+        <p>
+            اكتشف فرص التدريب والعمل المناسبة لمجالك
+        </p>
+
+        <div class="search-box">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="ابحث عن فرصة، مجال، مكان أو نوع الفرصة..."
+            >
+        </div>
+
+    </section>
+
+
+    <main class="container">
+
+        <div id="opportunities">
+            <div class="message">
+                جاري تحميل الفرص...
+            </div>
+        </div>
+
+    </main>
+
+
+    <footer>
+        © 2026 <span>From University To Factory</span> — جميع الحقوق محفوظة
+    </footer>
+
+
+    <script>
+
+        const opportunitiesContainer =
+            document.getElementById("opportunities");
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        let allOpportunities = [];
+
+
+        async function loadOpportunities() {
+
+            try {
+
+                const response =
+                    await fetch("/all-opportunities");
+
+                const data =
+                    await response.json();
+
+                if (Array.isArray(data)) {
+
+                    allOpportunities = data;
+
+                } else if (Array.isArray(data.opportunities)) {
+
+                    allOpportunities = data.opportunities;
+
+                } else {
+
+                    allOpportunities = [];
+
+                }
+
+                displayOpportunities(allOpportunities);
+
+            } catch (error) {
+
+                console.error(error);
+
+                opportunitiesContainer.innerHTML = `
+                    <div class="message">
+                        حدث خطأ أثناء تحميل الفرص.
+                    </div>
+                `;
+            }
+        }
+
+
+        function displayOpportunities(opportunities) {
+
+            if (!opportunities.length) {
+
+                opportunitiesContainer.innerHTML = `
+                    <div class="message">
+                        لا توجد فرص متاحة حاليًا.
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            opportunitiesContainer.innerHTML =
+                opportunities.map(opportunity => {
+
+                    return `
+
+                        <div class="card">
+
+                            <span class="badge">
+                                ${opportunity.type || "فرصة"}
+                            </span>
+
+                            <h2>
+                                ${opportunity.title || "فرصة بدون عنوان"}
+                            </h2>
+
+                            <div class="info">
+
+                                <div>
+                                    <strong>المجال:</strong>
+                                    ${opportunity.field || "غير محدد"}
+                                </div>
+
+                                <div>
+                                    <strong>المكان:</strong>
+                                    ${opportunity.location || "غير محدد"}
+                                </div>
+
+                                <div>
+                                    <strong>المهارات:</strong>
+                                    ${opportunity.skills || "غير محددة"}
+                                </div>
+
+                                <div>
+                                    <strong>آخر موعد:</strong>
+                                    ${opportunity.deadline || "غير محدد"}
+                                </div>
+
+                            </div>
+
+                            <div class="buttons">
+
+                                <a
+                                    class="btn details"
+                                    href="./Opportunity-details.html?id=${opportunity.id}"
+                                >
+                                    التفاصيل
+                                </a>
+
+                                <a
+                                    class="btn apply"
+                                    href="./Apply.html?id=${opportunity.id}&name=${encodeURIComponent(opportunity.title || "")}"
+                                >
+                                    التقديم
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }).join("");
+        }
+
+
+        searchInput.addEventListener("input", function () {
+
+            const search =
+                this.value.trim().toLowerCase();
+
+            const filtered =
+                allOpportunities.filter(opportunity => {
+
+                    return (
+
+                        (opportunity.title || "")
+                            .toLowerCase()
+                            .includes(search)
+
+                        ||
+
+                        (opportunity.field || "")
+                            .toLowerCase()
+                            .includes(search)
+
+                        ||
+
+                        (opportunity.location || "")
+                            .toLowerCase()
+                            .includes(search)
+
+                        ||
+
+                        (opportunity.type || "")
+                            .toLowerCase()
+                            .includes(search)
+
+                    );
+
+                });
+
+            displayOpportunities(filtered);
+
+        });
+
+
+        loadOpportunities();
+
+    </script>
+
+</body>
+
+</html>

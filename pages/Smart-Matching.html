@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>المطابقة الذكية | من الجامعة إلى المصنع</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+            background: #071426;
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            padding: 22px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+            background: rgba(7, 20, 38, 0.95);
+        }
+
+        .logo {
+            text-align: right;
+        }
+
+        .logo-en {
+            color: #d4af37;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .logo-ar {
+            color: white;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #d4af37;
+        }
+
+        .hero {
+            padding: 75px 20px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: rgba(212, 175, 55, 0.07);
+            border-radius: 50%;
+            filter: blur(80px);
+            top: -180px;
+            left: -100px;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: rgba(30, 100, 180, 0.10);
+            border-radius: 50%;
+            filter: blur(80px);
+            bottom: -180px;
+            right: -100px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .small-title {
+            color: #d4af37;
+            font-size: 15px;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 6vw, 60px);
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 span {
+            color: #d4af37;
+        }
+
+        .hero-description {
+            max-width: 680px;
+            margin: 20px auto 0;
+            color: #b9c2ce;
+            font-size: 17px;
+            line-height: 1.9;
+        }
+
+        .matching-section {
+            padding: 70px 7%;
+            background: #091a2e;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #9daaba;
+            line-height: 1.7;
+        }
+
+        .form-card {
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(212, 175, 55, 0.18);
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .form-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-heading .icon {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .form-heading h3 {
+            color: #d4af37;
+            font-size: 23px;
+            margin-bottom: 7px;
+        }
+
+        .form-heading p {
+            color: #9daaba;
+            font-size: 14px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            color: #eee;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.22);
+            background: rgba(255, 255, 255, 0.045);
+            color: white;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #758294;
+        }
+
+        select option {
+            background: #071426;
+            color: white;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.08);
+        }
+
+        input[readonly] {
+            opacity: 0.75;
+            cursor: not-allowed;
+            border-color: rgba(212, 175, 55, 0.35);
+        }
+
+        textarea {
+            min-height: 105px;
+            resize: vertical;
+            line-height: 1.7;
+        }
+
+        .hint {
+            color: #788596;
+            font-size: 12px;
+        }
+
+        .button-area {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .match-button {
+            border: none;
+            background: #d4af37;
+            color: #071426;
+            padding: 14px 35px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .match-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 18px;
+            color: #d4af37;
+            min-height: 22px;
+            font-size: 14px;
+        }
+
+        .results-section {
+            padding-top: 70px;
+        }
+
+        .results-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .results-title h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .results-title p {
+            color: #9daaba;
+        }
+
+        .results {
+            display: grid;
+            gap: 22px;
+        }
+
+        .result-card {
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(212, 175, 55, 0.18);
+            border-radius: 15px;
+            padding: 28px;
+            transition: 0.3s;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+            border-color: #d4af37;
+        }
+
+        .result-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .result-card h3 {
+            color: #d4af37;
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .company {
+            color: #9daaba;
+            font-size: 13px;
+        }
+
+        .percentage-box {
+            min-width: 100px;
+            text-align: center;
+            padding: 10px 14px;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 10px;
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .percentage {
+            display: block;
+            color: #d4af37;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .percentage-label {
+            display: block;
+            color: #9daaba;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+        .progress {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress span {
+            display: block;
+            height: 100%;
+            background: #d4af37;
+            border-radius: 20px;
+        }
+
+        .match-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 20px;
+            color: #d4af37;
+            font-size: 12px;
+            margin-bottom: 18px;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .detail {
+            background: rgba(255, 255, 255, 0.035);
+            border-radius: 9px;
+            padding: 12px;
+            color: #aeb8c5;
+            font-size: 13px;
+        }
+
+        .detail strong {
+            display: block;
+            color: #d4af37;
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+
+        .description {
+            color: #aeb8c5;
+            line-height: 1.8;
+            font-size: 14px;
+            border-top: 1px solid rgba(212, 175, 55, 0.12);
+            padding-top: 15px;
+        }
+
+        .reason {
+            margin-top: 15px;
+            color: #aeb8c5;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .reason strong {
+            color: #d4af37;
+        }
+
+        .skills {
+            margin-top: 18px;
+        }
+
+        .skills strong {
+            display: block;
+            color: #d4af37;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .skill {
+            display: inline-block;
+            padding: 6px 10px;
+            margin: 3px;
+            border-radius: 20px;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.18);
+            color: #ddd;
+            font-size: 12px;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 45px 20px;
+            border: 1px solid rgba(212, 175, 55, 0.18);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.025);
+            color: #9daaba;
+        }
+
+        .empty-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            color: #8995a5;
+            font-size: 14px;
+        }
+
+        footer span {
+            color: #d4af37;
+        }
+
+        @media (max-width: 800px) {
+
+            header {
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            nav {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .input-group.full {
+                grid-column: auto;
+            }
+
+            .details {
+                grid-template-columns: 1fr;
+            }
+
+            .result-top {
+                flex-direction: column;
+            }
+
+            .percentage-box {
+                width: 100%;
+            }
+
+            .form-card {
+                padding: 25px 20px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .hero {
+                padding: 55px 20px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            .matching-section {
+                padding: 55px 5%;
+            }
+
+            .result-card {
+                padding: 22px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            <div class="logo-en">
+                FROM UNIVERSITY TO FACTORY
+            </div>
+
+            <div class="logo-ar">
+                من الجامعة إلى المصنع
+            </div>
+        </div>
+
+        <nav>
+
+            <a href="../index.html">
+                الرئيسية
+            </a>
+
+            <a href="Opportunities.html">
+                الفرص
+            </a>
+
+            <a href="Company-register.html">
+                الشركات
+            </a>
+
+            <a href="Login.html">
+                تسجيل الدخول
+            </a>
+
+            <a href="Smart-Matching.html" class="active">
+                المطابقة الذكية
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="small-title">
+                SMART MATCHING
+            </div>
+
+            <h1>
+                المطابقة <span>الذكية</span>
+            </h1>
+
+            <p class="hero-description">
+                نظام يساعدك على اكتشاف فرص التدريب والعمل
+                التي تتوافق مع مجالك ومهاراتك وموقعك واهتماماتك المهنية.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="matching-section">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>
+                    اعرف الفرص المناسبة ليك
+                </h2>
+
+                <p>
+                    بياناتك هتتحمل تلقائيًا من حسابك على المنصة.
+                </p>
+
+            </div>
+
+
+            <div class="form-card">
+
+                <div class="form-heading">
+
+                    <div class="icon">
+                        🎓
+                    </div>
+
+                    <h3>
+                        بيانات الطالب
+                    </h3>
+
+                    <p>
+                        بياناتك المحفوظة هتظهر هنا تلقائيًا.
+                    </p>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="input-group">
+
+                        <label>
+                            البريد الإلكتروني
+                        </label>
+
+                        <input
+                            type="email"
+                            id="userEmail"
+                            placeholder="سيظهر تلقائيًا بعد تسجيل الدخول"
+                            readonly
+                        >
+
+                        <span class="hint">
+                            البريد المسجل في حسابك.
+                        </span>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            المجال
+                        </label>
+
+                        <input
+                            type="text"
+                            id="field"
+                            placeholder="سيتم تحميل المجال تلقائيًا"
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            الموقع / المحافظة
+                        </label>
+
+                        <input
+                            type="text"
+                            id="location"
+                            placeholder="سيتم تحميل الموقع تلقائيًا"
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            نوع الفرصة المفضل
+                        </label>
+
+                        <select id="preferredType">
+
+                            <option value="">
+                                اختر نوع الفرصة
+                            </option>
+
+                            <option value="تدريب">
+                                تدريب
+                            </option>
+
+                            <option value="وظيفة">
+                                وظيفة
+                            </option>
+
+                            <option value="تدريب ووظيفة">
+                                تدريب ووظيفة
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="input-group full">
+
+                        <label>
+                            المهارات
+                        </label>
+
+                        <input
+                            type="text"
+                            id="skills"
+                            placeholder="سيتم تحميل مهاراتك تلقائيًا"
+                        >
+
+                        <span class="hint">
+                            يمكنك تعديل المهارات لو حبيتي.
+                        </span>
+
+                    </div>
+
+
+                    <div class="input-group full">
+
+                        <label>
+                            الخبرة
+                        </label>
+
+                        <textarea
+                            id="experience"
+                            placeholder="سيتم تحميل خبراتك تلقائيًا..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="input-group full">
+
+                        <label>
+                            المشاريع
+                        </label>
+
+                        <textarea
+                            id="projects"
+                            placeholder="سيتم تحميل مشاريعك تلقائيًا..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="button-area">
+
+                    <button
+                        class="match-button"
+                        onclick="findMatches()"
+                    >
+                        🔍 ابحث عن الفرص المناسبة
+                    </button>
+
+                </div>
+
+
+                <div id="message"></div>
+
+            </div>
+
+
+            <div class="results-section">
+
+                <div class="results-title">
+
+                    <h2>
+                        نتائج المطابقة
+                    </h2>
+
+                    <p>
+                        الفرص مرتبة حسب نسبة التوافق مع بياناتك.
+                    </p>
+
+                </div>
+
+
+                <div id="results" class="results">
+
+                    <div class="empty">
+
+                        <div class="empty-icon">
+                            🎯
+                        </div>
+
+                        بياناتك هتتحمل تلقائيًا، وبعدها اضغطي
+                        <strong>ابحث عن الفرص المناسبة</strong>
+                        لعرض النتائج.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        © 2026
+        <span>
+            From University To Factory
+        </span>
+        — جميع الحقوق محفوظة
+
+    </footer>
+
+
+    <script>
+
+        /* ===============================
+           تحميل بيانات الطالب تلقائيًا
+        =============================== */
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            loadStudentData();
+
+        });
+
+
+        async function loadStudentData() {
+
+            const message =
+                document.getElementById("message");
+
+            const userEmail =
+                document.getElementById("userEmail");
+
+
+            try {
+
+                let savedUser = null;
+
+                const possibleKeys = [
+                    "user",
+                    "student",
+                    "userData",
+                    "loggedInUser",
+                    "currentUser",
+                    "studentData"
+                ];
+
+
+                for (const key of possibleKeys) {
+
+                    const saved =
+                        localStorage.getItem(key);
+
+                    if (!saved) {
+                        continue;
+                    }
+
+                    try {
+
+                        const parsed =
+                            JSON.parse(saved);
+
+                        if (
+                            parsed &&
+                            (
+                                parsed.email ||
+                                (parsed.user && parsed.user.email)
+                            )
+                        ) {
+
+                            savedUser =
+                                parsed.user || parsed;
+
+                            break;
+
+                        }
+
+                    } catch (error) {
+
+                        console.log(
+                            "تعذر قراءة بيانات",
+                            key
+                        );
+
+                    }
+
+                }
+
+
+                if (!savedUser || !savedUser.email) {
+
+                    message.textContent =
+                        "سجلي الدخول أولًا عشان نقدر نجيب بياناتك تلقائيًا.";
+
+                    return;
+                }
+
+
+                userEmail.value =
+                    savedUser.email;
+
+
+                const response =
+                    await fetch(
+                        `/student-matching-data?email=${encodeURIComponent(savedUser.email)}`
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "فشل تحميل بيانات الطالب"
+                    );
+
+                }
+
+
+                document.getElementById("field").value =
+                    data.field || "";
+
+
+                document.getElementById("location").value =
+                    data.location || "";
+
+
+                document.getElementById("preferredType").value =
+                    data.preferredType || "";
+
+
+                document.getElementById("skills").value =
+                    data.skills || "";
+
+
+                document.getElementById("experience").value =
+                    data.experience || "";
+
+
+                document.getElementById("projects").value =
+                    data.projects || "";
+
+
+                message.textContent =
+                    "تم تحميل بيانات حسابك تلقائيًا ✅";
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                message.textContent =
+                    "تعذر تحميل بياناتك تلقائيًا، يمكنك إدخالها يدويًا.";
+
+            }
+
+        }
+
+
+        /* ===============================
+           البحث عن الفرص
+        =============================== */
+
+        async function findMatches() {
+
+            const userEmail =
+                document.getElementById("userEmail").value.trim();
+
+            const field =
+                document.getElementById("field").value.trim();
+
+            const location =
+                document.getElementById("location").value.trim();
+
+            const preferredType =
+                document.getElementById("preferredType").value;
+
+            const skills =
+                document.getElementById("skills").value.trim();
+
+            const experience =
+                document.getElementById("experience").value.trim();
+
+            const projects =
+                document.getElementById("projects").value.trim();
+
+            const message =
+                document.getElementById("message");
+
+
+            if (!userEmail) {
+
+                message.textContent =
+                    "من فضلك سجلي الدخول أولًا.";
+
+                return;
+
+            }
+
+
+            try {
+
+                message.textContent =
+                    "جاري تحليل بياناتك والبحث عن الفرص...";
+
+
+                /* =========================
+                   حفظ بيانات المطابقة
+                ========================= */
+
+                const profileResponse =
+                    await fetch("/matching-profile", {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            email: userEmail,
+                            userEmail: userEmail,
+
+                            field: field,
+                            location: location,
+                            preferredType: preferredType,
+                            experience: experience,
+                            projects: projects
+
+                        })
+
+                    });
+
+
+                if (!profileResponse.ok) {
+
+                    let errorData = {};
+
+                    try {
+                        errorData =
+                            await profileResponse.json();
+                    } catch (e) {
+                        errorData = {};
+                    }
+
+                    throw new Error(
+                        errorData.message ||
+                        "فشل حفظ بيانات الطالب"
+                    );
+
+                }
+
+
+                /* =========================
+                   حفظ المهارات
+                ========================= */
+
+                const skillsResponse =
+                    await fetch("/user-skills", {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            email: userEmail,
+                            userEmail: userEmail,
+
+                            skills: skills
+
+                        })
+
+                    });
+
+
+                if (!skillsResponse.ok) {
+
+                    let errorData = {};
+
+                    try {
+                        errorData =
+                            await skillsResponse.json();
+                    } catch (e) {
+                        errorData = {};
+                    }
+
+                    throw new Error(
+                        errorData.message ||
+                        "فشل حفظ المهارات"
+                    );
+
+                }
+
+
+                /* =========================
+                   تشغيل المطابقة الذكية
+                ========================= */
+
+                const response =
+                    await fetch(
+                        `/smart-matches?email=${encodeURIComponent(userEmail)}`
+                    );
+
+
+                let data = [];
+
+                try {
+                    data =
+                        await response.json();
+                } catch (e) {
+                    data = [];
+                }
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "حدث خطأ أثناء المطابقة"
+                    );
+
+                }
+
+
+                displayResults(data);
+
+
+                message.textContent =
+                    "تم تحديث المطابقة الذكية بنجاح ✅";
+
+
+            } catch (error) {
+
+                console.error(
+                    "Smart Matching Error:",
+                    error
+                );
+
+                message.textContent =
+                    error.message ||
+                    "حدث خطأ أثناء المطابقة.";
+
+            }
+
+        }
+
+
+        /* ===============================
+           عرض النتائج
+        =============================== */
+
+        function displayResults(opportunities) {
+
+            const results =
+                document.getElementById("results");
+
+
+            if (
+                !opportunities ||
+                opportunities.length === 0
+            ) {
+
+                results.innerHTML = `
+
+                    <div class="empty">
+
+                        <div class="empty-icon">
+                            🔎
+                        </div>
+
+                        لا توجد فرص متاحة حاليًا للمطابقة.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            results.innerHTML =
+                opportunities.map(opportunity => {
+
+                    const percentage =
+                        Math.max(
+                            0,
+                            Math.min(
+                                100,
+                                Number(
+                                    opportunity.matchPercentage || 0
+                                )
+                            )
+                        );
+
+
+                    const matchedSkills =
+                        opportunity.matchedSkills || [];
+
+
+                    const missingSkills =
+                        opportunity.missingSkills || [];
+
+
+                    const reasons =
+                        opportunity.reasons || [];
+
+
+                    return `
+
+                        <div class="result-card">
+
+                            <div class="result-top">
+
+                                <div>
+
+                                    <h3>
+                                        ${escapeHtml(
+                                            opportunity.title ||
+                                            "فرصة متاحة"
+                                        )}
+                                    </h3>
+
+                                    <div class="company">
+                                        🏭
+                                        ${escapeHtml(
+                                            opportunity.company_name &&
+                                            opportunity.company_name !== "undefined"
+                                                ? opportunity.company_name
+                                                : opportunity.company_email &&
+                                                  opportunity.company_email !== "undefined"
+                                                    ? opportunity.company_email
+                                                    : "شركة"
+                                        )}
+                                    </div>
+
+                                </div>
+
+
+                                <div class="percentage-box">
+
+                                    <span class="percentage">
+                                        ${percentage}%
+                                    </span>
+
+                                    <span class="percentage-label">
+                                        نسبة التوافق
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="progress">
+
+                                <span
+                                    style="width:${percentage}%">
+                                </span>
+
+                            </div>
+
+
+                            <div class="match-badge">
+
+                                ${escapeHtml(
+                                    opportunity.matchLevel ||
+                                    "تطابق"
+                                )}
+
+                            </div>
+
+
+                            <div class="details">
+
+                                <div class="detail">
+
+                                    <strong>
+                                        📍 الموقع
+                                    </strong>
+
+                                    ${escapeHtml(
+                                        opportunity.location ||
+                                        "غير محدد"
+                                    )}
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <strong>
+                                        💼 نوع الفرصة
+                                    </strong>
+
+                                    ${escapeHtml(
+                                        opportunity.type ||
+                                        "غير محدد"
+                                    )}
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <strong>
+                                        🎯 المجال
+                                    </strong>
+
+                                    ${escapeHtml(
+                                        opportunity.field ||
+                                        "غير محدد"
+                                    )}
+
+                                </div>
+
+                            </div>
+
+
+                            ${
+                                opportunity.description
+                                ?
+                                `
+
+                                    <div class="description">
+
+                                        <strong>
+                                            وصف الفرصة:
+                                        </strong>
+
+                                        <br>
+
+                                        ${escapeHtml(
+                                            opportunity.description
+                                        )}
+
+                                    </div>
+
+                                `
+                                :
+                                ""
+                            }
+
+
+                            ${
+                                reasons.length
+                                ?
+                                `
+
+                                    <div class="reason">
+
+                                        <strong>
+                                            لماذا ظهرت لك؟
+                                        </strong>
+
+                                        <br>
+
+                                        ${
+                                            reasons
+                                            .map(
+                                                reason =>
+                                                "• " +
+                                                escapeHtml(reason)
+                                            )
+                                            .join("<br>")
+                                        }
+
+                                    </div>
+
+                                `
+                                :
+                                ""
+                            }
+
+
+                            ${
+                                matchedSkills.length
+                                ?
+                                `
+
+                                    <div class="skills">
+
+                                        <strong>
+                                            ✓ المهارات المتطابقة
+                                        </strong>
+
+                                        ${
+                                            matchedSkills
+                                            .map(
+                                                skill =>
+                                                `
+                                                <span class="skill">
+                                                    ${escapeHtml(skill)}
+                                                </span>
+                                                `
+                                            )
+                                            .join("")
+                                        }
+
+                                    </div>
+
+                                `
+                                :
+                                ""
+                            }
+
+
+                            ${
+                                missingSkills.length
+                                ?
+                                `
+
+                                    <div class="skills">
+
+                                        <strong>
+                                            المهارات التي يمكن تطويرها
+                                        </strong>
+
+                                        ${
+                                            missingSkills
+                                            .map(
+                                                skill =>
+                                                `
+                                                <span class="skill">
+                                                    ${escapeHtml(skill)}
+                                                </span>
+                                                `
+                                            )
+                                            .join("")
+                                        }
+
+                                    </div>
+
+                                `
+                                :
+                                ""
+                            }
+
+                        </div>
+
+                    `;
+
+                }).join("");
+
+        }
+
+
+        /* ===============================
+           حماية النصوص
+        =============================== */
+
+        function escapeHtml(value) {
+
+            return String(value)
+
+                .replace(/&/g, "&amp;")
+
+                .replace(/</g, "&lt;")
+
+                .replace(/>/g, "&gt;")
+
+                .replace(/"/g, "&quot;")
+
+                .replace(/'/g, "&#039;");
+
+        }
+
+    </script>
+
+</body>
+
+</html>

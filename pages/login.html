@@ -1,0 +1,801 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>تسجيل الدخول | من الجامعة إلى المصنع</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+            background: #071426;
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(212, 175, 55, .25);
+        }
+
+        .logo-en {
+            color: #d4af37;
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .logo-ar {
+            color: #ddd;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        .page {
+            min-height: calc(100vh - 150px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+        }
+
+        .login-card {
+            width: min(470px, 100%);
+            background: #0c2038;
+            border: 1px solid rgba(212, 175, 55, .25);
+            border-radius: 18px;
+            padding: 38px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .25);
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .label {
+            color: #d4af37;
+            font-size: 13px;
+            letter-spacing: 3px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .title h1 {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .title p {
+            color: #9daaba;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #d4af37;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 9px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: #071426;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #d4af37;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 9px;
+            background: #d4af37;
+            color: #071426;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .3s;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, .2);
+        }
+
+        button:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .forgot {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #d4af37;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .forgot:hover {
+            text-decoration: underline;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 18px;
+            line-height: 1.7;
+        }
+
+        .register {
+            text-align: center;
+            margin-top: 22px;
+            color: #9daaba;
+        }
+
+        .register a {
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: #d4af37;
+            text-decoration: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #8995a5;
+            border-top: 1px solid rgba(212, 175, 55, .2);
+        }
+
+        footer span {
+            color: #d4af37;
+        }
+
+        .reset-box {
+            display: none;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(212, 175, 55, .2);
+        }
+
+        .reset-title {
+            text-align: center;
+            color: #d4af37;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .cancel {
+            background: transparent;
+            color: #9daaba;
+            border: 1px solid rgba(255, 255, 255, .15);
+            margin-top: 10px;
+        }
+
+        .cancel:hover {
+            box-shadow: none;
+            transform: none;
+        }
+
+        @media (max-width: 650px) {
+
+            header {
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            nav {
+                gap: 14px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .login-card {
+                padding: 25px;
+            }
+
+            .title h1 {
+                font-size: 29px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div>
+            <div class="logo-en">
+                FROM UNIVERSITY TO FACTORY
+            </div>
+
+            <div class="logo-ar">
+                من الجامعة إلى المصنع
+            </div>
+        </div>
+
+        <nav>
+
+            <a href="../index.html">
+                الرئيسية
+            </a>
+
+            <a href="./Opportunities.html">
+                الفرص
+            </a>
+
+            <a href="./Company-register.html">
+                الشركات
+            </a>
+
+            <a href="./Login.html">
+                تسجيل الدخول
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="page">
+
+        <div class="login-card">
+
+            <div class="title">
+
+                <div class="label">
+                    STUDENT LOGIN
+                </div>
+
+                <h1>
+                    تسجيل الدخول
+                </h1>
+
+                <p>
+                    ادخلي لحسابك وتابعي فرصك وتقديماتك
+                </p>
+
+            </div>
+
+
+            <!-- تسجيل الدخول -->
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label for="email">
+                        البريد الإلكتروني
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="example@email.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        كلمة المرور
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="أدخلي كلمة المرور"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit" id="loginButton">
+                    تسجيل الدخول
+                </button>
+
+            </form>
+
+
+            <!-- نسيت كلمة المرور -->
+
+            <a class="forgot" id="forgotPassword">
+                نسيت كلمة المرور؟
+            </a>
+
+
+            <!-- صندوق تغيير كلمة المرور -->
+
+            <div class="reset-box" id="resetBox">
+
+                <div class="reset-title">
+                    تغيير كلمة المرور
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="resetEmail">
+                        البريد الإلكتروني
+                    </label>
+
+                    <input
+                        type="email"
+                        id="resetEmail"
+                        placeholder="example@email.com"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="newPassword">
+                        كلمة المرور الجديدة
+                    </label>
+
+                    <input
+                        type="password"
+                        id="newPassword"
+                        placeholder="6 أحرف أو أرقام على الأقل"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        تأكيد كلمة المرور
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="أعيدي كتابة كلمة المرور"
+                    >
+
+                </div>
+
+
+                <button type="button" id="resetButton">
+                    تغيير كلمة المرور
+                </button>
+
+
+                <button type="button" class="cancel" id="cancelReset">
+                    إلغاء
+                </button>
+
+            </div>
+
+
+            <div id="message" class="message"></div>
+
+
+            <div class="register">
+
+                ليس لديك حساب؟
+
+                <a href="./Register.html">
+                    إنشاء حساب
+                </a>
+
+            </div>
+
+
+            <a class="back" href="../index.html">
+                ← العودة للرئيسية
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        © 2026
+        <span>
+            From University To Factory
+        </span>
+        — جميع الحقوق محفوظة
+
+    </footer>
+
+
+    <script>
+
+        /* =========================
+           تسجيل الدخول
+        ========================= */
+
+        const form =
+            document.getElementById("loginForm");
+
+        const button =
+            document.getElementById("loginButton");
+
+        const message =
+            document.getElementById("message");
+
+
+        form.addEventListener("submit", async function (event) {
+
+            event.preventDefault();
+
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+
+            button.disabled = true;
+
+            button.textContent =
+                "جاري تسجيل الدخول...";
+
+            message.textContent = "";
+
+
+            try {
+
+                const response =
+                    await fetch("/login", {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            email: email,
+                            password: password
+                        })
+
+                    });
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    message.style.color =
+                        "#ff7777";
+
+                    message.textContent =
+                        data.message ||
+                        "بيانات الدخول غير صحيحة";
+
+                    button.disabled = false;
+
+                    button.textContent =
+                        "تسجيل الدخول";
+
+                    return;
+                }
+
+
+                const userData = {
+
+                    name:
+                        data.user?.name ||
+                        data.name ||
+                        "",
+
+                    email:
+                        data.user?.email ||
+                        data.email ||
+                        email
+
+                };
+
+
+                localStorage.setItem(
+                    "user",
+                    JSON.stringify(userData)
+                );
+
+
+                localStorage.setItem(
+                    "userEmail",
+                    userData.email
+                );
+
+
+                localStorage.setItem(
+                    "student",
+                    JSON.stringify(userData)
+                );
+
+
+                localStorage.setItem(
+                    "userData",
+                    JSON.stringify(userData)
+                );
+
+
+                message.style.color =
+                    "#d4af37";
+
+                message.textContent =
+                    "✅ تم تسجيل الدخول بنجاح";
+
+
+                setTimeout(function () {
+
+                    window.location.href =
+                        "./Student-dashboard.html";
+
+                }, 700);
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                message.style.color =
+                    "#ff7777";
+
+                message.textContent =
+                    "حدث خطأ في الاتصال بالسيرفر.";
+
+                button.disabled = false;
+
+                button.textContent =
+                    "تسجيل الدخول";
+
+            }
+
+        });
+
+
+        /* =========================
+           إظهار تغيير كلمة المرور
+        ========================= */
+
+        const forgotPassword =
+            document.getElementById("forgotPassword");
+
+        const resetBox =
+            document.getElementById("resetBox");
+
+        const cancelReset =
+            document.getElementById("cancelReset");
+
+
+        forgotPassword.addEventListener("click", function () {
+
+            resetBox.style.display = "block";
+
+            document.getElementById("resetEmail").value =
+                document.getElementById("email").value.trim();
+
+            message.textContent = "";
+
+        });
+
+
+        cancelReset.addEventListener("click", function () {
+
+            resetBox.style.display = "none";
+
+            message.textContent = "";
+
+        });
+
+
+        /* =========================
+           تغيير كلمة المرور
+        ========================= */
+
+        const resetButton =
+            document.getElementById("resetButton");
+
+
+        resetButton.addEventListener("click", async function () {
+
+            const email =
+                document.getElementById("resetEmail").value.trim();
+
+            const newPassword =
+                document.getElementById("newPassword").value;
+
+            const confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+
+            if (!email || !newPassword || !confirmPassword) {
+
+                message.style.color =
+                    "#ff7777";
+
+                message.textContent =
+                    "من فضلك املئي جميع البيانات";
+
+                return;
+
+            }
+
+
+            if (newPassword.length < 6) {
+
+                message.style.color =
+                    "#ff7777";
+
+                message.textContent =
+                    "كلمة المرور لازم تكون 6 أحرف أو أرقام على الأقل";
+
+                return;
+
+            }
+
+
+            if (newPassword !== confirmPassword) {
+
+                message.style.color =
+                    "#ff7777";
+
+                message.textContent =
+                    "كلمتا المرور غير متطابقتين";
+
+                return;
+
+            }
+
+
+            resetButton.disabled = true;
+
+            resetButton.textContent =
+                "جاري تغيير كلمة المرور...";
+
+
+            try {
+
+                const response =
+                    await fetch("/reset-password", {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            email: email,
+
+                            newPassword: newPassword
+
+                        })
+
+                    });
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    message.style.color =
+                        "#ff7777";
+
+                    message.textContent =
+                        data.message ||
+                        "تعذر تغيير كلمة المرور";
+
+                    resetButton.disabled = false;
+
+                    resetButton.textContent =
+                        "تغيير كلمة المرور";
+
+                    return;
+
+                }
+
+
+                message.style.color =
+                    "#d4af37";
+
+                message.textContent =
+                    "✅ تم تغيير كلمة المرور بنجاح. تقدري تسجلي دخول دلوقتي";
+
+
+                document.getElementById("password").value =
+                    newPassword;
+
+                resetBox.style.display =
+                    "none";
+
+
+                resetButton.disabled = false;
+
+                resetButton.textContent =
+                    "تغيير كلمة المرور";
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                message.style.color =
+                    "#ff7777";
+
+                message.textContent =
+                    "حدث خطأ في الاتصال بالسيرفر";
+
+                resetButton.disabled = false;
+
+                resetButton.textContent =
+                    "تغيير كلمة المرور";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
+```

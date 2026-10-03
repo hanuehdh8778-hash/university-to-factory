@@ -1,0 +1,266 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>تعديل بياناتي | من الجامعة إلى المصنع</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+            background: #071426;
+            color: #ddd;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #091a2e;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1b2b40;
+        }
+
+        .logo {
+            color: #d4af37;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        header a {
+            color: #ddd;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 650px;
+            margin: 50px auto;
+        }
+
+        .card {
+            background: #0d1d33;
+            padding: 30px;
+            border-radius: 18px;
+            border: 1px solid #1b2b40;
+            box-shadow: 0 10px 30px rgba(0,0,0,.25);
+        }
+
+        h1 {
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #9daaba;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ccc;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 20px;
+            border: 1px solid #33445b;
+            border-radius: 10px;
+            background: #071426;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #d4af37;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #d4af37;
+            color: #071426;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: .9;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: #d4af37;
+            text-decoration: none;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">FROM UNIVERSITY TO FACTORY</div>
+    <a href="./Student-dashboard.html">العودة للوحة الطالب</a>
+</header>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>تعديل بياناتي</h1>
+
+        <p class="subtitle">
+            يمكنك تعديل اسمك والبريد الإلكتروني
+        </p>
+
+        <form id="profileForm">
+
+            <label>الاسم</label>
+            <input
+                type="text"
+                id="name"
+                placeholder="اكتب اسمك"
+                required
+            >
+
+            <label>البريد الإلكتروني</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="اكتب البريد الإلكتروني"
+                required
+            >
+
+            <button type="submit">
+                💾 حفظ التعديلات
+            </button>
+
+        </form>
+
+        <div id="message"></div>
+
+        <a class="back" href="./Student-dashboard.html">
+            ← العودة للوحة الطالب
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+const oldEmail = localStorage.getItem("userEmail");
+
+if (!oldEmail) {
+    window.location.href = "./Login.html";
+}
+
+// تحميل البيانات الحالية
+fetch(`/profile?email=${encodeURIComponent(oldEmail)}`)
+    .then(response => response.json())
+    .then(data => {
+
+        if (data && !data.error) {
+            document.getElementById("name").value = data.name || "";
+            document.getElementById("email").value = data.email || oldEmail;
+        }
+
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
+
+// حفظ التعديلات
+document.getElementById("profileForm").addEventListener("submit", async function(e) {
+
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+
+    if (!name || !email) {
+        showMessage("من فضلك املئي كل البيانات", false);
+        return;
+    }
+
+    try {
+
+        const response = await fetch("/update-profile", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                oldEmail: oldEmail,
+                name: name,
+                email: email
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            showMessage(data.message || "حدث خطأ", false);
+            return;
+        }
+
+        // تحديث البريد في المتصفح
+        localStorage.setItem("userEmail", email);
+
+        const user = JSON.parse(localStorage.getItem("user") || "{}");
+        user.name = name;
+        user.email = email;
+        localStorage.setItem("user", JSON.stringify(user));
+
+        showMessage("✅ تم حفظ التعديلات بنجاح", true);
+
+    } catch (error) {
+
+        console.error(error);
+        showMessage("حدث خطأ في الاتصال بالسيرفر", false);
+
+    }
+
+});
+
+
+function showMessage(text, success) {
+
+    const message = document.getElementById("message");
+
+    message.textContent = text;
+    message.style.color = success ? "#4caf50" : "#ff6b6b";
+
+}
+
+</script>
+
+</body>
+</html>
+```

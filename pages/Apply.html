@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>التقديم على الفرصة</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+            background: #071426;
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(212, 175, 55, .25);
+        }
+
+        .logo-en {
+            color: #d4af37;
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .logo-ar {
+            color: #ddd;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        .page {
+            width: min(700px, 90%);
+            margin: 70px auto;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .title .label {
+            color: #d4af37;
+            font-size: 14px;
+            letter-spacing: 3px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .title h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .title p {
+            color: #9daaba;
+        }
+
+        .card {
+            background: #0c2038;
+            border: 1px solid rgba(212, 175, 55, .25);
+            border-radius: 18px;
+            padding: 35px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, .2);
+        }
+
+        .opportunity-box {
+            background: rgba(212, 175, 55, .06);
+            border: 1px solid rgba(212, 175, 55, .2);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .opportunity-box .label {
+            color: #d4af37;
+            font-size: 13px;
+            margin-bottom: 7px;
+        }
+
+        .opportunity-box h2 {
+            font-size: 22px;
+        }
+
+        .student-info {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .info {
+            background: rgba(255, 255, 255, .035);
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .info strong {
+            display: block;
+            color: #d4af37;
+            margin-bottom: 6px;
+        }
+
+        .info span {
+            color: #d3d8df;
+        }
+
+        .notice {
+            background: rgba(255, 193, 7, .06);
+            border: 1px solid rgba(212, 175, 55, .2);
+            color: #c8cdd4;
+            padding: 15px;
+            border-radius: 10px;
+            line-height: 1.8;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        button {
+            width: 100%;
+            border: none;
+            padding: 15px;
+            border-radius: 9px;
+            background: #d4af37;
+            color: #071426;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, .2);
+        }
+
+        button:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: #d4af37;
+            text-decoration: none;
+        }
+
+        .message {
+            text-align: center;
+            padding: 60px 20px;
+            color: #aeb8c5;
+        }
+
+        .success {
+            text-align: center;
+            color: #d4af37;
+            font-size: 20px;
+            line-height: 1.8;
+            padding: 25px;
+        }
+
+        .error {
+            color: #ff7777;
+            text-align: center;
+            margin-top: 15px;
+            line-height: 1.7;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #8995a5;
+            border-top: 1px solid rgba(212, 175, 55, .2);
+        }
+
+        footer span {
+            color: #d4af37;
+        }
+
+        @media (max-width: 650px) {
+            header {
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            nav {
+                gap: 14px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .title h1 {
+                font-size: 30px;
+            }
+
+            .card {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div>
+            <div class="logo-en">FROM UNIVERSITY TO FACTORY</div>
+            <div class="logo-ar">من الجامعة إلى المصنع</div>
+        </div>
+
+        <nav>
+            <a href="../index.html">الرئيسية</a>
+            <a href="./Opportunities.html">الفرص</a>
+            <a href="./Company-register.html">الشركات</a>
+            <a href="./Login.html">تسجيل الدخول</a>
+        </nav>
+
+    </header>
+
+
+    <main class="page">
+
+        <div id="content">
+
+            <div class="message">
+                جاري تحميل بيانات التقديم...
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+        © 2026 <span>From University To Factory</span> — جميع الحقوق محفوظة
+    </footer>
+
+
+    <script>
+
+        const content = document.getElementById("content");
+
+        const params = new URLSearchParams(window.location.search);
+
+        const opportunityId = params.get("id");
+
+        const studentEmail = localStorage.getItem("userEmail");
+
+
+        let opportunityData = null;
+        let studentData = null;
+
+
+        async function loadData() {
+
+            try {
+
+                if (!opportunityId) {
+                    throw new Error("لم يتم تحديد الفرصة");
+                }
+
+                if (!studentEmail) {
+
+                    content.innerHTML = `
+                        <div class="message">
+                            <h2>يجب تسجيل الدخول أولًا</h2>
+                            <br>
+                            <a class="back" href="./Login.html">
+                                تسجيل الدخول
+                            </a>
+                        </div>
+                    `;
+
+                    return;
+                }
+
+
+                const opportunityResponse =
+                    await fetch(`/opportunity?id=${opportunityId}`);
+
+
+                if (!opportunityResponse.ok) {
+                    throw new Error("تعذر تحميل الفرصة");
+                }
+
+
+                opportunityData =
+                    await opportunityResponse.json();
+
+
+                const profileResponse =
+                    await fetch(`/profile?email=${encodeURIComponent(studentEmail)}`);
+
+
+                if (!profileResponse.ok) {
+                    throw new Error("تعذر تحميل بيانات الطالب");
+                }
+
+
+                const profileData =
+                    await profileResponse.json();
+
+
+                studentData =
+                    profileData.user || profileData;
+
+
+                renderPage();
+
+            } catch (error) {
+
+                console.error(error);
+
+                content.innerHTML = `
+                    <div class="message">
+                        <h2>حدث خطأ أثناء تحميل البيانات</h2>
+                        <p style="margin-top:12px;color:#9daaba;">
+                            تأكدي من تسجيل الدخول وأن السيرفر يعمل.
+                        </p>
+                        <a class="back" href="./Opportunities.html">
+                            العودة للفرص
+                        </a>
+                    </div>
+                `;
+            }
+        }
+
+
+        function renderPage() {
+
+            content.innerHTML = `
+
+                <div class="title">
+
+                    <div class="label">
+                        APPLICATION
+                    </div>
+
+                    <h1>
+                        تأكيد التقديم
+                    </h1>
+
+                    <p>
+                        راجعي بياناتك قبل إرسال طلب التقديم
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="opportunity-box">
+
+                        <div class="label">
+                            الفرصة
+                        </div>
+
+                        <h2>
+                            ${opportunityData.title || "فرصة غير محددة"}
+                        </h2>
+
+                    </div>
+
+
+                    <div class="student-info">
+
+                        <div class="info">
+
+                            <strong>
+                                اسم الطالبة
+                            </strong>
+
+                            <span>
+                                ${studentData.name || "غير متوفر"}
+                            </span>
+
+                        </div>
+
+
+                        <div class="info">
+
+                            <strong>
+                                البريد الإلكتروني
+                            </strong>
+
+                            <span>
+                                ${studentData.email || studentEmail}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="notice">
+
+                        عند الضغط على «تأكيد التقديم» سيتم إرسال طلبك
+                        إلى الشركة، ويمكنك متابعة حالة الطلب من لوحة الطالب.
+
+                    </div>
+
+
+                    <button id="applyButton">
+                        تأكيد التقديم
+                    </button>
+
+                    <div id="result"></div>
+
+
+                    <a class="back" href="./Opportunities.html">
+                        ← العودة إلى الفرص
+                    </a>
+
+                </div>
+            `;
+            
+
+            document
+                .getElementById("applyButton")
+                .addEventListener("click", submitApplication);
+        }
+
+
+        async function submitApplication() {
+
+            const button =
+                document.getElementById("applyButton");
+
+            const result =
+                document.getElementById("result");
+
+
+            button.disabled = true;
+            button.textContent = "جاري التقديم...";
+
+
+            try {
+
+                const response =
+                    await fetch("/apply", {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            userEmail: studentEmail,
+
+                            opportunityId: opportunityId,
+
+                            opportunityName: opportunityData.title
+
+                        })
+
+                    });
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    result.innerHTML = `
+                        <div class="error">
+                            ${data.message || "حدث خطأ أثناء التقديم"}
+                        </div>
+                    `;
+
+                    button.disabled = false;
+                    button.textContent = "تأكيد التقديم";
+
+                    return;
+                }
+
+
+                result.innerHTML = `
+
+                    <div class="success">
+
+                        ✅ تم التقديم على الفرصة بنجاح
+
+                        <br>
+
+                        <small>
+                            يمكنك متابعة حالة طلبك من لوحة الطالب.
+                        </small>
+
+                    </div>
+
+                `;
+
+                button.style.display = "none";
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                result.innerHTML = `
+                    <div class="error">
+                        حدث خطأ في الاتصال بالسيرفر.
+                    </div>
+                `;
+
+                button.disabled = false;
+                button.textContent = "تأكيد التقديم";
+            }
+        }
+
+
+        loadData();
+
+    </script>
+
+</body>
+
+</html>

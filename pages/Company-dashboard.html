@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم الشركة | من الجامعة إلى المصنع</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #071426;
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #0b1d33;
+            border-bottom: 1px solid #d4af37;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #d4af37;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            display: block;
+            color: white;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .back {
+            color: #d4af37;
+            text-decoration: none;
+            border: 1px solid #d4af37;
+            padding: 10px 18px;
+            border-radius: 8px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .welcome {
+            background: #0b1d33;
+            border: 1px solid #243a55;
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .welcome h1 {
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            color: #c8d0da;
+            line-height: 1.8;
+        }
+
+        .company-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .info-box {
+            background: #071426;
+            border: 1px solid #243a55;
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .info-box strong {
+            display: block;
+            color: #d4af37;
+            margin-bottom: 8px;
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin: 25px 0;
+        }
+
+        .action {
+            background: #0b1d33;
+            border: 1px solid #243a55;
+            border-radius: 16px;
+            padding: 25px;
+            text-decoration: none;
+            color: white;
+            transition: 0.2s;
+        }
+
+        .action:hover {
+            border-color: #d4af37;
+            transform: translateY(-3px);
+        }
+
+        .action h3 {
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .action p {
+            color: #aeb8c5;
+            line-height: 1.6;
+        }
+
+        .section {
+            background: #0b1d33;
+            border: 1px solid #243a55;
+            border-radius: 18px;
+            padding: 25px;
+        }
+
+        .section h2 {
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .opportunity {
+            background: #071426;
+            border: 1px solid #243a55;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 12px;
+        }
+
+        .opportunity h3 {
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .opportunity p {
+            color: #b9c2ce;
+            margin: 5px 0;
+        }
+
+        .empty {
+            color: #9da8b5;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer {
+            text-align: center;
+            color: #7f8b99;
+            padding: 30px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        FROM UNIVERSITY TO FACTORY
+        <span>من الجامعة إلى المصنع</span>
+    </div>
+
+    <a href="../index.html" class="back">الرئيسية</a>
+</header>
+
+<div class="container">
+
+    <div class="welcome">
+        <h1>لوحة تحكم الشركة</h1>
+        <p id="welcomeText">جاري تحميل بيانات الشركة...</p>
+
+        <div class="company-info">
+            <div class="info-box">
+                <strong>اسم الشركة</strong>
+                <span id="companyName">...</span>
+            </div>
+
+            <div class="info-box">
+                <strong>المجال</strong>
+                <span id="companyField">...</span>
+            </div>
+
+            <div class="info-box">
+                <strong>الموقع</strong>
+                <span id="companyLocation">...</span>
+            </div>
+
+            <div class="info-box">
+                <strong>البريد الإلكتروني</strong>
+                <span id="companyEmail">...</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+
+        <a href="./Add-opportunity.html" class="action">
+            <h3>➕ إضافة فرصة</h3>
+            <p>أضف فرصة تدريب أو عمل جديدة للطلاب.</p>
+        </a>
+
+        <a href="./Edit-opportunity.html" class="action">
+            <h3>✏️ إدارة الفرص</h3>
+            <p>تعديل الفرص المنشورة أو حذفها.</p>
+        </a>
+
+        <a href="./Applicants.html" class="action">
+            <h3>👥 المتقدمون</h3>
+            <p>عرض الطلاب المتقدمين ومتابعة طلباتهم.</p>
+        </a>
+
+        <a href="./Opportunities.html" class="action">
+            <h3>🔎 عرض الفرص</h3>
+            <p>مشاهدة جميع الفرص الموجودة على المنصة.</p>
+        </a>
+
+    </div>
+
+    <div class="section">
+        <h2>الفرص المنشورة</h2>
+        <div id="opportunities">
+            <div class="empty">جاري تحميل الفرص...</div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 من الجامعة إلى المصنع
+</footer>
+
+<script>
+
+    const companyEmail = localStorage.getItem("companyEmail");
+
+    if (!companyEmail) {
+        document.getElementById("welcomeText").textContent =
+            "لم يتم العثور على حساب شركة مسجل حاليًا.";
+    } else {
+
+        fetch(`/company-profile?email=${encodeURIComponent(companyEmail)}`)
+            .then(response => response.json())
+            .then(data => {
+
+                const company = data.company || data;
+
+                document.getElementById("companyName").textContent =
+                    company.name || "غير متوفر";
+
+                document.getElementById("companyField").textContent =
+                    company.field || "غير متوفر";
+
+                document.getElementById("companyLocation").textContent =
+                    company.location || "غير متوفر";
+
+                document.getElementById("companyEmail").textContent =
+                    company.email || companyEmail;
+
+                document.getElementById("welcomeText").textContent =
+                    `مرحبًا بك في منصة من الجامعة إلى المصنع، ${company.name || "الشركة"} 👋`;
+
+            })
+            .catch(error => {
+                console.error(error);
+
+                document.getElementById("welcomeText").textContent =
+                    "تعذر تحميل بيانات الشركة.";
+            });
+
+        fetch(`/company-opportunities?email=${encodeURIComponent(companyEmail)}`)
+            .then(response => response.json())
+            .then(data => {
+
+                const opportunities =
+                    Array.isArray(data) ? data : (data.opportunities || []);
+
+                const container = document.getElementById("opportunities");
+
+                if (opportunities.length === 0) {
+                    container.innerHTML =
+                        `<div class="empty">لا توجد فرص منشورة حتى الآن.</div>`;
+                    return;
+                }
+
+                container.innerHTML = "";
+
+                opportunities.forEach(opportunity => {
+
+                    const div = document.createElement("div");
+
+                    div.className = "opportunity";
+
+                    div.innerHTML = `
+                        <h3>${opportunity.title || "بدون عنوان"}</h3>
+                        <p><strong>النوع:</strong> ${opportunity.type || "غير محدد"}</p>
+                        <p><strong>المجال:</strong> ${opportunity.field || "غير محدد"}</p>
+                        <p><strong>الموقع:</strong> ${opportunity.location || "غير محدد"}</p>
+                        <p><strong>آخر موعد:</strong> ${opportunity.deadline || "غير محدد"}</p>
+                    `;
+
+                    container.appendChild(div);
+                });
+
+            })
+            .catch(error => {
+
+                console.error(error);
+
+                document.getElementById("opportunities").innerHTML =
+                    `<div class="empty">تعذر تحميل الفرص.</div>`;
+            });
+    }
+
+</script>
+
+</body>
+</html>

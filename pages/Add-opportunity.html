@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة فرصة | من الجامعة إلى المصنع</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #071426;
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #0b1d33;
+            border-bottom: 1px solid #d4af37;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #d4af37;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            display: block;
+            color: white;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .back {
+            color: #d4af37;
+            text-decoration: none;
+            border: 1px solid #d4af37;
+            padding: 10px 18px;
+            border-radius: 8px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 850px;
+            margin: 40px auto;
+        }
+
+        .box {
+            background: #0b1d33;
+            border: 1px solid #243a55;
+            border-radius: 18px;
+            padding: 35px;
+        }
+
+        h1 {
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #aeb8c5;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        label {
+            display: block;
+            color: #d4af37;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            background: #071426;
+            color: white;
+            border: 1px solid #344a64;
+            border-radius: 9px;
+            padding: 13px;
+            margin-bottom: 20px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #d4af37;
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        button {
+            width: 100%;
+            background: #d4af37;
+            color: #071426;
+            border: none;
+            border-radius: 9px;
+            padding: 14px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        #message {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .success {
+            color: #4ade80;
+        }
+
+        .error {
+            color: #ff6b6b;
+        }
+
+        @media (max-width: 650px) {
+            .row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .box {
+                padding: 25px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        FROM UNIVERSITY TO FACTORY
+        <span>من الجامعة إلى المصنع</span>
+    </div>
+
+    <a href="./Company-dashboard.html" class="back">لوحة التحكم</a>
+</header>
+
+<div class="container">
+
+    <div class="box">
+
+        <h1>إضافة فرصة جديدة</h1>
+
+        <p class="subtitle">
+            أضف فرصة تدريب أو عمل ليستطيع الطلاب التقديم عليها.
+        </p>
+
+        <form id="opportunityForm">
+
+            <label>عنوان الفرصة</label>
+            <input
+                type="text"
+                id="title"
+                placeholder="مثال: تدريب عملي في الإلكترونيات"
+                required
+            >
+
+            <div class="row">
+
+                <div>
+                    <label>نوع الفرصة</label>
+                    <select id="type" required>
+                        <option value="">اختر النوع</option>
+                        <option value="تدريب">تدريب</option>
+                        <option value="وظيفة">وظيفة</option>
+                        <option value="تدريب صيفي">تدريب صيفي</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>المجال</label>
+                    <input
+                        type="text"
+                        id="field"
+                        placeholder="مثال: الإلكترونيات"
+                        required
+                    >
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div>
+                    <label>الموقع</label>
+                    <input
+                        type="text"
+                        id="location"
+                        placeholder="مثال: سوهاج"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label>آخر موعد للتقديم</label>
+                    <input
+                        type="date"
+                        id="deadline"
+                        required
+                    >
+                </div>
+
+            </div>
+
+            <label>وصف الفرصة</label>
+
+            <textarea
+                id="description"
+                placeholder="اكتب تفاصيل التدريب أو الوظيفة..."
+                required
+            ></textarea>
+
+            <label>المهارات المطلوبة</label>
+
+            <input
+                type="text"
+                id="skills"
+                placeholder="مثال: Arduino, Electronics, C++"
+                required
+            >
+
+            <button type="submit">
+                نشر الفرصة
+            </button>
+
+            <div id="message"></div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+
+    const form = document.getElementById("opportunityForm");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        const companyEmail = localStorage.getItem("companyEmail");
+
+        if (!companyEmail) {
+
+            message.textContent =
+                "لا يوجد حساب شركة مسجل حاليًا.";
+
+            message.className = "error";
+
+            return;
+        }
+
+        const opportunity = {
+
+            companyEmail: companyEmail,
+
+            title: document.getElementById("title").value.trim(),
+
+            type: document.getElementById("type").value,
+
+            field: document.getElementById("field").value.trim(),
+
+            location: document.getElementById("location").value.trim(),
+
+            description: document.getElementById("description").value.trim(),
+
+            skills: document.getElementById("skills").value.trim(),
+
+            deadline: document.getElementById("deadline").value
+
+        };
+
+        try {
+
+            const response = await fetch("/opportunities", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify(opportunity)
+
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+
+                message.textContent =
+                    data.message || "حدث خطأ أثناء إضافة الفرصة.";
+
+                message.className = "error";
+
+                return;
+            }
+
+            message.textContent =
+                "تم نشر الفرصة بنجاح ✅";
+
+            message.className = "success";
+
+            form.reset();
+
+        } catch (error) {
+
+            console.error(error);
+
+            message.textContent =
+                "تعذر الاتصال بالسيرفر.";
+
+            message.className = "error";
+        }
+
+    });
+
+</script>
+
+</body>
+</html>

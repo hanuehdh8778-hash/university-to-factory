@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المتقدمون | من الجامعة إلى المصنع</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #071426;
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #0b1d33;
+            border-bottom: 1px solid #d4af37;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #d4af37;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            display: block;
+            color: white;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .back {
+            color: #d4af37;
+            text-decoration: none;
+            border: 1px solid #d4af37;
+            padding: 10px 18px;
+            border-radius: 8px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        h1 {
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #aeb8c5;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .filter {
+            background: #0b1d33;
+            border: 1px solid #243a55;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .filter label {
+            display: block;
+            color: #d4af37;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .filter select {
+            width: 100%;
+            background: #071426;
+            color: white;
+            border: 1px solid #344a64;
+            border-radius: 8px;
+            padding: 12px;
+            outline: none;
+        }
+
+        .applicant {
+            background: #0b1d33;
+            border: 1px solid #243a55;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 18px;
+        }
+
+        .applicant h2 {
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .info {
+            color: #c8d0da;
+            line-height: 1.9;
+            margin-bottom: 18px;
+        }
+
+        .info strong {
+            color: #d4af37;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 7px 13px;
+            border-radius: 20px;
+            background: #243a55;
+            margin-top: 8px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        button {
+            border: none;
+            border-radius: 8px;
+            padding: 11px 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .accept {
+            background: #2e8b57;
+            color: white;
+        }
+
+        .reject {
+            background: #8f2f2f;
+            color: white;
+        }
+
+        .pending {
+            background: #d4af37;
+            color: #071426;
+        }
+
+        .message {
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .success {
+            color: #4ade80;
+        }
+
+        .error {
+            color: #ff6b6b;
+        }
+
+        .empty {
+            background: #0b1d33;
+            border: 1px solid #243a55;
+            border-radius: 15px;
+            padding: 35px;
+            text-align: center;
+            color: #9da8b5;
+        }
+
+        @media (max-width: 650px) {
+            .container {
+                width: 94%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        FROM UNIVERSITY TO FACTORY
+        <span>من الجامعة إلى المصنع</span>
+    </div>
+
+    <a href="./Company-dashboard.html" class="back">
+        لوحة التحكم
+    </a>
+
+</header>
+
+
+<div class="container">
+
+    <h1>المتقدمون</h1>
+
+    <p class="subtitle">
+        راجع طلبات الطلاب وحدد حالة كل طلب.
+    </p>
+
+
+    <div class="filter">
+
+        <label>اختيار الفرصة</label>
+
+        <select id="opportunityFilter">
+
+            <option value="all">
+                كل الفرص
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div id="message" class="message"></div>
+
+
+    <div id="applicants">
+
+        <div class="empty">
+            جاري تحميل المتقدمين...
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    const companyEmail =
+        localStorage.getItem("companyEmail");
+
+    const applicantsContainer =
+        document.getElementById("applicants");
+
+    const opportunityFilter =
+        document.getElementById("opportunityFilter");
+
+    const message =
+        document.getElementById("message");
+
+
+    if (!companyEmail) {
+
+        applicantsContainer.innerHTML = `
+            <div class="empty">
+                لا يوجد حساب شركة مسجل حاليًا.
+            </div>
+        `;
+
+    } else {
+
+        loadApplicants();
+
+    }
+
+
+    async function loadApplicants() {
+
+        try {
+
+            const response = await fetch(
+                `/company-applications?email=${encodeURIComponent(companyEmail)}`
+            );
+
+            const data = await response.json();
+
+            const applications =
+                Array.isArray(data)
+                    ? data
+                    : (data.applications || []);
+
+
+            if (applications.length === 0) {
+
+                applicantsContainer.innerHTML = `
+                    <div class="empty">
+                        لا يوجد طلاب متقدمون حتى الآن.
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            createOpportunityFilter(applications);
+
+            displayApplicants(applications);
+
+        } catch (error) {
+
+            console.error(error);
+
+            applicantsContainer.innerHTML = `
+                <div class="empty">
+                    تعذر تحميل بيانات المتقدمين.
+                </div>
+            `;
+        }
+
+    }
+
+
+    function createOpportunityFilter(applications) {
+
+        const opportunities = [];
+
+        applications.forEach(application => {
+
+            const id =
+                application.opportunity_id;
+
+            const name =
+                application.opportunity_name ||
+                "فرصة بدون اسم";
+
+            if (!opportunities.some(item => item.id === id)) {
+
+                opportunities.push({
+                    id: id,
+                    name: name
+                });
+
+            }
+
+        });
+
+
+        opportunities.forEach(opportunity => {
+
+            const option =
+                document.createElement("option");
+
+            option.value =
+                opportunity.id;
+
+            option.textContent =
+                opportunity.name;
+
+            opportunityFilter.appendChild(option);
+
+        });
+
+
+        opportunityFilter.addEventListener(
+            "change",
+            function() {
+
+                const selected =
+                    opportunityFilter.value;
+
+                if (selected === "all") {
+
+                    displayApplicants(applications);
+
+                    return;
+                }
+
+
+                const filtered =
+                    applications.filter(
+                        application =>
+                            String(application.opportunity_id) ===
+                            String(selected)
+                    );
+
+                displayApplicants(filtered);
+
+            }
+        );
+
+    }
+
+
+    function displayApplicants(applications) {
+
+        if (applications.length === 0) {
+
+            applicantsContainer.innerHTML = `
+                <div class="empty">
+                    لا يوجد متقدمون لهذه الفرصة.
+                </div>
+            `;
+
+            return;
+        }
+
+
+        applicantsContainer.innerHTML = "";
+
+
+        applications.forEach(application => {
+
+            const applicant =
+                document.createElement("div");
+
+            applicant.className =
+                "applicant";
+
+
+            const status =
+                application.status || "pending";
+
+
+            let statusText =
+                "قيد المراجعة";
+
+            let statusClass =
+                "pending";
+
+
+            if (status === "accepted") {
+
+                statusText =
+                    "مقبول";
+
+                statusClass =
+                    "accept";
+
+            }
+
+
+            if (status === "rejected") {
+
+                statusText =
+                    "مرفوض";
+
+                statusClass =
+                    "reject";
+
+            }
+
+
+            applicant.innerHTML = `
+
+                <h2>
+                    ${escapeHtml(
+                        application.user_name ||
+                        "طالب"
+                    )}
+                </h2>
+
+                <div class="info">
+
+                    <div>
+                        <strong>البريد الإلكتروني:</strong>
+                        ${escapeHtml(
+                            application.user_email ||
+                            "غير متوفر"
+                        )}
+                    </div>
+
+                    <div>
+                        <strong>الفرصة:</strong>
+                        ${escapeHtml(
+                            application.opportunity_name ||
+                            "غير متوفر"
+                        )}
+                    </div>
+
+                    <div>
+                        <strong>تاريخ التقديم:</strong>
+                        ${escapeHtml(
+                            application.created_at ||
+                            "غير متوفر"
+                        )}
+                    </div>
+
+                    <div>
+                        <strong>الحالة:</strong>
+
+                        <span class="status ${statusClass}">
+                            ${statusText}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="buttons">
+
+                    <button
+                        class="accept"
+                        onclick="updateStatus(
+                            ${application.id},
+                            'accepted'
+                        )"
+                    >
+                        قبول
+                    </button>
+
+
+                    <button
+                        class="reject"
+                        onclick="updateStatus(
+                            ${application.id},
+                            'rejected'
+                        )"
+                    >
+                        رفض
+                    </button>
+
+                </div>
+
+            `;
+
+
+            applicantsContainer.appendChild(applicant);
+
+        });
+
+    }
+
+
+    async function updateStatus(
+        applicationId,
+        status
+    ) {
+
+        try {
+
+            const response = await fetch(
+                "/application-status",
+                {
+
+                    method: "PUT",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        applicationId:
+                            applicationId,
+
+                        status:
+                            status,
+
+                        companyEmail:
+                            companyEmail
+
+                    })
+
+                }
+            );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                showMessage(
+                    data.message ||
+                    "حدث خطأ أثناء تحديث الحالة.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            showMessage(
+                status === "accepted"
+                    ? "تم قبول الطالب بنجاح ✅"
+                    : "تم رفض الطالب.",
+                "success"
+            );
+
+
+            loadApplicants();
+
+        } catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "تعذر الاتصال بالسيرفر.",
+                "error"
+            );
+
+        }
+
+    }
+
+
+    function showMessage(
+        text,
+        type
+    ) {
+
+        message.textContent =
+            text;
+
+        message.className =
+            `message ${type}`;
+
+
+        setTimeout(() => {
+
+            message.textContent =
+                "";
+
+            message.className =
+                "message";
+
+        }, 3000);
+
+    }
+
+
+    function escapeHtml(value) {
+
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الفرصة</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+            background: #071426;
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(212, 175, 55, .25);
+        }
+
+        .logo-en {
+            color: #d4af37;
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .logo-ar {
+            color: #ddd;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        .page {
+            width: min(900px, 90%);
+            margin: 70px auto;
+        }
+
+        .title-area {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .title-area .label {
+            color: #d4af37;
+            letter-spacing: 3px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .title-area h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .title-area p {
+            color: #9daaba;
+        }
+
+        .details-card {
+            background: #0c2038;
+            border: 1px solid rgba(212, 175, 55, .25);
+            border-radius: 18px;
+            padding: 35px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, .2);
+        }
+
+        .type {
+            display: inline-block;
+            background: #d4af37;
+            color: #071426;
+            padding: 7px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .description {
+            color: #d4d9df;
+            line-height: 2;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .info-box {
+            background: rgba(255, 255, 255, .035);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 10px;
+            padding: 18px;
+        }
+
+        .info-box strong {
+            display: block;
+            color: #d4af37;
+            margin-bottom: 7px;
+        }
+
+        .info-box span {
+            color: #c3cad3;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px;
+            border-radius: 9px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .apply {
+            background: #d4af37;
+            color: #071426;
+        }
+
+        .apply:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, .2);
+        }
+
+        .back {
+            border: 1px solid #d4af37;
+            color: #d4af37;
+        }
+
+        .back:hover {
+            background: #d4af37;
+            color: #071426;
+        }
+
+        .message {
+            text-align: center;
+            color: #aeb8c5;
+            padding: 80px 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #8995a5;
+            border-top: 1px solid rgba(212, 175, 55, .2);
+        }
+
+        footer span {
+            color: #d4af37;
+        }
+
+        @media (max-width: 650px) {
+
+            header {
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            nav {
+                gap: 14px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .title-area h1 {
+                font-size: 30px;
+            }
+
+            .details-card {
+                padding: 22px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div>
+            <div class="logo-en">FROM UNIVERSITY TO FACTORY</div>
+            <div class="logo-ar">من الجامعة إلى المصنع</div>
+        </div>
+
+        <nav>
+            <a href="../index.html">الرئيسية</a>
+            <a href="./Opportunities.html">الفرص</a>
+            <a href="./Company-register.html">الشركات</a>
+            <a href="./Login.html">تسجيل الدخول</a>
+        </nav>
+
+    </header>
+
+
+    <main class="page">
+
+        <div id="content">
+            <div class="message">
+                جاري تحميل تفاصيل الفرصة...
+            </div>
+        </div>
+
+    </main>
+
+
+    <footer>
+        © 2026 <span>From University To Factory</span> — جميع الحقوق محفوظة
+    </footer>
+
+
+    <script>
+
+        const content = document.getElementById("content");
+
+        const params = new URLSearchParams(window.location.search);
+        const opportunityId = params.get("id");
+
+
+        async function loadOpportunity() {
+
+            if (!opportunityId) {
+
+                content.innerHTML = `
+                    <div class="message">
+                        لم يتم تحديد الفرصة.
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(`/opportunity?id=${opportunityId}`);
+
+                if (!response.ok) {
+                    throw new Error("Opportunity not found");
+                }
+
+                const opportunity =
+                    await response.json();
+
+
+                content.innerHTML = `
+
+                    <div class="title-area">
+
+                        <div class="label">
+                            OPPORTUNITY DETAILS
+                        </div>
+
+                        <h1>
+                            ${opportunity.title || "فرصة تدريب أو عمل"}
+                        </h1>
+
+                        <p>
+                            تفاصيل الفرصة المتاحة للطلاب
+                        </p>
+
+                    </div>
+
+
+                    <div class="details-card">
+
+                        <span class="type">
+                            ${opportunity.type || "فرصة"}
+                        </span>
+
+                        <p class="description">
+                            ${opportunity.description || "لا يوجد وصف لهذه الفرصة حاليًا."}
+                        </p>
+
+
+                        <div class="info-grid">
+
+                            <div class="info-box">
+                                <strong>المجال</strong>
+                                <span>
+                                    ${opportunity.field || "غير محدد"}
+                                </span>
+                            </div>
+
+                            <div class="info-box">
+                                <strong>المكان</strong>
+                                <span>
+                                    ${opportunity.location || "غير محدد"}
+                                </span>
+                            </div>
+
+                            <div class="info-box">
+                                <strong>المهارات المطلوبة</strong>
+                                <span>
+                                    ${opportunity.skills || "غير محددة"}
+                                </span>
+                            </div>
+
+                            <div class="info-box">
+                                <strong>آخر موعد للتقديم</strong>
+                                <span>
+                                    ${opportunity.deadline || "غير محدد"}
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="buttons">
+
+                            <a
+                                class="btn apply"
+                                href="./Apply.html?id=${opportunity.id}&name=${encodeURIComponent(opportunity.title || "")}"
+                            >
+                                التقديم على الفرصة
+                            </a>
+
+                            <a
+                                class="btn back"
+                                href="./Opportunities.html"
+                            >
+                                العودة للفرص
+                            </a>
+
+                        </div>
+
+                    </div>
+                `;
+
+            } catch (error) {
+
+                console.error(error);
+
+                content.innerHTML = `
+                    <div class="message">
+                        حدث خطأ أثناء تحميل تفاصيل الفرصة.
+                    </div>
+                `;
+            }
+        }
+
+
+        loadOpportunity();
+
+    </script>
+
+</body>
+
+</html>

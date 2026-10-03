@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الفرص | من الجامعة إلى المصنع</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #071426;
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #0b1d33;
+            border-bottom: 1px solid #d4af37;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #d4af37;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            display: block;
+            color: white;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .back {
+            color: #d4af37;
+            text-decoration: none;
+            border: 1px solid #d4af37;
+            padding: 10px 18px;
+            border-radius: 8px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        h1 {
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #aeb8c5;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: #0b1d33;
+            border: 1px solid #243a55;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .info {
+            color: #c8d0da;
+            line-height: 1.8;
+            margin-bottom: 18px;
+        }
+
+        .info strong {
+            color: #d4af37;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: none;
+            border-radius: 8px;
+            padding: 11px 18px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .edit-btn {
+            background: #d4af37;
+            color: #071426;
+        }
+
+        .delete-btn {
+            background: #8f2f2f;
+            color: white;
+        }
+
+        .save-btn {
+            background: #d4af37;
+            color: #071426;
+            width: 100%;
+            margin-top: 10px;
+            padding: 14px;
+            font-size: 16px;
+        }
+
+        .cancel-btn {
+            background: #243a55;
+            color: white;
+            width: 100%;
+            margin-top: 10px;
+            padding: 14px;
+        }
+
+        .form {
+            display: none;
+            margin-top: 20px;
+            border-top: 1px solid #243a55;
+            padding-top: 20px;
+        }
+
+        label {
+            display: block;
+            color: #d4af37;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            background: #071426;
+            color: white;
+            border: 1px solid #344a64;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 16px;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #d4af37;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .message {
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .success {
+            color: #4ade80;
+        }
+
+        .error {
+            color: #ff6b6b;
+        }
+
+        .empty {
+            text-align: center;
+            color: #9da8b5;
+            padding: 30px;
+            background: #0b1d33;
+            border-radius: 15px;
+        }
+
+        @media (max-width: 650px) {
+            .row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        FROM UNIVERSITY TO FACTORY
+        <span>من الجامعة إلى المصنع</span>
+    </div>
+
+    <a href="./Company-dashboard.html" class="back">
+        لوحة التحكم
+    </a>
+</header>
+
+<div class="container">
+
+    <h1>إدارة الفرص</h1>
+
+    <p class="subtitle">
+        يمكنك تعديل الفرص المنشورة أو حذفها.
+    </p>
+
+    <div id="message" class="message"></div>
+
+    <div id="opportunities">
+        <div class="empty">جاري تحميل الفرص...</div>
+    </div>
+
+</div>
+
+<script>
+
+    const companyEmail = localStorage.getItem("companyEmail");
+
+    const container = document.getElementById("opportunities");
+    const message = document.getElementById("message");
+
+    if (!companyEmail) {
+
+        container.innerHTML = `
+            <div class="empty">
+                لا يوجد حساب شركة مسجل حاليًا.
+            </div>
+        `;
+
+    } else {
+
+        loadOpportunities();
+    }
+
+
+    async function loadOpportunities() {
+
+        try {
+
+            const response = await fetch(
+                `/company-opportunities?email=${encodeURIComponent(companyEmail)}`
+            );
+
+            const data = await response.json();
+
+            const opportunities =
+                Array.isArray(data)
+                    ? data
+                    : (data.opportunities || []);
+
+            if (opportunities.length === 0) {
+
+                container.innerHTML = `
+                    <div class="empty">
+                        لا توجد فرص منشورة حتى الآن.
+                    </div>
+                `;
+
+                return;
+            }
+
+            container.innerHTML = "";
+
+            opportunities.forEach(opportunity => {
+
+                const card = document.createElement("div");
+
+                card.className = "card";
+
+                card.innerHTML = `
+
+                    <h2>${escapeHtml(opportunity.title || "بدون عنوان")}</h2>
+
+                    <div class="info">
+
+                        <div>
+                            <strong>النوع:</strong>
+                            ${escapeHtml(opportunity.type || "غير محدد")}
+                        </div>
+
+                        <div>
+                            <strong>المجال:</strong>
+                            ${escapeHtml(opportunity.field || "غير محدد")}
+                        </div>
+
+                        <div>
+                            <strong>الموقع:</strong>
+                            ${escapeHtml(opportunity.location || "غير محدد")}
+                        </div>
+
+                        <div>
+                            <strong>آخر موعد:</strong>
+                            ${escapeHtml(opportunity.deadline || "غير محدد")}
+                        </div>
+
+                    </div>
+
+                    <div class="buttons">
+
+                        <button
+                            class="edit-btn"
+                            onclick="showEditForm(${opportunity.id})"
+                        >
+                            تعديل
+                        </button>
+
+                        <button
+                            class="delete-btn"
+                            onclick="deleteOpportunity(${opportunity.id})"
+                        >
+                            حذف
+                        </button>
+
+                    </div>
+
+                    <div
+                        class="form"
+                        id="form-${opportunity.id}"
+                    >
+
+                        <label>عنوان الفرصة</label>
+
+                        <input
+                            id="title-${opportunity.id}"
+                            value="${escapeAttribute(opportunity.title || "")}"
+                        >
+
+                        <div class="row">
+
+                            <div>
+
+                                <label>نوع الفرصة</label>
+
+                                <select id="type-${opportunity.id}">
+
+                                    <option value="تدريب"
+                                        ${opportunity.type === "تدريب" ? "selected" : ""}>
+                                        تدريب
+                                    </option>
+
+                                    <option value="وظيفة"
+                                        ${opportunity.type === "وظيفة" ? "selected" : ""}>
+                                        وظيفة
+                                    </option>
+
+                                    <option value="تدريب صيفي"
+                                        ${opportunity.type === "تدريب صيفي" ? "selected" : ""}>
+                                        تدريب صيفي
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div>
+
+                                <label>المجال</label>
+
+                                <input
+                                    id="field-${opportunity.id}"
+                                    value="${escapeAttribute(opportunity.field || "")}"
+                                >
+
+                            </div>
+
+                        </div>
+
+                        <label>الموقع</label>
+
+                        <input
+                            id="location-${opportunity.id}"
+                            value="${escapeAttribute(opportunity.location || "")}"
+                        >
+
+                        <label>آخر موعد للتقديم</label>
+
+                        <input
+                            type="date"
+                            id="deadline-${opportunity.id}"
+                            value="${escapeAttribute(opportunity.deadline || "")}"
+                        >
+
+                        <label>الوصف</label>
+
+                        <textarea id="description-${opportunity.id}">${escapeHtml(opportunity.description || "")}</textarea>
+
+                        <label>المهارات المطلوبة</label>
+
+                        <input
+                            id="skills-${opportunity.id}"
+                            value="${escapeAttribute(opportunity.skills || "")}"
+                        >
+
+                        <button
+                            class="save-btn"
+                            onclick="saveOpportunity(${opportunity.id})"
+                        >
+                            حفظ التعديلات
+                        </button>
+
+                        <button
+                            class="cancel-btn"
+                            onclick="hideEditForm(${opportunity.id})"
+                        >
+                            إلغاء
+                        </button>
+
+                    </div>
+                `;
+
+                container.appendChild(card);
+
+            });
+
+        } catch (error) {
+
+            console.error(error);
+
+            container.innerHTML = `
+                <div class="empty">
+                    تعذر تحميل الفرص.
+                </div>
+            `;
+        }
+    }
+
+
+    function showEditForm(id) {
+
+        const form = document.getElementById(`form-${id}`);
+
+        form.style.display = "block";
+
+        form.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }
+
+
+    function hideEditForm(id) {
+
+        const form = document.getElementById(`form-${id}`);
+
+        form.style.display = "none";
+    }
+
+
+    async function saveOpportunity(id) {
+
+        const updatedOpportunity = {
+
+            companyEmail: companyEmail,
+
+            title: document.getElementById(`title-${id}`).value.trim(),
+
+            type: document.getElementById(`type-${id}`).value,
+
+            field: document.getElementById(`field-${id}`).value.trim(),
+
+            location: document.getElementById(`location-${id}`).value.trim(),
+
+            deadline: document.getElementById(`deadline-${id}`).value,
+
+            description: document.getElementById(`description-${id}`).value.trim(),
+
+            skills: document.getElementById(`skills-${id}`).value.trim()
+
+        };
+
+
+        if (!updatedOpportunity.title) {
+
+            showMessage("اكتبي عنوان الفرصة.", "error");
+
+            return;
+        }
+
+
+        try {
+
+            const response = await fetch(`/opportunity/${id}`, {
+
+                method: "PUT",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify(updatedOpportunity)
+
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+
+                showMessage(
+                    data.message || "حدث خطأ أثناء التعديل.",
+                    "error"
+                );
+
+                return;
+            }
+
+            showMessage(
+                "تم تعديل الفرصة بنجاح ✅",
+                "success"
+            );
+
+            loadOpportunities();
+
+        } catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "تعذر الاتصال بالسيرفر.",
+                "error"
+            );
+        }
+    }
+
+
+    async function deleteOpportunity(id) {
+
+        const confirmed = confirm(
+            "هل أنتِ متأكدة من حذف هذه الفرصة؟"
+        );
+
+        if (!confirmed) {
+            return;
+        }
+
+
+        try {
+
+            const response = await fetch(
+                `/opportunity/${id}`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        companyEmail: companyEmail
+                    })
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+
+                showMessage(
+                    data.message || "حدث خطأ أثناء الحذف.",
+                    "error"
+                );
+
+                return;
+            }
+
+            showMessage(
+                "تم حذف الفرصة بنجاح ✅",
+                "success"
+            );
+
+            loadOpportunities();
+
+        } catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "تعذر الاتصال بالسيرفر.",
+                "error"
+            );
+        }
+    }
+
+
+    function showMessage(text, type) {
+
+        message.textContent = text;
+
+        message.className =
+            `message ${type}`;
+
+        setTimeout(() => {
+
+            message.textContent = "";
+            message.className = "message";
+
+        }, 3000);
+    }
+
+
+    function escapeHtml(value) {
+
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+
+    function escapeAttribute(value) {
+
+        return escapeHtml(value);
+    }
+
+</script>
+
+</body>
+</html>
