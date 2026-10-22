@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تفاصيل الفرصة</title>
+    <title>تفاصيل الفرصة | LINKORA</title>
 
     <style>
         * {
@@ -13,99 +14,144 @@
             padding: 0;
         }
 
+        :root {
+            --blue: #1769AA;
+            --sky: #70C5E8;
+            --baby: #A7D8F0;
+            --light: #F1F8FC;
+            --navy: #123B5D;
+            --text: #52697A;
+            --white: #FFFFFF;
+            --border: #DCECF5;
+        }
+
         body {
             font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-            background: #071426;
-            color: white;
+            background: var(--light);
+            color: var(--navy);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         header {
-            padding: 20px 7%;
+            background: var(--white);
+            padding: 18px 7%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(212, 175, 55, .25);
+            gap: 25px;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 3px 15px rgba(18, 59, 93, 0.04);
         }
 
         .logo-en {
-            color: #d4af37;
-            font-size: 19px;
+            color: var(--blue);
+            font-size: 22px;
             font-weight: 800;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            direction: ltr;
         }
 
         .logo-ar {
-            color: #ddd;
+            color: var(--text);
             font-size: 13px;
-            margin-top: 4px;
+            margin-top: 5px;
         }
 
         nav {
             display: flex;
             gap: 25px;
+            flex-wrap: wrap;
         }
 
         nav a {
-            color: #ddd;
+            color: var(--navy);
             text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
         }
 
         nav a:hover {
-            color: #d4af37;
+            color: var(--blue);
         }
 
         .page {
-            width: min(900px, 90%);
-            margin: 70px auto;
+            width: min(950px, 90%);
+            margin: 55px auto;
+            flex: 1;
         }
 
         .title-area {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 32px;
         }
 
         .title-area .label {
-            color: #d4af37;
-            letter-spacing: 3px;
-            font-size: 14px;
+            display: inline-block;
+            color: var(--blue);
+            background: #E4F3FB;
+            border: 1px solid #CDE9F7;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 12px;
             font-weight: bold;
-            margin-bottom: 12px;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+            direction: ltr;
         }
 
         .title-area h1 {
-            font-size: 42px;
+            font-size: 36px;
+            line-height: 1.5;
             margin-bottom: 12px;
+            overflow-wrap: anywhere;
         }
 
         .title-area p {
-            color: #9daaba;
+            color: var(--text);
+            line-height: 1.8;
         }
 
         .details-card {
-            background: #0c2038;
-            border: 1px solid rgba(212, 175, 55, .25);
-            border-radius: 18px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 22px;
             padding: 35px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, .2);
+            box-shadow: 0 12px 35px rgba(18, 59, 93, 0.07);
         }
 
         .type {
             display: inline-block;
-            background: #d4af37;
-            color: #071426;
-            padding: 7px 15px;
-            border-radius: 20px;
+            background: #E4F3FB;
+            color: var(--blue);
+            border: 1px solid #CDE9F7;
+            padding: 8px 16px;
+            border-radius: 25px;
             font-size: 13px;
             font-weight: bold;
             margin-bottom: 25px;
         }
 
+        .description-heading {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--navy);
+        }
+
         .description {
-            color: #d4d9df;
+            color: var(--text);
             line-height: 2;
-            font-size: 17px;
+            font-size: 16px;
             margin-bottom: 30px;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .section-heading {
+            font-size: 20px;
+            margin-bottom: 18px;
         }
 
         .info-grid {
@@ -115,90 +161,128 @@
         }
 
         .info-box {
-            background: rgba(255, 255, 255, .035);
-            border: 1px solid rgba(255, 255, 255, .06);
-            border-radius: 10px;
-            padding: 18px;
+            background: #F8FBFD;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 19px;
+            min-width: 0;
         }
 
         .info-box strong {
             display: block;
-            color: #d4af37;
-            margin-bottom: 7px;
+            color: var(--blue);
+            margin-bottom: 9px;
+            font-size: 14px;
         }
 
         .info-box span {
-            color: #c3cad3;
+            color: var(--text);
+            line-height: 1.8;
+            overflow-wrap: anywhere;
+            white-space: pre-wrap;
         }
 
         .buttons {
             display: flex;
-            gap: 15px;
-            margin-top: 35px;
+            gap: 14px;
+            margin-top: 32px;
         }
 
         .btn {
             flex: 1;
-            padding: 14px;
-            border-radius: 9px;
+            padding: 15px;
+            border-radius: 12px;
             text-align: center;
             text-decoration: none;
             font-weight: bold;
-            transition: .3s;
+            font-size: 15px;
+            transition: 0.2s;
         }
 
         .apply {
-            background: #d4af37;
-            color: #071426;
+            background: var(--blue);
+            color: var(--white);
+            border: 1px solid var(--blue);
         }
 
         .apply:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, .2);
+            background: var(--navy);
+            border-color: var(--navy);
+            transform: translateY(-2px);
         }
 
         .back {
-            border: 1px solid #d4af37;
-            color: #d4af37;
+            background: var(--white);
+            border: 1px solid var(--blue);
+            color: var(--blue);
         }
 
         .back:hover {
-            background: #d4af37;
-            color: #071426;
+            background: #EAF5FC;
+            transform: translateY(-2px);
         }
 
         .message {
             text-align: center;
-            color: #aeb8c5;
-            padding: 80px 20px;
+            color: var(--text);
+            padding: 65px 20px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            line-height: 2;
+        }
+
+        .message-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #E4F3FB;
+            color: var(--blue);
+            border-radius: 18px;
+            font-size: 27px;
         }
 
         footer {
             text-align: center;
-            padding: 25px;
-            color: #8995a5;
-            border-top: 1px solid rgba(212, 175, 55, .2);
+            padding: 24px;
+            color: var(--text);
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            font-size: 13px;
+            line-height: 1.8;
         }
 
         footer span {
-            color: #d4af37;
+            color: var(--blue);
+            font-weight: bold;
         }
 
-        @media (max-width: 650px) {
-
+        @media (max-width: 700px) {
             header {
                 flex-direction: column;
+                text-align: center;
                 gap: 18px;
+                padding: 18px 5%;
+            }
+
+            .logo-ar {
+                text-align: center;
             }
 
             nav {
-                gap: 14px;
-                flex-wrap: wrap;
+                gap: 16px;
                 justify-content: center;
             }
 
+            .page {
+                margin: 30px auto;
+            }
+
             .title-area h1 {
-                font-size: 30px;
+                font-size: 28px;
             }
 
             .details-card {
@@ -219,10 +303,9 @@
 <body>
 
     <header>
-
         <div>
-            <div class="logo-en">FROM UNIVERSITY TO FACTORY</div>
-            <div class="logo-ar">من الجامعة إلى المصنع</div>
+            <div class="logo-en">LINKORA</div>
+            <div class="logo-ar">من الجامعة إلى سوق العمل</div>
         </div>
 
         <nav>
@@ -231,162 +314,168 @@
             <a href="./Company-register.html">الشركات</a>
             <a href="./Login.html">تسجيل الدخول</a>
         </nav>
-
     </header>
 
-
     <main class="page">
-
         <div id="content">
             <div class="message">
+                <div class="message-icon">↻</div>
                 جاري تحميل تفاصيل الفرصة...
             </div>
         </div>
-
     </main>
 
-
     <footer>
-        © 2026 <span>From University To Factory</span> — جميع الحقوق محفوظة
+        © 2026 <span>LINKORA</span> — من الجامعة إلى سوق العمل
+        <br>
+        جميع الحقوق محفوظة
     </footer>
 
-
     <script>
-
         const content = document.getElementById("content");
 
         const params = new URLSearchParams(window.location.search);
         const opportunityId = params.get("id");
 
+        function showMessage(text) {
+            content.replaceChildren();
+
+            const box = document.createElement("div");
+            box.className = "message";
+
+            const icon = document.createElement("div");
+            icon.className = "message-icon";
+            icon.textContent = "!";
+
+            const textElement = document.createElement("p");
+            textElement.textContent = text;
+
+            box.append(icon, textElement);
+            content.appendChild(box);
+        }
+
+        function createInfoBox(label, value) {
+            const box = document.createElement("div");
+            box.className = "info-box";
+
+            const title = document.createElement("strong");
+            title.textContent = label;
+
+            const text = document.createElement("span");
+            text.textContent = value || "غير محدد";
+
+            box.append(title, text);
+            return box;
+        }
 
         async function loadOpportunity() {
-
-            if (!opportunityId) {
-
-                content.innerHTML = `
-                    <div class="message">
-                        لم يتم تحديد الفرصة.
-                    </div>
-                `;
-
+            if (!opportunityId || !/^\d+$/.test(opportunityId)) {
+                showMessage("لم يتم تحديد فرصة صحيحة.");
                 return;
             }
 
-
             try {
-
-                const response =
-                    await fetch(`/opportunity?id=${opportunityId}`);
+                const response = await fetch(
+                    `/opportunity?id=${encodeURIComponent(opportunityId)}`
+                );
 
                 if (!response.ok) {
-                    throw new Error("Opportunity not found");
+                    throw new Error("تعذر العثور على الفرصة.");
                 }
 
-                const opportunity =
-                    await response.json();
+                const result = await response.json();
 
+                const opportunity = result.opportunity || result;
 
-                content.innerHTML = `
+                if (!opportunity || !opportunity.id) {
+                    showMessage("الفرصة غير موجودة حاليًا.");
+                    return;
+                }
 
-                    <div class="title-area">
+                content.replaceChildren();
 
-                        <div class="label">
-                            OPPORTUNITY DETAILS
-                        </div>
+                const titleArea = document.createElement("div");
+                titleArea.className = "title-area";
 
-                        <h1>
-                            ${opportunity.title || "فرصة تدريب أو عمل"}
-                        </h1>
+                const label = document.createElement("div");
+                label.className = "label";
+                label.textContent = "OPPORTUNITY DETAILS";
 
-                        <p>
-                            تفاصيل الفرصة المتاحة للطلاب
-                        </p>
+                const title = document.createElement("h1");
+                title.textContent = opportunity.title || "فرصة تدريب أو عمل";
 
-                    </div>
+                const subtitle = document.createElement("p");
+                subtitle.textContent = "كل التفاصيل التي تحتاجين معرفتها قبل التقديم.";
 
+                titleArea.append(label, title, subtitle);
 
-                    <div class="details-card">
+                const card = document.createElement("section");
+                card.className = "details-card";
 
-                        <span class="type">
-                            ${opportunity.type || "فرصة"}
-                        </span>
+                const type = document.createElement("span");
+                type.className = "type";
+                type.textContent = opportunity.type || "فرصة";
 
-                        <p class="description">
-                            ${opportunity.description || "لا يوجد وصف لهذه الفرصة حاليًا."}
-                        </p>
+                const descriptionHeading = document.createElement("h2");
+                descriptionHeading.className = "description-heading";
+                descriptionHeading.textContent = "نبذة عن الفرصة";
 
+                const description = document.createElement("p");
+                description.className = "description";
+                description.textContent =
+                    opportunity.description || "لا يوجد وصف لهذه الفرصة حاليًا.";
 
-                        <div class="info-grid">
+                const sectionHeading = document.createElement("h2");
+                sectionHeading.className = "section-heading";
+                sectionHeading.textContent = "معلومات الفرصة";
 
-                            <div class="info-box">
-                                <strong>المجال</strong>
-                                <span>
-                                    ${opportunity.field || "غير محدد"}
-                                </span>
-                            </div>
+                const infoGrid = document.createElement("div");
+                infoGrid.className = "info-grid";
 
-                            <div class="info-box">
-                                <strong>المكان</strong>
-                                <span>
-                                    ${opportunity.location || "غير محدد"}
-                                </span>
-                            </div>
+                infoGrid.append(
+                    createInfoBox("المجال", opportunity.field),
+                    createInfoBox("المكان", opportunity.location),
+                    createInfoBox("المهارات المطلوبة", opportunity.skills),
+                    createInfoBox("آخر موعد للتقديم", opportunity.deadline)
+                );
 
-                            <div class="info-box">
-                                <strong>المهارات المطلوبة</strong>
-                                <span>
-                                    ${opportunity.skills || "غير محددة"}
-                                </span>
-                            </div>
+                const buttons = document.createElement("div");
+                buttons.className = "buttons";
 
-                            <div class="info-box">
-                                <strong>آخر موعد للتقديم</strong>
-                                <span>
-                                    ${opportunity.deadline || "غير محدد"}
-                                </span>
-                            </div>
+                const applyButton = document.createElement("a");
+                applyButton.className = "btn apply";
+                applyButton.href =
+                    `./Apply.html?id=${encodeURIComponent(opportunity.id)}&name=${encodeURIComponent(opportunity.title || "")}`;
+                applyButton.textContent = "التقديم على الفرصة";
 
-                        </div>
+                const backButton = document.createElement("a");
+                backButton.className = "btn back";
+                backButton.href = "./Opportunities.html";
+                backButton.textContent = "العودة إلى الفرص";
 
+                buttons.append(applyButton, backButton);
 
-                        <div class="buttons">
+                card.append(
+                    type,
+                    descriptionHeading,
+                    description,
+                    sectionHeading,
+                    infoGrid,
+                    buttons
+                );
 
-                            <a
-                                class="btn apply"
-                                href="./Apply.html?id=${opportunity.id}&name=${encodeURIComponent(opportunity.title || "")}"
-                            >
-                                التقديم على الفرصة
-                            </a>
-
-                            <a
-                                class="btn back"
-                                href="./Opportunities.html"
-                            >
-                                العودة للفرص
-                            </a>
-
-                        </div>
-
-                    </div>
-                `;
+                content.append(titleArea, card);
 
             } catch (error) {
-
                 console.error(error);
-
-                content.innerHTML = `
-                    <div class="message">
-                        حدث خطأ أثناء تحميل تفاصيل الفرصة.
-                    </div>
-                `;
+                showMessage(
+                    "حدث خطأ أثناء تحميل تفاصيل الفرصة. حاولي مرة أخرى لاحقًا."
+                );
             }
         }
 
-
         loadOpportunity();
-
     </script>
 
 </body>
-
 </html>

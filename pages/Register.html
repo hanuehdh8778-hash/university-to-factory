@@ -1,23 +1,35 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>تسجيل طالب | من الجامعة إلى المصنع</title>
+    <title>تسجيل طالب | LINKORA</title>
 
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+        }
+
+        :root {
+            --blue: #1769AA;
+            --sky: #70C5E8;
+            --baby: #A7D8F0;
+            --light: #F1F8FC;
+            --navy: #123B5D;
+            --text: #52697A;
+            --white: #FFFFFF;
+            --border: #DCECF5;
         }
 
         body {
             min-height: 100vh;
-            background: #071426;
-            color: white;
+            background: var(--light);
+            color: var(--navy);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -26,12 +38,12 @@
 
         .container {
             width: 100%;
-            max-width: 520px;
-            background: #0d1d33;
-            border: 1px solid rgba(212, 175, 55, 0.35);
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+            max-width: 540px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 36px;
+            box-shadow: 0 15px 45px rgba(18, 59, 93, 0.09);
         }
 
         .logo {
@@ -39,64 +51,112 @@
             margin-bottom: 30px;
         }
 
+        .logo-icon {
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--blue), var(--sky));
+            color: var(--white);
+            font-size: 28px;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(23, 105, 170, 0.18);
+        }
+
         .logo h1 {
-            color: #d4af37;
-            font-size: 25px;
+            color: var(--blue);
+            font-size: 27px;
             margin-bottom: 8px;
+            direction: ltr;
         }
 
         .logo p {
-            color: #ddd;
+            color: var(--text);
             font-size: 15px;
         }
 
         h2 {
             text-align: center;
-            margin-bottom: 25px;
-            font-size: 24px;
+            margin-bottom: 10px;
+            font-size: 25px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 27px;
         }
 
         .input-group {
-            margin-bottom: 17px;
+            margin-bottom: 18px;
         }
 
         label {
             display: block;
-            margin-bottom: 7px;
-            color: #eee;
+            margin-bottom: 8px;
+            color: var(--navy);
             font-size: 14px;
+            font-weight: bold;
         }
 
         input {
             width: 100%;
-            padding: 13px 14px;
-            border: 1px solid #33445c;
-            border-radius: 10px;
-            background: #071426;
-            color: white;
+            padding: 14px;
+            border: 1px solid #D5E5EF;
+            border-radius: 11px;
+            background: #F8FBFD;
+            color: var(--navy);
             outline: none;
             font-size: 15px;
+            transition: 0.2s;
+        }
+
+        input::placeholder {
+            color: #91A6B5;
         }
 
         input:focus {
-            border-color: #d4af37;
+            border-color: var(--blue);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(112, 197, 232, 0.2);
+        }
+
+        .hint {
+            display: block;
+            margin-top: 7px;
+            color: #718797;
+            font-size: 12px;
+            line-height: 1.7;
         }
 
         button {
             width: 100%;
-            padding: 14px;
-            margin-top: 8px;
+            padding: 15px;
+            margin-top: 7px;
             border: none;
-            border-radius: 10px;
-            background: #d4af37;
-            color: #071426;
+            border-radius: 11px;
+            background: var(--blue);
+            color: var(--white);
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
+            transition: 0.2s;
         }
 
         button:hover {
-            background: #e3c45b;
+            background: var(--navy);
+            transform: translateY(-1px);
+        }
+
+        button:disabled {
+            opacity: 0.7;
+            cursor: wait;
+            transform: none;
         }
 
         .message {
@@ -104,16 +164,20 @@
             margin-top: 18px;
             min-height: 22px;
             font-size: 14px;
+            line-height: 1.8;
         }
 
         .links {
             text-align: center;
-            margin-top: 22px;
+            margin-top: 23px;
+            font-size: 14px;
+            line-height: 1.8;
         }
 
         .links a {
-            color: #d4af37;
+            color: var(--blue);
             text-decoration: none;
+            font-weight: bold;
         }
 
         .links a:hover {
@@ -123,28 +187,47 @@
         .back {
             display: block;
             text-align: center;
-            margin-top: 15px;
-            color: #bbb;
+            margin-top: 17px;
+            color: var(--text);
             text-decoration: none;
             font-size: 14px;
         }
 
         .back:hover {
-            color: white;
+            color: var(--blue);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 27px 21px;
+            }
+
+            .logo h1 {
+                font-size: 23px;
+            }
+
+            h2 {
+                font-size: 23px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
+    <main class="container">
 
         <div class="logo">
-            <h1>FROM UNIVERSITY TO FACTORY</h1>
-            <p>من الجامعة إلى المصنع</p>
+            <div class="logo-icon">L</div>
+            <h1>LINKORA</h1>
+            <p>من الجامعة إلى سوق العمل</p>
         </div>
 
-        <h2>إنشاء حساب طالب</h2>
+        <h2>انضم لينا كطالب 🎓</h2>
+
+        <p class="subtitle">
+            أنشئ حسابك واكتشف فرص التدريب والعمل المناسبة لتخصصك ومهاراتك.
+        </p>
 
         <form id="registerForm">
 
@@ -153,7 +236,8 @@
                 <input
                     type="text"
                     id="name"
-                    placeholder="أدخل اسمك"
+                    placeholder="اكتب اسمك بالكامل"
+                    autocomplete="name"
                     required
                 >
             </div>
@@ -164,12 +248,13 @@
                     type="email"
                     id="email"
                     placeholder="example@gmail.com"
+                    autocomplete="email"
                     required
                 >
             </div>
 
             <div class="input-group">
-                <label for="field">التخصص</label>
+                <label for="field">التخصص الدراسي</label>
                 <input
                     type="text"
                     id="field"
@@ -186,6 +271,9 @@
                     placeholder="مثال: Arduino, Electronics"
                     required
                 >
+                <span class="hint">
+                    اكتبي المهارات اللي عندك وافصلي بينها بفاصلة.
+                </span>
             </div>
 
             <div class="input-group">
@@ -193,68 +281,65 @@
                 <input
                     type="password"
                     id="password"
-                    placeholder="أدخل كلمة المرور"
+                    placeholder="أنشئي كلمة مرور"
+                    autocomplete="new-password"
+                    minlength="6"
                     required
                 >
+                <span class="hint">
+                    استخدمي كلمة مرور لا تقل عن 6 أحرف أو أرقام.
+                </span>
             </div>
 
-            <button type="submit">إنشاء الحساب</button>
+            <button type="submit" id="registerButton">
+                إنشاء الحساب
+            </button>
 
         </form>
 
-        <div class="message" id="message"></div>
+        <div class="message" id="message" role="status" aria-live="polite"></div>
 
         <div class="links">
-            <a href="./Login.html">
-                لديك حساب بالفعل؟ تسجيل الدخول
-            </a>
+            لديك حساب بالفعل؟
+            <a href="./Login.html">تسجيل الدخول</a>
         </div>
 
         <a class="back" href="../index.html">
-            العودة للصفحة الرئيسية
+            ← العودة للصفحة الرئيسية
         </a>
 
-    </div>
+    </main>
 
     <script>
-
         const form = document.getElementById("registerForm");
         const message = document.getElementById("message");
+        const registerButton = document.getElementById("registerButton");
 
         form.addEventListener("submit", async function (e) {
-
             e.preventDefault();
 
-            const name =
-                document.getElementById("name").value.trim();
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const field = document.getElementById("field").value.trim();
+            const skills = document.getElementById("skills").value.trim();
+            const password = document.getElementById("password").value;
 
-            const email =
-                document.getElementById("email").value.trim();
+            if (!name || !email || !field || !skills || !password) {
+                message.textContent = "من فضلك املأ كل البيانات المطلوبة.";
+                message.style.color = "#D93636";
+                return;
+            }
 
-            const field =
-                document.getElementById("field").value.trim();
-
-            const skills =
-                document.getElementById("skills").value.trim();
-
-            const password =
-                document.getElementById("password").value;
-
-            message.textContent =
-                "جاري إنشاء الحساب...";
-
-            message.style.color = "#d4af37";
+            message.textContent = "جاري إنشاء الحساب...";
+            message.style.color = "#1769AA";
+            registerButton.disabled = true;
 
             try {
-
                 const response = await fetch("/register", {
-
                     method: "POST",
-
                     headers: {
                         "Content-Type": "application/json"
                     },
-
                     body: JSON.stringify({
                         name,
                         email,
@@ -262,53 +347,43 @@
                         skills,
                         password
                     })
-
                 });
 
                 const data = await response.json();
 
                 if (response.ok) {
-
                     localStorage.setItem(
                         "userEmail",
                         data.email || email
                     );
 
                     message.textContent =
-                        data.message || "تم إنشاء الحساب بنجاح";
+                        data.message || "تم إنشاء الحساب بنجاح!";
 
-                    message.style.color = "#4ade80";
+                    message.style.color = "#16804A";
 
                     setTimeout(() => {
-
-                        window.location.href =
-                            "./Student-dashboard.html";
-
+                        window.location.href = "./Student-dashboard.html";
                     }, 1000);
 
                 } else {
-
                     message.textContent =
-                        data.message ||
-                        "حدث خطأ أثناء إنشاء الحساب";
+                        data.message || "حدث خطأ أثناء إنشاء الحساب.";
 
-                    message.style.color = "#ff6b6b";
-
+                    message.style.color = "#D93636";
+                    registerButton.disabled = false;
                 }
 
             } catch (error) {
-
                 console.error(error);
 
                 message.textContent =
-                    "تعذر الاتصال بالسيرفر";
+                    "تعذر الاتصال بالسيرفر، حاولي مرة أخرى.";
 
-                message.style.color = "#ff6b6b";
-
+                message.style.color = "#D93636";
+                registerButton.disabled = false;
             }
-
         });
-
     </script>
 
 </body>

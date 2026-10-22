@@ -1,272 +1,522 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F1F8FC">
 
-    <title>لوحة الطالب | من الجامعة إلى المصنع</title>
+    <title>لوحة الطالب | LINKORA</title>
 
     <style>
+        :root {
+            --blue: #1769AA;
+            --baby-blue: #A7D8F0;
+            --sky-blue: #70C5E8;
+            --navy: #123B5D;
+            --background: #F1F8FC;
+            --text: #52697A;
+            --white: #FFFFFF;
+            --border: #DCEAF3;
+            --green: #16845B;
+            --red: #C83D4D;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
         }
 
         body {
-            background: #071426;
-            color: white;
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+            background: var(--background);
+            color: var(--navy);
             min-height: 100vh;
         }
 
+        a {
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
         header {
-            background: #0d1d33;
-            border-bottom: 1px solid rgba(212,175,55,.3);
-            padding: 20px 6%;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 17px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 20px;
+            box-shadow: 0 3px 15px rgba(18, 59, 93, 0.04);
         }
 
         .logo h1 {
-            color: #d4af37;
-            font-size: 22px;
+            color: var(--blue);
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 2px;
         }
 
         .logo p {
-            color: #ccc;
-            margin-top: 5px;
-            font-size: 14px;
+            color: var(--text);
+            margin-top: 4px;
+            font-size: 12px;
         }
 
-        .home {
-            color: #d4af37;
-            text-decoration: none;
-            font-weight: bold;
+        nav {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 22px;
+        }
+
+        nav a {
+            color: var(--navy);
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--blue);
         }
 
         main {
             width: 90%;
-            max-width: 1100px;
-            margin: 35px auto;
+            max-width: 1150px;
+            margin: 35px auto 50px;
         }
 
         .welcome {
-            background: #0d1d33;
-            border: 1px solid rgba(212,175,55,.3);
-            border-radius: 18px;
-            padding: 28px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(120deg, #FFFFFF, #E5F5FC);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 32px;
             margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(18, 59, 93, 0.04);
+        }
+
+        .welcome::after {
+            content: "";
+            position: absolute;
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background: rgba(112, 197, 232, 0.15);
+            left: -45px;
+            top: -65px;
+        }
+
+        .welcome-tag {
+            display: inline-block;
+            color: var(--blue);
+            background: #E5F5FC;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 15px;
         }
 
         .welcome h2 {
-            color: #d4af37;
-            margin-bottom: 10px;
+            color: var(--navy);
+            font-size: 28px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
         }
 
         .welcome p {
-            color: #ccc;
+            color: var(--text);
+            line-height: 1.9;
+            position: relative;
+            z-index: 1;
         }
 
-        .smart-box {
-            background: linear-gradient(135deg, #102743, #0d1d33);
-            border: 1px solid #d4af37;
-            border-radius: 18px;
-            padding: 28px;
-            margin-bottom: 30px;
+        .welcome strong {
+            color: var(--blue);
         }
 
-        .smart-title {
+        .section {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 27px;
+            margin-bottom: 25px;
+            box-shadow: 0 7px 24px rgba(18, 59, 93, 0.035);
+        }
+
+        .section-heading {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-
-        .smart-title h2 {
-            color: #d4af37;
-        }
-
-        .smart-box > p {
-            color: #ccc;
+            gap: 13px;
             margin-bottom: 20px;
+        }
+
+        .heading-icon {
+            width: 46px;
+            height: 46px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+            background: #E5F5FC;
+            font-size: 23px;
+        }
+
+        .section-heading h2 {
+            color: var(--navy);
+            font-size: 21px;
+            margin-bottom: 5px;
+        }
+
+        .section-heading p {
+            color: var(--text);
+            font-size: 13px;
             line-height: 1.7;
+        }
+
+        /* المطابقة الذكية */
+
+        .smart-box {
+            background: linear-gradient(135deg, #FFFFFF, #F0F9FE);
+            border: 1px solid #C8E7F5;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
+            margin-top: 22px;
+        }
+
+        .field-group label {
+            display: block;
+            color: var(--navy);
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 9px;
         }
 
         input {
             width: 100%;
-            padding: 13px;
-            border-radius: 10px;
-            border: 1px solid #33445c;
-            background: #071426;
-            color: white;
+            padding: 14px;
+            border-radius: 11px;
+            border: 1px solid var(--border);
+            background: var(--white);
+            color: var(--navy);
+            font-size: 14px;
             outline: none;
+            transition: 0.2s;
+        }
+
+        input::placeholder {
+            color: #91A5B4;
         }
 
         input:focus {
-            border-color: #d4af37;
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(23, 105, 170, 0.09);
         }
 
-        .smart-btn {
-            margin-top: 15px;
-            padding: 13px 25px;
+        .primary-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 18px;
+            padding: 13px 23px;
             border: none;
-            border-radius: 10px;
-            background: #d4af37;
-            color: #071426;
-            font-weight: bold;
+            border-radius: 11px;
+            background: var(--blue);
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 800;
             cursor: pointer;
+            transition: 0.2s;
         }
 
-        .smart-btn:hover {
-            background: #e3c45b;
+        .primary-btn:hover {
+            background: var(--navy);
+            transform: translateY(-2px);
+        }
+
+        .primary-btn:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
         }
 
         .recommendations {
-            margin-top: 25px;
+            margin-top: 27px;
+        }
+
+        .results-title {
+            font-size: 18px;
+            color: var(--blue);
+            margin-bottom: 13px;
         }
 
         .recommendation {
-            background: #071426;
-            border: 1px solid #33445c;
-            border-radius: 14px;
-            padding: 20px;
-            margin-top: 15px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 21px;
+            margin-top: 13px;
+            transition: 0.2s;
+        }
+
+        .recommendation:hover {
+            border-color: var(--sky-blue);
+            box-shadow: 0 7px 20px rgba(18, 59, 93, 0.06);
         }
 
         .recommendation h3 {
-            color: #d4af37;
-            margin-bottom: 10px;
+            color: var(--navy);
+            font-size: 17px;
+            margin-bottom: 12px;
         }
 
         .match {
             display: inline-block;
             padding: 7px 12px;
             border-radius: 20px;
-            background: #173b32;
-            color: #5ee69b;
-            font-weight: bold;
+            background: #E5F7EF;
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 800;
             margin-bottom: 12px;
         }
 
+        .recommendation-info {
+            color: var(--text);
+            font-size: 13px;
+            line-height: 1.9;
+            margin-bottom: 7px;
+        }
+
         .reason {
-            color: #ccc;
-            line-height: 1.7;
+            color: var(--text);
+            font-size: 13px;
+            line-height: 1.8;
         }
 
         .details-link {
             display: inline-block;
-            margin-top: 12px;
-            color: #d4af37;
-            text-decoration: none;
+            margin-top: 14px;
+            color: var(--blue);
+            font-weight: 800;
+            font-size: 13px;
         }
 
-        .section {
-            background: #0d1d33;
-            border: 1px solid rgba(212,175,55,.25);
-            border-radius: 18px;
-            padding: 25px;
-            margin-bottom: 25px;
+        .details-link:hover {
+            text-decoration: underline;
         }
 
-        .section h2 {
-            color: #d4af37;
-            margin-bottom: 18px;
+        /* بيانات الطالب */
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
         }
 
-        .profile p {
-            margin: 10px 0;
-            color: #ddd;
+        .profile-item {
+            padding: 17px;
+            background: #F7FBFE;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            min-width: 0;
         }
 
-        .edit-btn {
-            display: inline-block;
-            margin-top: 18px;
-            padding: 11px 20px;
-            border-radius: 9px;
-            background: transparent;
-            border: 1px solid #d4af37;
-            color: #d4af37;
-            text-decoration: none;
-            font-weight: bold;
-            transition: .3s;
+        .profile-item .label {
+            color: var(--text);
+            font-size: 13px;
+            margin-bottom: 8px;
         }
 
-        .edit-btn:hover {
-            background: #d4af37;
-            color: #071426;
+        .profile-item .value {
+            color: var(--navy);
+            font-size: 15px;
+            font-weight: 700;
+            overflow-wrap: anywhere;
+        }
+
+        .profile-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .action-link {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 11px 17px;
+            border-radius: 10px;
+            background: #E5F5FC;
+            border: 1px solid #C8E7F5;
+            color: var(--blue);
+            font-size: 13px;
+            font-weight: 800;
+            transition: 0.2s;
+        }
+
+        .action-link:hover {
+            background: var(--blue);
+            border-color: var(--blue);
+            color: var(--white);
         }
 
         .matching-edit-btn {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 11px 20px;
-            border-radius: 9px;
-            background: transparent;
-            border: 1px solid #4f7cff;
-            color: #7fa0ff;
-            text-decoration: none;
-            font-weight: bold;
-            transition: .3s;
+            background: #F0F7FC;
         }
 
-        .matching-edit-btn:hover {
-            background: #4f7cff;
-            color: white;
+        .logout-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 11px 17px;
+            border: 1px solid #F0D4D8;
+            border-radius: 10px;
+            background: #FFF6F7;
+            color: var(--red);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 800;
+            transition: 0.2s;
         }
+
+        .logout-btn:hover {
+            background: var(--red);
+            border-color: var(--red);
+            color: var(--white);
+        }
+
+        /* طلبات التقديم */
 
         .application {
-            border: 1px solid #33445c;
-            border-radius: 12px;
-            padding: 16px;
-            margin-top: 12px;
+            border: 1px solid var(--border);
+            background: #FCFEFF;
+            border-radius: 14px;
+            padding: 18px;
+            margin-top: 13px;
+        }
+
+        .application h3 {
+            color: var(--navy);
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .application-meta {
+            color: var(--text);
+            font-size: 13px;
+            line-height: 1.9;
         }
 
         .status {
             display: inline-block;
-            margin-top: 8px;
-            color: #d4af37;
+            margin-top: 11px;
+            padding: 6px 11px;
+            border-radius: 20px;
+            background: #E5F5FC;
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .status.accepted {
+            background: #E5F7EF;
+            color: var(--green);
+        }
+
+        .status.rejected {
+            background: #FFF0F1;
+            color: var(--red);
         }
 
         .empty {
-            color: #aaa;
-            padding: 10px 0;
+            color: var(--text);
+            background: #F7FBFE;
+            border: 1px dashed #C9DDE9;
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            line-height: 1.8;
+            font-size: 14px;
         }
 
-        .logout-btn {
-            margin-top: 10px;
-            padding: 10px 18px;
-            border: 1px solid #7d3030;
-            border-radius: 9px;
-            background: transparent;
-            color: #ff7777;
-            cursor: pointer;
-            font-weight: bold;
+        footer {
+            text-align: center;
+            padding: 23px 15px;
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            color: var(--text);
+            font-size: 13px;
         }
 
-        .logout-btn:hover {
-            background: #7d3030;
-            color: white;
+        footer span {
+            color: var(--blue);
+            font-weight: 900;
+            letter-spacing: 1px;
         }
 
-        @media (max-width: 700px) {
-
+        @media (max-width: 760px) {
             header {
                 flex-direction: column;
-                align-items: flex-start;
+                text-align: center;
             }
 
-            .form-row {
+            nav {
+                justify-content: center;
+                gap: 14px 18px;
+            }
+
+            main {
+                width: 92%;
+                margin-top: 23px;
+            }
+
+            .welcome {
+                padding: 25px 21px;
+            }
+
+            .welcome h2 {
+                font-size: 24px;
+            }
+
+            .section {
+                padding: 21px 17px;
+            }
+
+            .form-row,
+            .profile-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .section-heading h2 {
+                font-size: 19px;
+            }
+
+            .profile-actions {
+                flex-direction: column;
+            }
+
+            .action-link,
+            .logout-btn {
+                width: 100%;
             }
         }
     </style>
@@ -275,624 +525,506 @@
 <body>
 
 <header>
-
-    <div class="logo">
-
-        <h1>
-            FROM UNIVERSITY TO FACTORY
-        </h1>
-
-        <p>
-            من الجامعة إلى المصنع
-        </p>
-
-    </div>
-
-    <a class="home" href="../index.html">
-        الرئيسية
+    <a class="logo" href="../index.html">
+        <h1>LINKORA</h1>
+        <p>من الجامعة إلى سوق العمل</p>
     </a>
 
+    <nav>
+        <a href="../index.html">الرئيسية</a>
+        <a href="./Opportunities.html">الفرص</a>
+        <a href="./Student-dashboard.html" class="active">لوحة الطالب</a>
+        <a href="./Profile.html">بياناتي</a>
+    </nav>
 </header>
-
 
 <main>
 
     <!-- الترحيب -->
 
     <section class="welcome">
+        <span class="welcome-tag">STUDENT DASHBOARD</span>
 
-        <h2>
-            لوحة الطالب
-        </h2>
+        <h2 id="welcomeText">أهلاً بيك في LINKORA 👋</h2>
 
-        <p id="welcomeText">
-            أهلاً بك في منصتك المهنية.
+        <p>
+            هنا تقدر تتابع بياناتك وطلبات التقديم،
+            وتكتشف فرص التدريب والعمل الأقرب لتخصصك ومهاراتك.
         </p>
-
     </section>
-
 
     <!-- المطابقة الذكية -->
 
-    <section class="smart-box">
+    <section class="section smart-box">
 
-        <div class="smart-title">
-
-            <span>
-                🤖
-            </span>
-
-            <h2>
-                المطابقة الذكية
-            </h2>
-
+        <div class="section-heading">
+            <div class="heading-icon">🤖</div>
+            <div>
+                <h2>المطابقة الذكية</h2>
+                <p>اكتب تخصصك ومهاراتك عشان نساعدك تكتشف الفرص الأقرب ليك.</p>
+            </div>
         </div>
-
-
-        <p>
-            اكتب تخصصك ومهاراتك، وسيقوم النظام بمقارنة بياناتك مع الفرص
-            المتاحة واقتراح الفرص الأقرب لك.
-        </p>
-
 
         <div class="form-row">
 
-            <input
-                type="text"
-                id="studentField"
-                placeholder="تخصصك - مثال: الإلكترونيات"
-            >
+            <div class="field-group">
+                <label for="studentField">تخصصك الدراسي</label>
+                <input
+                    type="text"
+                    id="studentField"
+                    placeholder="مثال: الإلكترونيات"
+                >
+            </div>
 
-
-            <input
-                type="text"
-                id="studentSkills"
-                placeholder="مهاراتك - مثال: Arduino, Electronics"
-            >
+            <div class="field-group">
+                <label for="studentSkills">مهاراتك</label>
+                <input
+                    type="text"
+                    id="studentSkills"
+                    placeholder="مثال: Arduino, Electronics"
+                >
+            </div>
 
         </div>
 
-
-        <button
-            class="smart-btn"
-            onclick="findMatches()"
-        >
+        <button class="primary-btn" id="matchButton" type="button">
             🔍 ابحث عن فرص مناسبة
         </button>
 
-
-        <div
-            class="recommendations"
-            id="recommendations"
-        ></div>
+        <div class="recommendations" id="recommendations"></div>
 
     </section>
-
 
     <!-- بيانات الطالب -->
 
-    <section class="section profile">
+    <section class="section">
 
-        <h2>
-            بياناتي
-        </h2>
+        <div class="section-heading">
+            <div class="heading-icon">👤</div>
+            <div>
+                <h2>بياناتي الشخصية</h2>
+                <p>بيانات حسابك على منصة LINKORA.</p>
+            </div>
+        </div>
 
+        <div class="profile-grid">
 
-        <p>
-            <strong>
-                الاسم:
-            </strong>
+            <div class="profile-item">
+                <div class="label">الاسم</div>
+                <div class="value" id="studentName">جاري التحميل...</div>
+            </div>
 
-            <span id="studentName">
-                ...
-            </span>
-        </p>
+            <div class="profile-item">
+                <div class="label">البريد الإلكتروني</div>
+                <div class="value" id="studentEmail">جاري التحميل...</div>
+            </div>
 
+        </div>
 
-        <p>
-            <strong>
-                البريد الإلكتروني:
-            </strong>
+        <div class="profile-actions">
 
-            <span id="studentEmail">
-                ...
-            </span>
-        </p>
+            <a class="action-link" href="./Profile.html">
+                ✏️ تعديل بياناتي
+            </a>
 
+            <a class="action-link matching-edit-btn" href="./Smart-Matching.html">
+                ⚙️ تعديل بيانات المطابقة
+            </a>
 
-        <a
-            class="edit-btn"
-            href="./Profile.html"
-        >
-            ✏️ تعديل بياناتي
-        </a>
+            <button class="logout-btn" id="logoutButton" type="button">
+                تسجيل الخروج
+            </button>
 
-
-        <br>
-
-
-        <!-- تعديل بيانات المطابقة الذكية -->
-
-        <a
-            class="matching-edit-btn"
-            href="./Smart-Matching.html"
-        >
-            ⚙️ تعديل بيانات المطابقة الذكية
-        </a>
-
-
-        <br>
-
-
-        <button
-            class="logout-btn"
-            onclick="logout()"
-        >
-            تسجيل الخروج
-        </button>
+        </div>
 
     </section>
-
 
     <!-- طلبات التقديم -->
 
     <section class="section">
 
-        <h2>
-            طلبات التقديم
-        </h2>
-
+        <div class="section-heading">
+            <div class="heading-icon">📋</div>
+            <div>
+                <h2>طلبات التقديم</h2>
+                <p>تابع حالة طلباتك والفرص اللي قدمت عليها.</p>
+            </div>
+        </div>
 
         <div id="applications">
-
-            <p class="empty">
-                جاري تحميل الطلبات...
-            </p>
-
+            <p class="empty">جاري تحميل طلبات التقديم...</p>
         </div>
 
     </section>
 
 </main>
 
+<footer>
+    © 2026 <span>LINKORA</span> — من الجامعة إلى سوق العمل
+</footer>
 
 <script>
-
     /* =========================
-       بيانات المستخدم
+       أدوات مساعدة
     ========================= */
 
-    const studentEmail =
-        localStorage.getItem("userEmail");
+    const studentEmail = localStorage.getItem("userEmail");
 
+    const recommendations = document.getElementById("recommendations");
+    const matchButton = document.getElementById("matchButton");
 
-    if (!studentEmail) {
+    function makeElement(tag, className, text) {
+        const element = document.createElement(tag);
 
-        document.getElementById("welcomeText").textContent =
-            "يمكنك استخدام المطابقة الذكية لاكتشاف الفرص المناسبة.";
+        if (className) {
+            element.className = className;
+        }
 
+        if (text !== undefined && text !== null) {
+            element.textContent = String(text);
+        }
+
+        return element;
     }
 
+    function showEmpty(container, text) {
+        container.replaceChildren(makeElement("p", "empty", text));
+    }
+
+    async function readResponse(response) {
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || "تعذر تنفيذ الطلب.");
+        }
+
+        return data;
+    }
 
     /* =========================
        تحميل بيانات الطالب
     ========================= */
 
     async function loadStudent() {
+        if (!studentEmail) {
+            document.getElementById("studentName").textContent =
+                "لم يتم تسجيل الدخول";
 
-        if (!studentEmail) return;
+            document.getElementById("studentEmail").textContent =
+                "غير متوفر";
 
+            document.getElementById("welcomeText").textContent =
+                "أهلاً بيك في LINKORA 👋";
 
-        try {
-
-            const response =
-                await fetch(
-                    "/profile?email=" +
-                    encodeURIComponent(studentEmail)
-                );
-
-
-            const data =
-                await response.json();
-
-
-            const user =
-                data.user || data;
-
-
-            if (user) {
-
-                document.getElementById("studentName").textContent =
-                    user.name || "غير متوفر";
-
-
-                document.getElementById("studentEmail").textContent =
-                    user.email || studentEmail;
-
-
-                document.getElementById("welcomeText").textContent =
-                    "أهلاً يا " +
-                    (user.name || "طالب") +
-                    " 👋";
-
-            }
-
-        } catch (error) {
-
-            console.error(error);
-
+            return;
         }
 
+        document.getElementById("studentEmail").textContent = studentEmail;
+
+        try {
+            const response = await fetch(
+                "/profile?email=" + encodeURIComponent(studentEmail)
+            );
+
+            const data = await readResponse(response);
+            const user = data.user || data;
+
+            document.getElementById("studentName").textContent =
+                user.name || "غير متوفر";
+
+            document.getElementById("studentEmail").textContent =
+                user.email || studentEmail;
+
+            document.getElementById("welcomeText").textContent =
+                "أهلاً يا " + (user.name || "طالب") + " 👋";
+
+        } catch (error) {
+            console.error("Load student:", error);
+
+            document.getElementById("studentName").textContent =
+                "تعذر تحميل الاسم";
+        }
     }
 
-
     /* =========================
-       تحميل التقديمات
+       تحميل طلبات التقديم
     ========================= */
 
     async function loadApplications() {
-
-        const container =
-            document.getElementById("applications");
-
+        const container = document.getElementById("applications");
 
         if (!studentEmail) {
-
-            container.innerHTML =
-                '<p class="empty">لم يتم تسجيل الدخول بعد.</p>';
-
+            showEmpty(container, "سجّل دخولك عشان تقدر تتابع طلبات التقديم.");
             return;
-
         }
 
+        showEmpty(container, "جاري تحميل طلبات التقديم...");
 
         try {
+            const response = await fetch(
+                "/applications?email=" + encodeURIComponent(studentEmail)
+            );
 
-            const response =
-                await fetch(
-                    "/applications?email=" +
-                    encodeURIComponent(studentEmail)
-                );
+            const data = await readResponse(response);
 
-
-            const data =
-                await response.json();
-
-
-            const applications =
-                Array.isArray(data)
-                    ? data
-                    : (data.applications || []);
-
+            const applications = Array.isArray(data)
+                ? data
+                : (data.applications || []);
 
             if (!applications.length) {
-
-                container.innerHTML =
-                    '<p class="empty">لا توجد طلبات تقديم حتى الآن.</p>';
-
+                showEmpty(container, "لسه مفيش طلبات تقديم. استكشف الفرص وابدأ أول خطوة!");
                 return;
-
             }
 
-
-            container.innerHTML = "";
-
+            container.replaceChildren();
 
             applications.forEach(app => {
+                const card = makeElement("article", "application");
 
-                const div =
-                    document.createElement("div");
+                const title = makeElement(
+                    "h3",
+                    "",
+                    app.opportunity_name || "فرصة تدريب أو عمل"
+                );
 
+                const meta = makeElement(
+                    "p",
+                    "application-meta",
+                    "تاريخ التقديم: " + (app.created_at || "غير متوفر")
+                );
 
-                div.className =
-                    "application";
+                const statusText = getStatus(app.status);
+                const status = makeElement("span", "status", statusText.label);
 
+                if (statusText.className) {
+                    status.classList.add(statusText.className);
+                }
 
-                div.innerHTML = `
-
-                    <strong>
-                        ${app.opportunity_name || "فرصة"}
-                    </strong>
-
-                    <br>
-
-                    <span class="status">
-                        الحالة: ${getStatus(app.status)}
-                    </span>
-
-                `;
-
-
-                container.appendChild(div);
-
+                card.append(title, meta, status);
+                container.appendChild(card);
             });
 
         } catch (error) {
+            console.error("Load applications:", error);
 
-            console.error(error);
-
-
-            container.innerHTML =
-                '<p class="empty">تعذر تحميل الطلبات.</p>';
-
+            showEmpty(container, "تعذر تحميل الطلبات. تأكد إن السيرفر شغال وحاول تاني.");
         }
-
     }
-
 
     /* =========================
        حالة الطلب
     ========================= */
 
     function getStatus(status) {
+        const normalized = String(status || "").trim().toLowerCase();
 
-        if (status === "accepted")
-            return "مقبول";
+        if (normalized === "مقبول" || normalized === "accepted") {
+            return {
+                label: "مقبول",
+                className: "accepted"
+            };
+        }
 
+        if (normalized === "مرفوض" || normalized === "rejected") {
+            return {
+                label: "مرفوض",
+                className: "rejected"
+            };
+        }
 
-        if (status === "rejected")
-            return "مرفوض";
-
-
-        return "قيد المراجعة";
-
+        return {
+            label: "قيد المراجعة",
+            className: ""
+        };
     }
-
 
     /* =========================
        المطابقة الذكية
     ========================= */
 
+    function normalizeText(value) {
+        return String(value || "").trim().toLowerCase();
+    }
+
+    function getSkills(value) {
+        return normalizeText(value)
+            .split(/[,،]/)
+            .map(skill => skill.trim())
+            .filter(Boolean);
+    }
+
+    function getOpportunityId(opportunity) {
+        return opportunity.id ?? opportunity.opportunity_id ?? "";
+    }
+
     async function findMatches() {
+        const field = normalizeText(
+            document.getElementById("studentField").value
+        );
 
-        const field =
-            document.getElementById("studentField")
-                .value
-                .trim()
-                .toLowerCase();
-
-
-        const skillsText =
-            document.getElementById("studentSkills")
-                .value
-                .trim()
-                .toLowerCase();
-
-
-        const studentSkills =
-            skillsText
-                .split(",")
-                .map(skill => skill.trim())
-                .filter(skill => skill.length > 0);
-
-
-        const container =
-            document.getElementById("recommendations");
-
+        const studentSkills = getSkills(
+            document.getElementById("studentSkills").value
+        );
 
         if (!field && studentSkills.length === 0) {
-
-            container.innerHTML =
-                '<p class="empty">اكتب تخصصك أو مهاراتك أولاً.</p>';
-
+            showEmpty(recommendations, "اكتب تخصصك أو مهاراتك الأول.");
             return;
-
         }
 
+        matchButton.disabled = true;
+        matchButton.textContent = "جاري تحليل الفرص...";
 
-        container.innerHTML =
-            '<p class="empty">جاري تحليل الفرص...</p>';
-
+        showEmpty(recommendations, "بنراجع الفرص المتاحة ونقارنها ببياناتك...");
 
         try {
+            const response = await fetch("/all-opportunities");
+            const data = await readResponse(response);
 
-            const response =
-                await fetch("/all-opportunities");
+            const opportunities = Array.isArray(data)
+                ? data
+                : (data.opportunities || []);
 
+            const results = opportunities.map(opportunity => {
+                const opportunityField = normalizeText(opportunity.field);
+                const requiredSkills = getSkills(opportunity.skills);
 
-            const data =
-                await response.json();
+                let score = 0;
+                const matchedSkills = [];
 
+                if (
+                    field &&
+                    opportunityField &&
+                    (
+                        opportunityField.includes(field) ||
+                        field.includes(opportunityField)
+                    )
+                ) {
+                    score += 50;
+                }
 
-            const opportunities =
-                Array.isArray(data)
-                    ? data
-                    : (data.opportunities || []);
+                studentSkills.forEach(skill => {
+                    const found = requiredSkills.some(required =>
+                        required === skill ||
+                        required.includes(skill) ||
+                        skill.includes(required)
+                    );
 
-
-            const results =
-                opportunities.map(opportunity => {
-
-                    const opportunityField =
-                        (opportunity.field || "")
-                            .toLowerCase();
-
-
-                    const requiredSkills =
-                        (opportunity.skills || "")
-                            .toLowerCase()
-                            .split(",")
-                            .map(skill => skill.trim())
-                            .filter(skill => skill.length > 0);
-
-
-                    let score = 0;
-
-                    let matchedSkills = [];
-
-
-                    if (
-                        field &&
-                        opportunityField.includes(field)
-                    ) {
-
-                        score += 50;
-
+                    if (found && !matchedSkills.includes(skill)) {
+                        score += 20;
+                        matchedSkills.push(skill);
                     }
-
-
-                    studentSkills.forEach(skill => {
-
-                        const found =
-                            requiredSkills.some(required =>
-                                required.includes(skill) ||
-                                skill.includes(required)
-                            );
-
-
-                        if (found) {
-
-                            score += 20;
-
-                            matchedSkills.push(skill);
-
-                        }
-
-                    });
-
-
-                    if (score > 100)
-                        score = 100;
-
-
-                    return {
-
-                        opportunity,
-
-                        score,
-
-                        matchedSkills
-
-                    };
-
                 });
 
+                return {
+                    opportunity,
+                    score: Math.min(score, 100),
+                    matchedSkills
+                };
+            });
 
-            results.sort(
-                (a, b) => b.score - a.score
-            );
+            results.sort((a, b) => b.score - a.score);
 
-
-            const usefulResults =
-                results
-                    .filter(item => item.score > 0)
-                    .slice(0, 5);
-
+            const usefulResults = results
+                .filter(item => item.score > 0)
+                .slice(0, 5);
 
             if (!usefulResults.length) {
-
-                container.innerHTML =
-                    '<p class="empty">لم نجد فرصة متوافقة حاليًا. جرّبي إضافة مهارات أخرى.</p>';
-
+                showEmpty(
+                    recommendations,
+                    "ملقيناش فرصة متوافقة مع البيانات دي حاليًا. جرّب تخصص أو مهارات مختلفة."
+                );
                 return;
-
             }
 
-
-            container.innerHTML =
-                "<h3 style='color:#d4af37;'>الفرص المقترحة لك</h3>";
-
+            recommendations.replaceChildren(
+                makeElement("h3", "results-title", "الفرص المقترحة ليك")
+            );
 
             usefulResults.forEach(item => {
+                const opportunity = item.opportunity;
+                const card = makeElement("article", "recommendation");
 
-                const opportunity =
-                    item.opportunity;
+                card.appendChild(
+                    makeElement("h3", "", opportunity.title || "فرصة تدريب")
+                );
 
+                card.appendChild(
+                    makeElement("span", "match", "نسبة التوافق: " + item.score + "%")
+                );
 
-                const reason =
-                    item.matchedSkills.length
-                        ? "تم التطابق مع مهاراتك: " +
-                          item.matchedSkills.join(", ")
-                        : "المجال قريب من تخصصك.";
+                if (opportunity.field) {
+                    card.appendChild(
+                        makeElement("p", "recommendation-info", "المجال: " + opportunity.field)
+                    );
+                }
 
+                if (opportunity.location) {
+                    card.appendChild(
+                        makeElement("p", "recommendation-info", "المكان: " + opportunity.location)
+                    );
+                }
 
-                const div =
-                    document.createElement("div");
+                const reason = item.matchedSkills.length
+                    ? "مهارات متوافقة: " + item.matchedSkills.join("، ")
+                    : "المجال قريب من التخصص اللي أدخلته.";
 
+                card.appendChild(makeElement("p", "reason", reason));
 
-                div.className =
-                    "recommendation";
+                const id = getOpportunityId(opportunity);
 
+                if (id !== "") {
+                    const link = makeElement("a", "details-link", "عرض تفاصيل الفرصة ←");
 
-                div.innerHTML = `
+                    link.href = "./Opportunity-details.html?id=" +
+                        encodeURIComponent(id);
 
-                    <h3>
-                        ${opportunity.title || "فرصة تدريب"}
-                    </h3>
+                    card.appendChild(link);
+                }
 
-
-                    <span class="match">
-                        نسبة التوافق: ${item.score}%
-                    </span>
-
-
-                    <p class="reason">
-                        ${reason}
-                    </p>
-
-
-                    <a
-                        class="details-link"
-                        href="./Opportunity-details.html?id=${opportunity.id}"
-                    >
-                        عرض تفاصيل الفرصة ←
-                    </a>
-
-                `;
-
-
-                container.appendChild(div);
-
+                recommendations.appendChild(card);
             });
 
         } catch (error) {
+            console.error("Smart matching:", error);
 
-            console.error(error);
-
-
-            container.innerHTML =
-                '<p class="empty">حدث خطأ أثناء تحليل الفرص.</p>';
-
+            showEmpty(
+                recommendations,
+                "حصل خطأ أثناء تحميل الفرص. تأكد إن السيرفر شغال وحاول تاني."
+            );
+        } finally {
+            matchButton.disabled = false;
+            matchButton.textContent = "🔍 ابحث عن فرص مناسبة";
         }
-
     }
 
+    matchButton.addEventListener("click", findMatches);
 
     /* =========================
        تسجيل الخروج
     ========================= */
 
     function logout() {
+        [
+            "user",
+            "userEmail",
+            "student",
+            "userData",
+            "loggedInUser",
+            "currentUser",
+            "studentData"
+        ].forEach(key => localStorage.removeItem(key));
 
-        localStorage.removeItem("user");
-
-        localStorage.removeItem("userEmail");
-
-        localStorage.removeItem("student");
-
-        localStorage.removeItem("userData");
-
-        localStorage.removeItem("loggedInUser");
-
-        localStorage.removeItem("currentUser");
-
-        localStorage.removeItem("studentData");
-
-
-        window.location.href =
-            "./Login.html";
-
+        window.location.href = "./Login.html";
     }
 
+    document.getElementById("logoutButton").addEventListener("click", logout);
 
     /* =========================
        تشغيل الصفحة
     ========================= */
 
     loadStudent();
-
     loadApplications();
-
 </script>
 
 </body>

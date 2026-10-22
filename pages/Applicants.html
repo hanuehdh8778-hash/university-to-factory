@@ -1,9 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المتقدمون | من الجامعة إلى المصنع</title>
+    <title>المتقدمون | LINKORA</title>
 
     <style>
         * {
@@ -13,171 +14,365 @@
             font-family: Arial, sans-serif;
         }
 
+        :root {
+            --primary: #1769AA;
+            --sky: #70C5E8;
+            --baby: #A7D8F0;
+            --background: #F1F8FC;
+            --navy: #123B5D;
+            --text: #52697A;
+            --white: #FFFFFF;
+            --border: #D8E9F4;
+            --success: #16845B;
+            --success-bg: #E6F6EF;
+            --error: #D94343;
+            --error-bg: #FFF0F0;
+            --pending: #A66A00;
+            --pending-bg: #FFF5D9;
+        }
+
         body {
-            background: #071426;
-            color: white;
+            background: var(--background);
+            color: var(--navy);
             min-height: 100vh;
         }
 
         header {
-            background: #0b1d33;
-            border-bottom: 1px solid #d4af37;
-            padding: 20px 7%;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 17px 7%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 15px;
+            box-shadow: 0 3px 15px rgba(18, 59, 93, 0.05);
         }
 
         .logo {
-            color: #d4af37;
+            color: var(--primary);
             font-size: 21px;
             font-weight: bold;
         }
 
         .logo span {
             display: block;
-            color: white;
-            font-size: 14px;
+            color: var(--text);
+            font-size: 13px;
             margin-top: 5px;
         }
 
         .back {
-            color: #d4af37;
+            color: var(--primary);
             text-decoration: none;
-            border: 1px solid #d4af37;
-            padding: 10px 18px;
-            border-radius: 8px;
+            border: 1px solid var(--primary);
+            padding: 10px 17px;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+
+        .back:hover {
+            background: var(--primary);
+            color: var(--white);
         }
 
         .container {
             width: 90%;
             max-width: 1100px;
-            margin: 40px auto;
+            margin: 35px auto;
         }
 
-        h1 {
-            color: #d4af37;
+        .page-intro {
+            background: linear-gradient(120deg, #1769AA, #348FC9);
+            border-radius: 18px;
+            padding: 27px 30px;
+            color: var(--white);
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-intro::after {
+            content: "";
+            position: absolute;
+            width: 170px;
+            height: 170px;
+            border: 24px solid rgba(255,255,255,0.10);
+            border-radius: 50%;
+            left: -40px;
+            top: -70px;
+        }
+
+        .page-intro h1 {
+            font-size: 27px;
             margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
         }
 
-        .subtitle {
-            color: #aeb8c5;
-            margin-bottom: 30px;
-            line-height: 1.7;
+        .page-intro p {
+            color: #EAF6FD;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+            font-size: 15px;
         }
 
         .filter {
-            background: #0b1d33;
-            border: 1px solid #243a55;
+            background: var(--white);
+            border: 1px solid var(--border);
             border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 25px;
+            padding: 22px;
+            margin-bottom: 22px;
+            box-shadow: 0 5px 20px rgba(18, 59, 93, 0.04);
         }
 
         .filter label {
             display: block;
-            color: #d4af37;
-            margin-bottom: 8px;
+            color: var(--navy);
+            margin-bottom: 10px;
             font-weight: bold;
+            font-size: 14px;
         }
 
         .filter select {
             width: 100%;
-            background: #071426;
-            color: white;
-            border: 1px solid #344a64;
-            border-radius: 8px;
-            padding: 12px;
+            max-width: 500px;
+            background: #FAFCFE;
+            color: var(--navy);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 13px;
             outline: none;
+            font-size: 14px;
+        }
+
+        .filter select:focus {
+            border-color: var(--primary);
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .summary-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .summary-card .number {
+            display: block;
+            color: var(--primary);
+            font-size: 27px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .summary-card .label {
+            color: var(--text);
+            font-size: 13px;
         }
 
         .applicant {
-            background: #0b1d33;
-            border: 1px solid #243a55;
-            border-radius: 18px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 17px;
             padding: 25px;
             margin-bottom: 18px;
+            box-shadow: 0 5px 20px rgba(18, 59, 93, 0.04);
+            transition: 0.25s;
+        }
+
+        .applicant:hover {
+            border-color: var(--baby);
+            box-shadow: 0 8px 25px rgba(18, 59, 93, 0.08);
         }
 
         .applicant h2 {
-            color: #d4af37;
-            margin-bottom: 15px;
+            color: var(--primary);
+            font-size: 20px;
+            margin-bottom: 18px;
+            overflow-wrap: anywhere;
         }
 
         .info {
-            color: #c8d0da;
-            line-height: 1.9;
-            margin-bottom: 18px;
+            color: var(--text);
+            line-height: 2;
+            font-size: 14px;
         }
 
         .info strong {
-            color: #d4af37;
+            color: var(--navy);
+        }
+
+        .info div {
+            margin-bottom: 4px;
+            overflow-wrap: anywhere;
         }
 
         .status {
             display: inline-block;
-            padding: 7px 13px;
+            padding: 6px 12px;
             border-radius: 20px;
-            background: #243a55;
-            margin-top: 8px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .status.pending {
+            background: var(--pending-bg);
+            color: var(--pending);
+        }
+
+        .status.accept {
+            background: var(--success-bg);
+            color: var(--success);
+        }
+
+        .status.reject {
+            background: var(--error-bg);
+            color: var(--error);
         }
 
         .buttons {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
-            margin-top: 15px;
+            margin-top: 20px;
+            padding-top: 17px;
+            border-top: 1px solid #EDF3F7;
         }
 
         button {
             border: none;
-            border-radius: 8px;
-            padding: 11px 20px;
+            border-radius: 9px;
+            padding: 12px 22px;
             font-weight: bold;
+            font-size: 14px;
             cursor: pointer;
+            transition: 0.25s;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
         .accept {
-            background: #2e8b57;
-            color: white;
+            background: var(--success-bg);
+            color: var(--success);
+        }
+
+        .accept:hover {
+            background: var(--success);
+            color: var(--white);
         }
 
         .reject {
-            background: #8f2f2f;
-            color: white;
+            background: var(--error-bg);
+            color: var(--error);
         }
 
-        .pending {
-            background: #d4af37;
-            color: #071426;
+        .reject:hover {
+            background: var(--error);
+            color: var(--white);
         }
 
         .message {
             text-align: center;
-            margin: 20px 0;
+            margin: 18px 0;
             font-weight: bold;
+            line-height: 1.8;
+            font-size: 14px;
         }
 
-        .success {
-            color: #4ade80;
+        .message.success {
+            color: var(--success);
         }
 
-        .error {
-            color: #ff6b6b;
+        .message.error {
+            color: var(--error);
         }
 
         .empty {
-            background: #0b1d33;
-            border: 1px solid #243a55;
+            background: var(--white);
+            border: 1px solid var(--border);
             border-radius: 15px;
-            padding: 35px;
+            padding: 35px 20px;
             text-align: center;
-            color: #9da8b5;
+            color: var(--text);
+            line-height: 1.9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 22px;
+            color: var(--text);
+            font-size: 12px;
         }
 
         @media (max-width: 650px) {
+            header {
+                padding: 15px 5%;
+            }
+
+            .logo {
+                font-size: 15px;
+            }
+
+            .logo span {
+                font-size: 11px;
+            }
+
+            .back {
+                padding: 9px 11px;
+                font-size: 12px;
+            }
+
             .container {
-                width: 94%;
+                width: 92%;
+                margin: 25px auto;
+            }
+
+            .page-intro {
+                padding: 23px 20px;
+            }
+
+            .page-intro h1 {
+                font-size: 22px;
+            }
+
+            .summary {
+                gap: 8px;
+            }
+
+            .summary-card {
+                padding: 14px 6px;
+            }
+
+            .summary-card .number {
+                font-size: 22px;
+            }
+
+            .summary-card .label {
+                font-size: 11px;
+            }
+
+            .applicant {
+                padding: 20px 16px;
+            }
+
+            .buttons button {
+                flex: 1;
+                padding: 12px 10px;
             }
         }
     </style>
@@ -186,457 +381,370 @@
 <body>
 
 <header>
-
     <div class="logo">
-        FROM UNIVERSITY TO FACTORY
-        <span>من الجامعة إلى المصنع</span>
+        LINKORA
+        <span>من الجامعة إلى سوق العمل</span>
     </div>
 
     <a href="./Company-dashboard.html" class="back">
-        لوحة التحكم
+        لوحة التحكم ←
     </a>
-
 </header>
 
+<main class="container">
 
-<div class="container">
+    <section class="page-intro">
+        <h1>إدارة المتقدمين</h1>
+        <p>
+            راجع طلبات الطلاب، وتابع حالة كل طلب،
+            واختر المرشحين المناسبين لفرصك.
+        </p>
+    </section>
 
-    <h1>المتقدمون</h1>
-
-    <p class="subtitle">
-        راجع طلبات الطلاب وحدد حالة كل طلب.
-    </p>
-
-
-    <div class="filter">
-
-        <label>اختيار الفرصة</label>
-
+    <section class="filter">
+        <label for="opportunityFilter">اختيار الفرصة</label>
         <select id="opportunityFilter">
-
-            <option value="all">
-                كل الفرص
-            </option>
-
+            <option value="all">كل الفرص</option>
         </select>
+    </section>
 
-    </div>
-
-
-    <div id="message" class="message"></div>
-
-
-    <div id="applicants">
-
-        <div class="empty">
-            جاري تحميل المتقدمين...
+    <section class="summary">
+        <div class="summary-card">
+            <span class="number" id="totalCount">0</span>
+            <span class="label">إجمالي الطلبات</span>
         </div>
 
-    </div>
+        <div class="summary-card">
+            <span class="number" id="acceptedCount">0</span>
+            <span class="label">الطلبات المقبولة</span>
+        </div>
 
-</div>
+        <div class="summary-card">
+            <span class="number" id="pendingCount">0</span>
+            <span class="label">قيد المراجعة</span>
+        </div>
+    </section>
 
+    <div id="message" class="message" role="status" aria-live="polite"></div>
+
+    <section id="applicants">
+        <div class="empty">جاري تحميل المتقدمين...</div>
+    </section>
+
+</main>
+
+<footer>
+    LINKORA © من الجامعة إلى سوق العمل
+</footer>
 
 <script>
+    const companyEmail = localStorage.getItem("companyEmail");
+    const factoryEmail = localStorage.getItem("factoryEmail");
+    const accountEmail = companyEmail || factoryEmail;
 
-    const companyEmail =
-        localStorage.getItem("companyEmail");
+    const applicantsContainer = document.getElementById("applicants");
+    const opportunityFilter = document.getElementById("opportunityFilter");
+    const message = document.getElementById("message");
 
-    const applicantsContainer =
-        document.getElementById("applicants");
+    let allApplications = [];
+    let messageTimer;
 
-    const opportunityFilter =
-        document.getElementById("opportunityFilter");
-
-    const message =
-        document.getElementById("message");
-
-
-    if (!companyEmail) {
-
+    if (!accountEmail) {
         applicantsContainer.innerHTML = `
             <div class="empty">
-                لا يوجد حساب شركة مسجل حاليًا.
+                لا يوجد حساب شركة أو مصنع مسجل حاليًا.<br>
+                سجّل الدخول أولًا لعرض طلبات المتقدمين.
             </div>
         `;
-
     } else {
-
         loadApplicants();
-
     }
 
-
     async function loadApplicants() {
+        applicantsContainer.innerHTML = `
+            <div class="empty">جاري تحميل المتقدمين...</div>
+        `;
 
         try {
-
+            // مسار السيرفر الحالي الخاص بطلبات الشركات
             const response = await fetch(
-                `/company-applications?email=${encodeURIComponent(companyEmail)}`
+                `/company-applications?email=${encodeURIComponent(accountEmail)}`
             );
 
             const data = await response.json();
 
-            const applications =
-                Array.isArray(data)
-                    ? data
-                    : (data.applications || []);
-
-
-            if (applications.length === 0) {
-
-                applicantsContainer.innerHTML = `
-                    <div class="empty">
-                        لا يوجد طلاب متقدمون حتى الآن.
-                    </div>
-                `;
-
-                return;
+            if (!response.ok) {
+                throw new Error(data.message || "تعذر تحميل الطلبات.");
             }
 
+            allApplications = Array.isArray(data)
+                ? data
+                : (data.applications || []);
 
-            createOpportunityFilter(applications);
-
-            displayApplicants(applications);
+            buildOpportunityFilter();
+            displayApplicants(getFilteredApplications());
 
         } catch (error) {
-
             console.error(error);
 
             applicantsContainer.innerHTML = `
                 <div class="empty">
-                    تعذر تحميل بيانات المتقدمين.
+                    تعذر تحميل بيانات المتقدمين.<br>
+                    تأكد من اتصال السيرفر.
                 </div>
             `;
         }
-
     }
 
+    function normalizeStatus(status) {
+        if (
+            status === "accepted" ||
+            status === "مقبول"
+        ) {
+            return "accepted";
+        }
 
-    function createOpportunityFilter(applications) {
+        if (
+            status === "rejected" ||
+            status === "مرفوض"
+        ) {
+            return "rejected";
+        }
 
-        const opportunities = [];
+        return "pending";
+    }
 
-        applications.forEach(application => {
+    function buildOpportunityFilter() {
+        const previousValue = opportunityFilter.value;
 
-            const id =
-                application.opportunity_id;
+        opportunityFilter.innerHTML = `
+            <option value="all">كل الفرص</option>
+        `;
 
-            const name =
-                application.opportunity_name ||
-                "فرصة بدون اسم";
+        const opportunities = new Map();
 
-            if (!opportunities.some(item => item.id === id)) {
+        allApplications.forEach(application => {
+            const id = application.opportunity_id;
 
-                opportunities.push({
-                    id: id,
-                    name: name
-                });
-
+            if (id !== undefined && id !== null) {
+                opportunities.set(
+                    String(id),
+                    application.opportunity_name || "فرصة بدون اسم"
+                );
             }
-
         });
 
-
-        opportunities.forEach(opportunity => {
-
-            const option =
-                document.createElement("option");
-
-            option.value =
-                opportunity.id;
-
-            option.textContent =
-                opportunity.name;
-
+        opportunities.forEach((name, id) => {
+            const option = document.createElement("option");
+            option.value = id;
+            option.textContent = name;
             opportunityFilter.appendChild(option);
-
         });
 
-
-        opportunityFilter.addEventListener(
-            "change",
-            function() {
-
-                const selected =
-                    opportunityFilter.value;
-
-                if (selected === "all") {
-
-                    displayApplicants(applications);
-
-                    return;
-                }
-
-
-                const filtered =
-                    applications.filter(
-                        application =>
-                            String(application.opportunity_id) ===
-                            String(selected)
-                    );
-
-                displayApplicants(filtered);
-
-            }
-        );
-
+        if (
+            [...opportunityFilter.options].some(
+                option => option.value === previousValue
+            )
+        ) {
+            opportunityFilter.value = previousValue;
+        }
     }
 
+    function getFilteredApplications() {
+        const selected = opportunityFilter.value;
+
+        if (selected === "all") {
+            return allApplications;
+        }
+
+        return allApplications.filter(application =>
+            String(application.opportunity_id) === selected
+        );
+    }
+
+    opportunityFilter.addEventListener("change", function() {
+        displayApplicants(getFilteredApplications());
+    });
+
+    function updateSummary(applications) {
+        const accepted = applications.filter(
+            application =>
+                normalizeStatus(application.status) === "accepted"
+        ).length;
+
+        const pending = applications.filter(
+            application =>
+                normalizeStatus(application.status) === "pending"
+        ).length;
+
+        document.getElementById("totalCount").textContent =
+            applications.length;
+
+        document.getElementById("acceptedCount").textContent =
+            accepted;
+
+        document.getElementById("pendingCount").textContent =
+            pending;
+    }
 
     function displayApplicants(applications) {
+        updateSummary(applications);
 
         if (applications.length === 0) {
-
             applicantsContainer.innerHTML = `
                 <div class="empty">
-                    لا يوجد متقدمون لهذه الفرصة.
+                    لا يوجد متقدمون لهذه الفرصة حتى الآن.
                 </div>
             `;
-
             return;
         }
 
-
         applicantsContainer.innerHTML = "";
 
-
         applications.forEach(application => {
+            const applicant = document.createElement("article");
+            applicant.className = "applicant";
 
-            const applicant =
-                document.createElement("div");
+            const status = normalizeStatus(application.status);
 
-            applicant.className =
-                "applicant";
-
-
-            const status =
-                application.status || "pending";
-
-
-            let statusText =
-                "قيد المراجعة";
-
-            let statusClass =
-                "pending";
-
+            let statusText = "قيد المراجعة";
+            let statusClass = "pending";
 
             if (status === "accepted") {
-
-                statusText =
-                    "مقبول";
-
-                statusClass =
-                    "accept";
-
+                statusText = "مقبول";
+                statusClass = "accept";
+            } else if (status === "rejected") {
+                statusText = "مرفوض";
+                statusClass = "reject";
             }
 
+            const heading = document.createElement("h2");
+            heading.textContent = application.user_name || "طالب";
+            applicant.appendChild(heading);
 
-            if (status === "rejected") {
+            const info = document.createElement("div");
+            info.className = "info";
 
-                statusText =
-                    "مرفوض";
+            addInfo(info, "البريد الإلكتروني:", application.user_email || "غير متوفر");
+            addInfo(info, "الفرصة:", application.opportunity_name || "غير متوفر");
+            addInfo(info, "تاريخ التقديم:", application.created_at || "غير متوفر");
 
-                statusClass =
-                    "reject";
+            const statusLine = document.createElement("div");
+            const statusLabel = document.createElement("strong");
+            statusLabel.textContent = "الحالة: ";
 
-            }
+            const statusBadge = document.createElement("span");
+            statusBadge.className = `status ${statusClass}`;
+            statusBadge.textContent = statusText;
 
+            statusLine.appendChild(statusLabel);
+            statusLine.appendChild(statusBadge);
+            info.appendChild(statusLine);
 
-            applicant.innerHTML = `
+            applicant.appendChild(info);
 
-                <h2>
-                    ${escapeHtml(
-                        application.user_name ||
-                        "طالب"
-                    )}
-                </h2>
+            const buttons = document.createElement("div");
+            buttons.className = "buttons";
 
-                <div class="info">
+            const acceptButton = document.createElement("button");
+            acceptButton.className = "accept";
+            acceptButton.textContent = "قبول الطالب";
 
-                    <div>
-                        <strong>البريد الإلكتروني:</strong>
-                        ${escapeHtml(
-                            application.user_email ||
-                            "غير متوفر"
-                        )}
-                    </div>
+            const rejectButton = document.createElement("button");
+            rejectButton.className = "reject";
+            rejectButton.textContent = "رفض الطلب";
 
-                    <div>
-                        <strong>الفرصة:</strong>
-                        ${escapeHtml(
-                            application.opportunity_name ||
-                            "غير متوفر"
-                        )}
-                    </div>
+            // السيرفر الحالي يتعامل مع حالتي القبول والرفض
+            acceptButton.disabled = status === "accepted";
+            rejectButton.disabled = status === "rejected";
 
-                    <div>
-                        <strong>تاريخ التقديم:</strong>
-                        ${escapeHtml(
-                            application.created_at ||
-                            "غير متوفر"
-                        )}
-                    </div>
+            acceptButton.addEventListener("click", () => {
+                updateStatus(application.id, "accepted");
+            });
 
-                    <div>
-                        <strong>الحالة:</strong>
+            rejectButton.addEventListener("click", () => {
+                updateStatus(application.id, "rejected");
+            });
 
-                        <span class="status ${statusClass}">
-                            ${statusText}
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="buttons">
-
-                    <button
-                        class="accept"
-                        onclick="updateStatus(
-                            ${application.id},
-                            'accepted'
-                        )"
-                    >
-                        قبول
-                    </button>
-
-
-                    <button
-                        class="reject"
-                        onclick="updateStatus(
-                            ${application.id},
-                            'rejected'
-                        )"
-                    >
-                        رفض
-                    </button>
-
-                </div>
-
-            `;
-
+            buttons.appendChild(acceptButton);
+            buttons.appendChild(rejectButton);
+            applicant.appendChild(buttons);
 
             applicantsContainer.appendChild(applicant);
-
         });
-
     }
 
+    function addInfo(container, labelText, value) {
+        const line = document.createElement("div");
 
-    async function updateStatus(
-        applicationId,
-        status
-    ) {
+        const label = document.createElement("strong");
+        label.textContent = labelText + " ";
+
+        const text = document.createElement("span");
+        text.textContent = value;
+
+        line.appendChild(label);
+        line.appendChild(text);
+        container.appendChild(line);
+    }
+
+    async function updateStatus(applicationId, status) {
+        if (applicationId === undefined || applicationId === null) {
+            showMessage("رقم الطلب غير متوفر.", "error");
+            return;
+        }
 
         try {
+            const response = await fetch("/application-status", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    applicationId: applicationId,
+                    status: status,
+                    companyEmail: accountEmail
+                })
+            });
 
-            const response = await fetch(
-                "/application-status",
-                {
-
-                    method: "PUT",
-
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
-
-                    body: JSON.stringify({
-
-                        applicationId:
-                            applicationId,
-
-                        status:
-                            status,
-
-                        companyEmail:
-                            companyEmail
-
-                    })
-
-                }
-            );
-
-
-            const data =
-                await response.json();
-
+            const data = await response.json();
 
             if (!response.ok) {
-
                 showMessage(
-                    data.message ||
-                    "حدث خطأ أثناء تحديث الحالة.",
+                    data.message || "حدث خطأ أثناء تحديث الحالة.",
                     "error"
                 );
-
                 return;
             }
-
 
             showMessage(
                 status === "accepted"
                     ? "تم قبول الطالب بنجاح ✅"
-                    : "تم رفض الطالب.",
+                    : "تم رفض الطلب.",
                 "success"
             );
 
-
-            loadApplicants();
+            await loadApplicants();
 
         } catch (error) {
-
             console.error(error);
-
-            showMessage(
-                "تعذر الاتصال بالسيرفر.",
-                "error"
-            );
-
+            showMessage("تعذر الاتصال بالسيرفر.", "error");
         }
-
     }
 
+    function showMessage(text, type) {
+        clearTimeout(messageTimer);
 
-    function showMessage(
-        text,
-        type
-    ) {
+        message.textContent = text;
+        message.className = `message ${type}`;
 
-        message.textContent =
-            text;
-
-        message.className =
-            `message ${type}`;
-
-
-        setTimeout(() => {
-
-            message.textContent =
-                "";
-
-            message.className =
-                "message";
-
-        }, 3000);
-
+        messageTimer = setTimeout(() => {
+            message.textContent = "";
+            message.className = "message";
+        }, 3500);
     }
-
-
-    function escapeHtml(value) {
-
-        return String(value)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-
-    }
-
 </script>
 
 </body>
 </html>
+```

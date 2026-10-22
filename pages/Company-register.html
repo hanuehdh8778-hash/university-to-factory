@@ -3,10 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>تسجيل شركة | من الجامعة إلى المصنع</title>
+    <title>تسجيل شركة | LINKORA</title>
 
     <style>
+        :root {
+            --primary: #1769AA;
+            --sky: #70C5E8;
+            --baby: #A7D8F0;
+            --background: #F1F8FC;
+            --navy: #123B5D;
+            --text: #52697A;
+            --white: #FFFFFF;
+            --border: #D8EAF5;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -16,22 +26,36 @@
 
         body {
             min-height: 100vh;
-            background: #071426;
-            color: white;
+            background:
+                radial-gradient(circle at top right, #DDF2FC 0, transparent 35%),
+                var(--background);
+            color: var(--navy);
+            padding: 35px 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 30px 15px;
         }
 
         .container {
             width: 100%;
-            max-width: 520px;
-            background: #0d1d33;
-            border: 1px solid rgba(212, 175, 55, 0.35);
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+            max-width: 570px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 38px;
+            box-shadow: 0 15px 45px rgba(18, 59, 93, 0.10);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--baby), var(--primary), var(--sky));
         }
 
         .logo {
@@ -39,71 +63,128 @@
             margin-bottom: 30px;
         }
 
+        .logo-mark {
+            width: 65px;
+            height: 65px;
+            margin: 0 auto 14px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--sky));
+            color: white;
+            font-size: 27px;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(23, 105, 170, 0.18);
+        }
+
         .logo h1 {
-            color: #d4af37;
-            font-size: 25px;
+            color: var(--primary);
+            font-size: 28px;
+            letter-spacing: 1px;
             margin-bottom: 8px;
         }
 
         .logo p {
-            color: #ddd;
-            font-size: 15px;
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .tagline {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 7px 13px;
+            background: #EAF6FC;
+            border-radius: 30px;
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: bold;
         }
 
         h2 {
             text-align: center;
-            margin-bottom: 25px;
-            font-size: 24px;
+            font-size: 25px;
+            margin-bottom: 10px;
+            color: var(--navy);
+        }
+
+        .intro {
+            text-align: center;
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 28px;
         }
 
         .input-group {
-            margin-bottom: 17px;
+            margin-bottom: 19px;
         }
 
         label {
             display: block;
-            margin-bottom: 7px;
-            color: #eee;
+            margin-bottom: 9px;
+            color: var(--navy);
             font-size: 14px;
+            font-weight: bold;
         }
 
         input,
         textarea {
+            display: block;
             width: 100%;
-            padding: 13px 14px;
-            border: 1px solid #33445c;
-            border-radius: 10px;
-            background: #071426;
-            color: white;
+            padding: 14px 15px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #F8FCFE;
+            color: var(--navy);
             outline: none;
             font-size: 15px;
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #91A6B6;
         }
 
         input:focus,
         textarea:focus {
-            border-color: #d4af37;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(112, 197, 232, 0.20);
         }
 
         textarea {
-            min-height: 100px;
+            min-height: 115px;
             resize: vertical;
+            line-height: 1.8;
         }
 
         button {
             width: 100%;
-            padding: 14px;
+            padding: 15px;
             margin-top: 8px;
             border: none;
-            border-radius: 10px;
-            background: #d4af37;
-            color: #071426;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), #2588C9);
+            color: white;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
+            box-shadow: 0 7px 18px rgba(23, 105, 170, 0.18);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         button:hover {
-            background: #e3c45b;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(23, 105, 170, 0.25);
+        }
+
+        button:disabled {
+            opacity: 0.7;
+            cursor: wait;
+            transform: none;
         }
 
         .message {
@@ -111,15 +192,21 @@
             margin-top: 18px;
             min-height: 22px;
             font-size: 14px;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
         }
 
         .links {
             text-align: center;
-            margin-top: 22px;
+            margin-top: 24px;
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.9;
         }
 
         .links a {
-            color: #d4af37;
+            color: var(--primary);
+            font-weight: bold;
             text-decoration: none;
         }
 
@@ -130,78 +217,153 @@
         .back {
             display: block;
             text-align: center;
-            margin-top: 15px;
-            color: #bbb;
+            margin-top: 17px;
+            color: var(--text);
             text-decoration: none;
             font-size: 14px;
         }
 
         .back:hover {
-            color: white;
+            color: var(--primary);
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 18px;
+            border-top: 1px solid #EAF2F7;
+            color: #91A6B6;
+            font-size: 12px;
+        }
+
+        @media (max-width: 520px) {
+            body {
+                padding: 20px 12px;
+            }
+
+            .container {
+                padding: 28px 21px;
+                border-radius: 20px;
+            }
+
+            .logo h1 {
+                font-size: 25px;
+            }
+
+            h2 {
+                font-size: 23px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
+    <main class="container">
 
-        <div class="logo">
-            <h1>FROM UNIVERSITY TO FACTORY</h1>
-            <p>من الجامعة إلى المصنع</p>
-        </div>
+        <header class="logo">
+            <div class="logo-mark">L</div>
+            <h1>LINKORA</h1>
+            <p>من الجامعة إلى سوق العمل</p>
+            <span class="tagline">UNIVERSITY × INDUSTRY</span>
+        </header>
 
-        <h2>تسجيل شركة</h2>
+        <h2>انضم كشركة أو مصنع</h2>
+        <p class="intro">
+            افتح باب الفرص للمواهب الشابة، وساعد الطلاب على اكتساب الخبرة
+            وربط التعليم بسوق العمل.
+        </p>
 
         <form id="companyRegisterForm">
 
             <div class="input-group">
-                <label for="name">اسم الشركة</label>
-                <input type="text" id="name" required>
+                <label for="name">اسم الشركة أو المصنع</label>
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="اكتب اسم الشركة"
+                    autocomplete="organization"
+                    required
+                >
             </div>
 
             <div class="input-group">
                 <label for="email">البريد الإلكتروني</label>
-                <input type="email" id="email" required>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="company@example.com"
+                    autocomplete="email"
+                    required
+                >
             </div>
 
             <div class="input-group">
                 <label for="password">كلمة المرور</label>
-                <input type="password" id="password" required>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="أنشئ كلمة مرور"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required
+                >
             </div>
 
             <div class="input-group">
                 <label for="field">مجال الشركة</label>
-                <input type="text" id="field" placeholder="مثال: الإلكترونيات" required>
+                <input
+                    type="text"
+                    id="field"
+                    placeholder="مثال: الإلكترونيات أو البرمجيات"
+                    required
+                >
             </div>
 
             <div class="input-group">
                 <label for="location">موقع الشركة</label>
-                <input type="text" id="location" placeholder="مثال: سوهاج" required>
+                <input
+                    type="text"
+                    id="location"
+                    placeholder="مثال: سوهاج"
+                    required
+                >
             </div>
 
             <div class="input-group">
                 <label for="description">نبذة عن الشركة</label>
-                <textarea id="description" placeholder="اكتب نبذة مختصرة عن الشركة" required></textarea>
+                <textarea
+                    id="description"
+                    placeholder="عرّف الطلاب بشركتك ومجالات عملها..."
+                    required
+                ></textarea>
             </div>
 
-            <button type="submit">إنشاء حساب الشركة</button>
+            <button type="submit" id="submitButton">
+                إنشاء حساب الشركة
+            </button>
 
         </form>
 
-        <div class="message" id="message"></div>
+        <div class="message" id="message" role="status" aria-live="polite"></div>
 
         <div class="links">
-            <a href="./Company-login.html">لديك حساب بالفعل؟ تسجيل الدخول</a>
+            لديك حساب بالفعل؟
+            <a href="./Company-login.html">تسجيل الدخول</a>
         </div>
 
-        <a class="back" href="../index.html">العودة للصفحة الرئيسية</a>
+        <a class="back" href="../index.html">← العودة للصفحة الرئيسية</a>
 
-    </div>
+        <div class="footer-note">
+            LINKORA — بنبني جسور بين التعليم والصناعة
+        </div>
+
+    </main>
 
     <script>
         const form = document.getElementById("companyRegisterForm");
         const message = document.getElementById("message");
+        const submitButton = document.getElementById("submitButton");
 
         form.addEventListener("submit", async function (e) {
             e.preventDefault();
@@ -214,7 +376,9 @@
             const description = document.getElementById("description").value.trim();
 
             message.textContent = "جاري إنشاء الحساب...";
-            message.style.color = "#d4af37";
+            message.style.color = "#1769AA";
+            submitButton.disabled = true;
+            submitButton.textContent = "جاري التسجيل...";
 
             try {
                 const response = await fetch("/company-register", {
@@ -237,23 +401,31 @@
                 if (response.ok) {
                     localStorage.setItem("companyEmail", email);
 
-                    message.textContent = data.message || "تم إنشاء حساب الشركة بنجاح";
-                    message.style.color = "#4ade80";
+                    message.textContent =
+                        data.message || "تم إنشاء حساب الشركة بنجاح";
+                    message.style.color = "#16834A";
+
+                    submitButton.textContent = "تم إنشاء الحساب";
 
                     setTimeout(() => {
                         window.location.href = "./Company-dashboard.html";
                     }, 1200);
 
                 } else {
-                    message.textContent = data.message || "حدث خطأ أثناء التسجيل";
-                    message.style.color = "#ff6b6b";
+                    message.textContent =
+                        data.message || "حدث خطأ أثناء التسجيل";
+                    message.style.color = "#D64545";
+                    submitButton.disabled = false;
+                    submitButton.textContent = "إنشاء حساب الشركة";
                 }
 
             } catch (error) {
                 console.error(error);
 
-                message.textContent = "تعذر الاتصال بالسيرفر";
-                message.style.color = "#ff6b6b";
+                message.textContent = "تعذر الاتصال بالسيرفر، تأكدي إنه شغال وحاولي تاني.";
+                message.style.color = "#D64545";
+                submitButton.disabled = false;
+                submitButton.textContent = "إنشاء حساب الشركة";
             }
         });
     </script>

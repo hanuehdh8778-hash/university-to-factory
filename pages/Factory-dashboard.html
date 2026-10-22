@@ -1,0 +1,671 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>لوحة المصنع | LINKORA</title>
+
+    <style>
+        :root {
+            --blue: #1769AA;
+            --sky: #70C5E8;
+            --baby: #A7D8F0;
+            --light: #F1F8FC;
+            --navy: #123B5D;
+            --text: #52697A;
+            --white: #FFFFFF;
+            --border: #DFECF4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Tahoma, sans-serif;
+            background: var(--light);
+            color: var(--navy);
+            line-height: 1.8;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .navbar {
+            background: white;
+            padding: 15px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            box-shadow: 0 3px 15px #123b5d0b;
+        }
+
+        .logo {
+            font-size: 27px;
+            color: var(--blue);
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .logo small {
+            display: block;
+            font-size: 11px;
+            color: var(--text);
+            letter-spacing: 0;
+            font-weight: normal;
+            margin-top: -5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue);
+        }
+
+        .nav-button {
+            background: var(--blue);
+            color: white !important;
+            padding: 9px 16px;
+            border-radius: 9px;
+        }
+
+        .container {
+            width: min(1150px, 90%);
+            margin: auto;
+        }
+
+        .hero {
+            margin: 30px auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 35px #123b5d0c;
+        }
+
+        .hero-content {
+            padding: 38px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .tag {
+            background: #E2F4FC;
+            color: var(--blue);
+            padding: 5px 13px;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: clamp(26px, 3vw, 38px);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        h1 span {
+            color: var(--blue);
+        }
+
+        .hero-content p {
+            color: var(--text);
+            margin-bottom: 22px;
+        }
+
+        .primary-button {
+            display: inline-block;
+            background: var(--blue);
+            color: white;
+            padding: 11px 21px;
+            border-radius: 10px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .primary-button:hover {
+            background: var(--navy);
+        }
+
+        .hero-image {
+            position: relative;
+            min-height: 340px;
+            background: linear-gradient(135deg, #1769AA, #70C5E8);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            min-height: 340px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-caption {
+            position: absolute;
+            right: 18px;
+            bottom: 18px;
+            left: 18px;
+            background: #123B5DE8;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 12px;
+        }
+
+        .image-caption strong,
+        .image-caption small {
+            display: block;
+        }
+
+        .image-caption small {
+            color: #D8EFFB;
+        }
+
+        .section {
+            margin: 42px auto;
+        }
+
+        .section-heading {
+            margin-bottom: 20px;
+        }
+
+        .section-heading h2 {
+            font-size: 25px;
+            margin-bottom: 3px;
+        }
+
+        .section-heading p {
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .photo-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            overflow: hidden;
+            transition: 0.2s;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px #123b5d12;
+        }
+
+        .photo-card img {
+            display: block;
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            background: #DDEFF8;
+        }
+
+        .photo-text {
+            padding: 17px;
+        }
+
+        .photo-text h3 {
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+
+        .photo-text p {
+            color: var(--text);
+            font-size: 13px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .stat-card {
+            text-align: center;
+            background: white;
+            border: 1px solid var(--border);
+            padding: 18px;
+            border-radius: 14px;
+        }
+
+        .stat-number {
+            display: block;
+            color: var(--blue);
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: var(--text);
+            font-size: 13px;
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .action-card {
+            display: block;
+            background: white;
+            border: 1px solid var(--border);
+            padding: 22px;
+            border-radius: 16px;
+            transition: 0.2s;
+        }
+
+        .action-card:hover {
+            border-color: var(--sky);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px #123b5d0c;
+        }
+
+        .action-icon {
+            display: grid;
+            place-items: center;
+            width: 48px;
+            height: 48px;
+            background: #E4F5FC;
+            color: var(--blue);
+            font-size: 23px;
+            border-radius: 13px;
+            margin-bottom: 12px;
+        }
+
+        .action-card h3 {
+            font-size: 17px;
+            margin-bottom: 6px;
+        }
+
+        .action-card p {
+            color: var(--text);
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .action-link {
+            color: var(--blue);
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .factory-info,
+        .opportunity-list {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            padding: 22px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 13px;
+            margin-top: 15px;
+        }
+
+        .info-item {
+            padding: 13px;
+            background: var(--light);
+            border-radius: 10px;
+            overflow-wrap: anywhere;
+        }
+
+        .info-item small {
+            display: block;
+            color: var(--text);
+        }
+
+        .info-item strong {
+            font-size: 14px;
+        }
+
+        .opportunity-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .opportunity-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: var(--light);
+            border-radius: 11px;
+        }
+
+        .opportunity-item h3 {
+            font-size: 16px;
+        }
+
+        .opportunity-item p {
+            color: var(--text);
+            font-size: 13px;
+        }
+
+        .status {
+            background: #E2F4FC;
+            color: var(--blue);
+            padding: 5px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+            font-size: 12px;
+        }
+
+        .message {
+            color: var(--text);
+            text-align: center;
+            padding: 16px;
+        }
+
+        .footer {
+            margin-top: 55px;
+            padding: 28px 7%;
+            background: var(--navy);
+            color: white;
+            text-align: center;
+        }
+
+        .footer p {
+            color: #D4E6F2;
+            font-size: 13px;
+        }
+
+        @media (max-width: 800px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-image {
+                grid-row: 1;
+                min-height: 240px;
+            }
+
+            .hero-image img {
+                min-height: 240px;
+                max-height: 300px;
+            }
+
+            .photo-grid,
+            .action-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 520px) {
+            .navbar {
+                padding: 14px 5%;
+            }
+
+            .nav-links {
+                width: 100%;
+                gap: 12px;
+                font-size: 12px;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .hero-content {
+                padding: 23px;
+            }
+
+            .photo-grid,
+            .action-grid,
+            .stats,
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .opportunity-item {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <a href="../index.html" class="logo">
+        LINKORA
+        <small>من الجامعة إلى سوق العمل</small>
+    </a>
+
+    <nav class="nav-links">
+        <a href="../index.html">الرئيسية</a>
+        <a href="./Opportunities.html">الفرص</a>
+        <a href="./Company-dashboard.html">لوحة الشركة</a>
+        <a href="./Applicants.html">المتقدمون</a>
+        <a href="./Login.html" class="nav-button">تسجيل الدخول</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="tag">LINKORA | القطاع الصناعي</span>
+
+            <h1>
+                مستقبل الصناعة يبدأ من <span>هنا</span>
+            </h1>
+
+            <p>
+                مساحة مخصصة للمصانع للتواصل مع الطلاب والخريجين،
+                ونشر فرص التدريب العملي والوظائف الفنية،
+                واكتشاف المهارات التي يحتاجها سوق العمل الصناعي.
+            </p>
+
+            <a href="./Add-opportunity.html" class="primary-button">
+                + أضف فرصة للمصنع
+            </a>
+        </div>
+
+        <div class="hero-image">
+            <img
+                src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=85"
+                alt="مصنع ومنشأة صناعية"
+                onerror="this.style.display='none'"
+            >
+
+            <div class="image-caption">
+                <strong>من التعليم إلى خطوط الإنتاج</strong>
+                <small>نربط المهارات الهندسية باحتياجات المصانع</small>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stat-card">
+            <span class="stat-number" id="factoryOpportunityCount">—</span>
+            <span class="stat-label">الفرص المعروضة</span>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-number">01</span>
+            <span class="stat-label">مساحة لإدارة المصنع</span>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">فرص للتعاون الصناعي</span>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-heading">
+            <h2>عالم الصناعة والتكنولوجيا</h2>
+            <p>بيئة تجمع التصنيع والهندسة والتدريب العملي.</p>
+        </div>
+
+        <div class="photo-grid">
+            <article class="photo-card">
+                <img
+                    src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=900&q=80"
+                    alt="عمل هندسي وتقني"
+                    loading="lazy"
+                >
+                <div class="photo-text">
+                    <h3>الهندسة والتشغيل</h3>
+                    <p>التواصل مع الطلاب والخريجين المهتمين بالمجالات الهندسية.</p>
+                </div>
+            </article>
+
+            <article class="photo-card">
+                <img
+                    src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=900&q=80"
+                    alt="معدات وتقنيات صناعية"
+                    loading="lazy"
+                >
+                <div class="photo-text">
+                    <h3>المعدات والتقنيات</h3>
+                    <p>التعرف على المهارات الفنية والتقنية المطلوبة في المصنع.</p>
+                </div>
+            </article>
+
+            <article class="photo-card">
+                <img
+                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=900&q=80"
+                    alt="مهندسة تعمل على مشروع تقني"
+                    loading="lazy"
+                >
+                <div class="photo-text">
+                    <h3>التدريب والتطوير</h3>
+                    <p>المساهمة في إعداد كوادر قادرة على العمل في الصناعة.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-heading">
+            <h2>خدمات المصنع</h2>
+            <p>اختاري الخدمة التي تحتاجينها لإدارة فرص المصنع.</p>
+        </div>
+
+        <div class="action-grid">
+            <a href="./Add-opportunity.html" class="action-card">
+                <div class="action-icon">＋</div>
+                <h3>نشر فرصة تدريب أو عمل</h3>
+                <p>أضيفي فرصة جديدة وحددي التخصص والمهارات المطلوبة.</p>
+                <span class="action-link">إضافة فرصة ←</span>
+            </a>
+
+            <a href="./Edit-opportunity.html" class="action-card">
+                <div class="action-icon">⚙</div>
+                <h3>إدارة الفرص</h3>
+                <p>راجعي الفرص وعدّلي بياناتها من صفحة إدارة الفرص.</p>
+                <span class="action-link">إدارة الفرص ←</span>
+            </a>
+
+            <a href="./Applicants.html" class="action-card">
+                <div class="action-icon">♙</div>
+                <h3>متابعة المتقدمين</h3>
+                <p>تابعي طلبات الطلاب المرتبطة بفرص المصنع.</p>
+                <span class="action-link">عرض المتقدمين ←</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-heading">
+            <h2>بيانات المصنع</h2>
+            <p>ستظهر هنا بيانات المصنع بعد ربط الصفحة بحساب مصنع مستقل.</p>
+        </div>
+
+        <div class="factory-info">
+            <h3 id="factoryName">مصنعك على LINKORA</h3>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <small>اسم المصنع</small>
+                    <strong id="factoryNameValue">لم يتم ربط حساب المصنع بعد</strong>
+                </div>
+
+                <div class="info-item">
+                    <small>مجال الصناعة</small>
+                    <strong id="factoryField">سيتم تحديده عند تسجيل المصنع</strong>
+                </div>
+
+                <div class="info-item">
+                    <small>موقع المصنع</small>
+                    <strong id="factoryLocation">سيتم تحديده عند تسجيل المصنع</strong>
+                </div>
+
+                <div class="info-item">
+                    <small>البريد الإلكتروني</small>
+                    <strong id="factoryEmail">سيتم تحديده عند تسجيل المصنع</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-heading">
+            <h2>فرص المصنع</h2>
+            <p>الفرص المعروضة حاليًا على حساب المصنع.</p>
+        </div>
+
+        <div class="opportunity-list" id="factoryOpportunities">
+            <div class="message">
+                صفحة المصنع جاهزة للتصميم، وسيتم ربط الفرص بحساب مستقل في الخطوة التالية.
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <div class="logo" style="color:white;">LINKORA</div>
+    <p>من الجامعة إلى سوق العمل — نربط التعليم بالصناعة ونصنع فرص المستقبل.</p>
+</footer>
+
+<script>
+    /*
+      هذه الصفحة واجهة أولية مستقلة للمصنع.
+      لم يتم ربط حساب مصنع مستقل بالباك إند حتى الآن.
+      لن نعرض بيانات الشركة باعتبارها بيانات مصنع بالخطأ.
+    */
+
+    const factoryEmail = localStorage.getItem("factoryEmail");
+
+    if (factoryEmail) {
+        document.getElementById("factoryEmail").textContent = factoryEmail;
+    }
+</script>
+
+</body>
+</html>
+```

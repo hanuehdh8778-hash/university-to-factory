@@ -1,230 +1,326 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>التقديم على الفرصة</title>
+    <title>التقديم على الفرصة | LINKORA</title>
 
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+        }
+
+        :root {
+            --primary: #1769AA;
+            --sky: #70C5E8;
+            --baby: #A7D8F0;
+            --background: #F1F8FC;
+            --navy: #123B5D;
+            --text: #52697A;
+            --white: #FFFFFF;
+            --border: #D8E9F4;
+            --success: #16845B;
+            --error: #D94343;
         }
 
         body {
-            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-            background: #071426;
-            color: white;
+            background: var(--background);
+            color: var(--navy);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         header {
-            padding: 20px 7%;
+            padding: 17px 7%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(212, 175, 55, .25);
+            gap: 20px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 3px 15px rgba(18, 59, 93, 0.05);
         }
 
         .logo-en {
-            color: #d4af37;
-            font-size: 19px;
+            color: var(--primary);
+            font-size: 21px;
             font-weight: 800;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
         .logo-ar {
-            color: #ddd;
+            color: var(--text);
             font-size: 13px;
-            margin-top: 4px;
+            margin-top: 5px;
         }
 
         nav {
             display: flex;
-            gap: 25px;
+            gap: 24px;
+            flex-wrap: wrap;
         }
 
         nav a {
-            color: #ddd;
+            color: var(--navy);
             text-decoration: none;
-            transition: .3s;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.25s;
         }
 
         nav a:hover {
-            color: #d4af37;
+            color: var(--primary);
         }
 
         .page {
-            width: min(700px, 90%);
-            margin: 70px auto;
+            width: min(760px, 92%);
+            margin: 40px auto;
+            flex: 1;
         }
 
         .title {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 28px;
         }
 
         .title .label {
-            color: #d4af37;
-            font-size: 14px;
-            letter-spacing: 3px;
+            display: inline-block;
+            color: var(--primary);
+            background: #E3F2FC;
+            border-radius: 20px;
+            padding: 8px 17px;
+            font-size: 12px;
+            letter-spacing: 2px;
             font-weight: bold;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
         .title h1 {
-            font-size: 38px;
-            margin-bottom: 10px;
+            font-size: 32px;
+            color: var(--navy);
+            margin-bottom: 12px;
         }
 
         .title p {
-            color: #9daaba;
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 14px;
         }
 
         .card {
-            background: #0c2038;
-            border: 1px solid rgba(212, 175, 55, .25);
-            border-radius: 18px;
-            padding: 35px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, .2);
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 35px rgba(18, 59, 93, 0.07);
         }
 
         .opportunity-box {
-            background: rgba(212, 175, 55, .06);
-            border: 1px solid rgba(212, 175, 55, .2);
-            border-radius: 12px;
-            padding: 20px;
+            background: linear-gradient(120deg, #EAF6FD, #F5FAFE);
+            border: 1px solid #D1EAF8;
+            border-right: 5px solid var(--primary);
+            border-radius: 13px;
+            padding: 22px;
             margin-bottom: 25px;
         }
 
         .opportunity-box .label {
-            color: #d4af37;
+            color: var(--primary);
             font-size: 13px;
-            margin-bottom: 7px;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
 
         .opportunity-box h2 {
             font-size: 22px;
+            color: var(--navy);
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+        }
+
+        .student-heading {
+            font-size: 17px;
+            color: var(--navy);
+            margin-bottom: 15px;
         }
 
         .student-info {
             display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
-            margin-bottom: 25px;
+            margin-bottom: 23px;
         }
 
         .info {
-            background: rgba(255, 255, 255, .035);
-            border-radius: 10px;
-            padding: 16px;
+            background: #F7FAFD;
+            border: 1px solid #E7F0F6;
+            border-radius: 12px;
+            padding: 17px;
+            min-width: 0;
         }
 
         .info strong {
             display: block;
-            color: #d4af37;
-            margin-bottom: 6px;
+            color: var(--primary);
+            font-size: 13px;
+            margin-bottom: 9px;
         }
 
         .info span {
-            color: #d3d8df;
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
         }
 
         .notice {
-            background: rgba(255, 193, 7, .06);
-            border: 1px solid rgba(212, 175, 55, .2);
-            color: #c8cdd4;
-            padding: 15px;
-            border-radius: 10px;
-            line-height: 1.8;
-            font-size: 14px;
-            margin-bottom: 25px;
+            background: #F0F8FD;
+            border: 1px solid #D8EAF6;
+            color: var(--text);
+            padding: 16px;
+            border-radius: 12px;
+            line-height: 1.9;
+            font-size: 13px;
+            margin-bottom: 23px;
+        }
+
+        .notice strong {
+            color: var(--primary);
         }
 
         button {
             width: 100%;
             border: none;
             padding: 15px;
-            border-radius: 9px;
-            background: #d4af37;
-            color: #071426;
-            font-size: 17px;
+            border-radius: 11px;
+            background: var(--primary);
+            color: var(--white);
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            transition: .3s;
+            transition: 0.25s;
         }
 
         button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, .2);
+            background: var(--navy);
+            transform: translateY(-1px);
+            box-shadow: 0 7px 18px rgba(23, 105, 170, 0.17);
         }
 
         button:disabled {
-            opacity: .6;
+            opacity: 0.65;
             cursor: not-allowed;
             transform: none;
+            box-shadow: none;
         }
 
         .back {
             display: block;
             text-align: center;
-            margin-top: 18px;
-            color: #d4af37;
+            margin-top: 20px;
+            color: var(--primary);
             text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .back:hover {
+            text-decoration: underline;
         }
 
         .message {
             text-align: center;
-            padding: 60px 20px;
-            color: #aeb8c5;
+            padding: 45px 15px;
+            color: var(--text);
+            line-height: 1.9;
+        }
+
+        .message h2 {
+            color: var(--navy);
+            margin-bottom: 8px;
         }
 
         .success {
             text-align: center;
-            color: #d4af37;
-            font-size: 20px;
-            line-height: 1.8;
-            padding: 25px;
+            color: var(--success);
+            font-size: 18px;
+            line-height: 1.9;
+            padding: 22px 8px 5px;
+        }
+
+        .success small {
+            display: block;
+            font-size: 13px;
+            margin-top: 7px;
         }
 
         .error {
-            color: #ff7777;
+            color: var(--error);
             text-align: center;
             margin-top: 15px;
-            line-height: 1.7;
+            line-height: 1.8;
+            font-size: 14px;
         }
 
         footer {
             text-align: center;
-            padding: 25px;
-            color: #8995a5;
-            border-top: 1px solid rgba(212, 175, 55, .2);
+            padding: 22px 15px;
+            color: var(--text);
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            font-size: 12px;
+            line-height: 1.8;
         }
 
         footer span {
-            color: #d4af37;
+            color: var(--primary);
+            font-weight: bold;
         }
 
         @media (max-width: 650px) {
             header {
                 flex-direction: column;
-                gap: 18px;
+                gap: 16px;
+                padding: 16px 5%;
+            }
+
+            .logo-en {
+                font-size: 17px;
+                text-align: center;
             }
 
             nav {
-                gap: 14px;
-                flex-wrap: wrap;
+                gap: 13px;
                 justify-content: center;
             }
 
+            nav a {
+                font-size: 12px;
+            }
+
+            .page {
+                margin: 28px auto;
+            }
+
             .title h1 {
-                font-size: 30px;
+                font-size: 27px;
             }
 
             .card {
-                padding: 22px;
+                padding: 21px 17px;
+            }
+
+            .student-info {
+                grid-template-columns: 1fr;
+            }
+
+            .opportunity-box h2 {
+                font-size: 19px;
             }
         }
     </style>
@@ -232,321 +328,226 @@
 
 <body>
 
-    <header>
+<header>
+    <div>
+        <div class="logo-en">LINKORA</div>
+        <div class="logo-ar">من الجامعة إلى سوق العمل</div>
+    </div>
 
-        <div>
-            <div class="logo-en">FROM UNIVERSITY TO FACTORY</div>
-            <div class="logo-ar">من الجامعة إلى المصنع</div>
-        </div>
+    <nav>
+        <a href="../index.html">الرئيسية</a>
+        <a href="./Opportunities.html">الفرص</a>
+        <a href="./Company-register.html">الشركات</a>
+        <a href="./Login.html">تسجيل الدخول</a>
+    </nav>
+</header>
 
-        <nav>
-            <a href="../index.html">الرئيسية</a>
-            <a href="./Opportunities.html">الفرص</a>
-            <a href="./Company-register.html">الشركات</a>
-            <a href="./Login.html">تسجيل الدخول</a>
-        </nav>
+<main class="page">
+    <div id="content">
+        <div class="message">جاري تحميل بيانات التقديم...</div>
+    </div>
+</main>
 
-    </header>
+<footer>
+    © 2026 <span>LINKORA</span> — من الجامعة إلى سوق العمل
+</footer>
 
+<script>
+    const content = document.getElementById("content");
+    const params = new URLSearchParams(window.location.search);
 
-    <main class="page">
+    const opportunityId = params.get("id");
+    const studentEmail = localStorage.getItem("userEmail");
 
-        <div id="content">
+    let opportunityData = null;
+    let studentData = null;
+    let isSubmitting = false;
 
-            <div class="message">
-                جاري تحميل بيانات التقديم...
-            </div>
+    async function loadData() {
+        try {
+            if (!opportunityId) {
+                throw new Error("لم يتم تحديد الفرصة.");
+            }
 
-        </div>
-
-    </main>
-
-
-    <footer>
-        © 2026 <span>From University To Factory</span> — جميع الحقوق محفوظة
-    </footer>
-
-
-    <script>
-
-        const content = document.getElementById("content");
-
-        const params = new URLSearchParams(window.location.search);
-
-        const opportunityId = params.get("id");
-
-        const studentEmail = localStorage.getItem("userEmail");
-
-
-        let opportunityData = null;
-        let studentData = null;
-
-
-        async function loadData() {
-
-            try {
-
-                if (!opportunityId) {
-                    throw new Error("لم يتم تحديد الفرصة");
-                }
-
-                if (!studentEmail) {
-
-                    content.innerHTML = `
+            if (!studentEmail) {
+                content.innerHTML = `
+                    <div class="card">
                         <div class="message">
-                            <h2>يجب تسجيل الدخول أولًا</h2>
-                            <br>
+                            <h2>سجّلي الدخول أولًا</h2>
+                            <p>يلزم تسجيل الدخول بحساب الطالب قبل التقديم.</p>
                             <a class="back" href="./Login.html">
-                                تسجيل الدخول
+                                الانتقال إلى تسجيل الدخول ←
                             </a>
                         </div>
-                    `;
-
-                    return;
-                }
-
-
-                const opportunityResponse =
-                    await fetch(`/opportunity?id=${opportunityId}`);
-
-
-                if (!opportunityResponse.ok) {
-                    throw new Error("تعذر تحميل الفرصة");
-                }
-
-
-                opportunityData =
-                    await opportunityResponse.json();
-
-
-                const profileResponse =
-                    await fetch(`/profile?email=${encodeURIComponent(studentEmail)}`);
-
-
-                if (!profileResponse.ok) {
-                    throw new Error("تعذر تحميل بيانات الطالب");
-                }
-
-
-                const profileData =
-                    await profileResponse.json();
-
-
-                studentData =
-                    profileData.user || profileData;
-
-
-                renderPage();
-
-            } catch (error) {
-
-                console.error(error);
-
-                content.innerHTML = `
-                    <div class="message">
-                        <h2>حدث خطأ أثناء تحميل البيانات</h2>
-                        <p style="margin-top:12px;color:#9daaba;">
-                            تأكدي من تسجيل الدخول وأن السيرفر يعمل.
-                        </p>
-                        <a class="back" href="./Opportunities.html">
-                            العودة للفرص
-                        </a>
                     </div>
                 `;
+                return;
             }
-        }
 
+            const opportunityResponse = await fetch(
+                `/opportunity?id=${encodeURIComponent(opportunityId)}`
+            );
 
-        function renderPage() {
+            if (!opportunityResponse.ok) {
+                throw new Error("تعذر تحميل بيانات الفرصة.");
+            }
+
+            opportunityData = await opportunityResponse.json();
+
+            const profileResponse = await fetch(
+                `/profile?email=${encodeURIComponent(studentEmail)}`
+            );
+
+            if (!profileResponse.ok) {
+                throw new Error("تعذر تحميل بيانات الطالب.");
+            }
+
+            const profileData = await profileResponse.json();
+            studentData = profileData.user || profileData;
+
+            renderPage();
+
+        } catch (error) {
+            console.error(error);
 
             content.innerHTML = `
-
-                <div class="title">
-
-                    <div class="label">
-                        APPLICATION
-                    </div>
-
-                    <h1>
-                        تأكيد التقديم
-                    </h1>
-
-                    <p>
-                        راجعي بياناتك قبل إرسال طلب التقديم
-                    </p>
-
-                </div>
-
-
                 <div class="card">
-
-                    <div class="opportunity-box">
-
-                        <div class="label">
-                            الفرصة
-                        </div>
-
-                        <h2>
-                            ${opportunityData.title || "فرصة غير محددة"}
-                        </h2>
-
+                    <div class="message">
+                        <h2>تعذر تحميل البيانات</h2>
+                        <p>تأكدي من تسجيل الدخول وأن الفرصة موجودة.</p>
+                        <a class="back" href="./Opportunities.html">
+                            العودة إلى الفرص ←
+                        </a>
                     </div>
-
-
-                    <div class="student-info">
-
-                        <div class="info">
-
-                            <strong>
-                                اسم الطالبة
-                            </strong>
-
-                            <span>
-                                ${studentData.name || "غير متوفر"}
-                            </span>
-
-                        </div>
-
-
-                        <div class="info">
-
-                            <strong>
-                                البريد الإلكتروني
-                            </strong>
-
-                            <span>
-                                ${studentData.email || studentEmail}
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="notice">
-
-                        عند الضغط على «تأكيد التقديم» سيتم إرسال طلبك
-                        إلى الشركة، ويمكنك متابعة حالة الطلب من لوحة الطالب.
-
-                    </div>
-
-
-                    <button id="applyButton">
-                        تأكيد التقديم
-                    </button>
-
-                    <div id="result"></div>
-
-
-                    <a class="back" href="./Opportunities.html">
-                        ← العودة إلى الفرص
-                    </a>
-
                 </div>
             `;
-            
-
-            document
-                .getElementById("applyButton")
-                .addEventListener("click", submitApplication);
         }
+    }
 
+    function renderPage() {
+        content.innerHTML = `
+            <div class="title">
+                <div class="label">APPLICATION</div>
+                <h1>تأكيد التقديم</h1>
+                <p>راجعي بياناتك قبل إرسال طلب التقديم إلى جهة العمل.</p>
+            </div>
 
-        async function submitApplication() {
+            <div class="card">
+                <div class="opportunity-box">
+                    <div class="label">الفرصة التي اخترتيها</div>
+                    <h2 id="opportunityTitle"></h2>
+                </div>
 
-            const button =
-                document.getElementById("applyButton");
+                <h3 class="student-heading">بيانات الطالب</h3>
 
-            const result =
-                document.getElementById("result");
-
-
-            button.disabled = true;
-            button.textContent = "جاري التقديم...";
-
-
-            try {
-
-                const response =
-                    await fetch("/apply", {
-
-                        method: "POST",
-
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-
-                        body: JSON.stringify({
-
-                            userEmail: studentEmail,
-
-                            opportunityId: opportunityId,
-
-                            opportunityName: opportunityData.title
-
-                        })
-
-                    });
-
-
-                const data =
-                    await response.json();
-
-
-                if (!response.ok) {
-
-                    result.innerHTML = `
-                        <div class="error">
-                            ${data.message || "حدث خطأ أثناء التقديم"}
-                        </div>
-                    `;
-
-                    button.disabled = false;
-                    button.textContent = "تأكيد التقديم";
-
-                    return;
-                }
-
-
-                result.innerHTML = `
-
-                    <div class="success">
-
-                        ✅ تم التقديم على الفرصة بنجاح
-
-                        <br>
-
-                        <small>
-                            يمكنك متابعة حالة طلبك من لوحة الطالب.
-                        </small>
-
+                <div class="student-info">
+                    <div class="info">
+                        <strong>الاسم</strong>
+                        <span id="studentName"></span>
                     </div>
 
-                `;
-
-                button.style.display = "none";
-
-
-            } catch (error) {
-
-                console.error(error);
-
-                result.innerHTML = `
-                    <div class="error">
-                        حدث خطأ في الاتصال بالسيرفر.
+                    <div class="info">
+                        <strong>البريد الإلكتروني</strong>
+                        <span id="studentEmail"></span>
                     </div>
-                `;
+                </div>
 
+                <div class="notice">
+                    <strong>تنبيه:</strong>
+                    عند تأكيد التقديم، سيتم إرسال طلبك إلى جهة العمل.
+                    يمكنك متابعة حالة الطلب من لوحة الطالب.
+                </div>
+
+                <button type="button" id="applyButton">
+                    تأكيد التقديم
+                </button>
+
+                <div id="result" aria-live="polite"></div>
+
+                <a class="back" href="./Opportunities.html">
+                    ← العودة إلى الفرص
+                </a>
+            </div>
+        `;
+
+        // استخدام textContent لحماية النصوص القادمة من السيرفر
+        document.getElementById("opportunityTitle").textContent =
+            opportunityData.title || "فرصة غير محددة";
+
+        document.getElementById("studentName").textContent =
+            studentData.name || "غير متوفر";
+
+        document.getElementById("studentEmail").textContent =
+            studentData.email || studentEmail;
+
+        document.getElementById("applyButton").addEventListener(
+            "click",
+            submitApplication
+        );
+    }
+
+    async function submitApplication() {
+        if (isSubmitting) return;
+
+        const button = document.getElementById("applyButton");
+        const result = document.getElementById("result");
+
+        isSubmitting = true;
+        button.disabled = true;
+        button.textContent = "جاري إرسال الطلب...";
+        result.textContent = "";
+        result.className = "";
+
+        try {
+            const response = await fetch("/apply", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    userEmail: studentEmail,
+                    opportunityId: opportunityId,
+                    opportunityName: opportunityData.title
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                result.textContent =
+                    data.message || "حدث خطأ أثناء التقديم.";
+                result.className = "error";
+                return;
+            }
+
+            result.innerHTML = `
+                <div class="success">
+                    تم التقديم على الفرصة بنجاح!
+                    <small>يمكنك متابعة حالة طلبك من لوحة الطالب.</small>
+                </div>
+            `;
+
+            button.style.display = "none";
+
+        } catch (error) {
+            console.error(error);
+
+            result.textContent = "تعذر الاتصال بالسيرفر. حاولي مرة أخرى.";
+            result.className = "error";
+
+        } finally {
+            isSubmitting = false;
+
+            if (button.style.display !== "none") {
                 button.disabled = false;
                 button.textContent = "تأكيد التقديم";
             }
         }
+    }
 
-
-        loadData();
-
-    </script>
+    loadData();
+</script>
 
 </body>
-
 </html>
+```

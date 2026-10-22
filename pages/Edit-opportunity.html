@@ -1,9 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إدارة الفرص | من الجامعة إلى المصنع</title>
+    <title>إدارة الفرص | LINKORA</title>
 
     <style>
         * {
@@ -13,79 +14,137 @@
             font-family: Arial, sans-serif;
         }
 
+        :root {
+            --blue: #1769AA;
+            --sky: #70C5E8;
+            --baby: #A7D8F0;
+            --light: #F1F8FC;
+            --navy: #123B5D;
+            --text: #52697A;
+            --white: #FFFFFF;
+            --border: #DCECF5;
+            --green: #16804A;
+            --red: #D93636;
+        }
+
         body {
-            background: #071426;
-            color: white;
+            background: var(--light);
+            color: var(--navy);
             min-height: 100vh;
         }
 
         header {
-            background: #0b1d33;
-            border-bottom: 1px solid #d4af37;
-            padding: 20px 7%;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 18px 7%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 20px;
+            box-shadow: 0 3px 15px rgba(18, 59, 93, 0.04);
         }
 
         .logo {
-            color: #d4af37;
+            color: var(--blue);
             font-size: 21px;
             font-weight: bold;
+            direction: ltr;
         }
 
         .logo span {
             display: block;
-            color: white;
+            direction: rtl;
+            text-align: right;
+            color: var(--text);
             font-size: 14px;
-            margin-top: 5px;
+            margin-top: 6px;
         }
 
         .back {
-            color: #d4af37;
+            color: var(--blue);
             text-decoration: none;
-            border: 1px solid #d4af37;
-            padding: 10px 18px;
-            border-radius: 8px;
+            border: 1px solid var(--blue);
+            padding: 11px 18px;
+            border-radius: 10px;
+            font-weight: bold;
+            white-space: nowrap;
+            transition: 0.2s;
+        }
+
+        .back:hover {
+            background: var(--blue);
+            color: var(--white);
         }
 
         .container {
             width: 90%;
-            max-width: 1000px;
+            max-width: 1050px;
             margin: 40px auto;
         }
 
+        .page-heading {
+            margin-bottom: 28px;
+        }
+
         h1 {
-            color: #d4af37;
-            margin-bottom: 10px;
+            color: var(--navy);
+            font-size: 30px;
+            margin-bottom: 12px;
         }
 
         .subtitle {
-            color: #aeb8c5;
-            margin-bottom: 30px;
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .message {
+            text-align: center;
+            margin: 18px 0;
+            font-weight: bold;
+            line-height: 1.8;
+        }
+
+        .success {
+            color: var(--green);
+        }
+
+        .error {
+            color: var(--red);
         }
 
         .card {
-            background: #0b1d33;
-            border: 1px solid #243a55;
+            background: var(--white);
+            border: 1px solid var(--border);
             border-radius: 18px;
-            padding: 25px;
+            padding: 26px;
             margin-bottom: 20px;
+            box-shadow: 0 7px 22px rgba(18, 59, 93, 0.05);
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            border-color: var(--baby);
+            box-shadow: 0 10px 28px rgba(18, 59, 93, 0.08);
         }
 
         .card h2 {
-            color: #d4af37;
-            margin-bottom: 15px;
+            color: var(--blue);
+            font-size: 22px;
+            line-height: 1.6;
+            margin-bottom: 17px;
+            overflow-wrap: anywhere;
         }
 
         .info {
-            color: #c8d0da;
-            line-height: 1.8;
-            margin-bottom: 18px;
+            color: var(--text);
+            line-height: 2;
+            margin-bottom: 20px;
+            overflow-wrap: anywhere;
         }
 
         .info strong {
-            color: #d4af37;
+            color: var(--navy);
         }
 
         .buttons {
@@ -96,109 +155,179 @@
 
         button {
             border: none;
-            border-radius: 8px;
-            padding: 11px 18px;
+            border-radius: 10px;
+            padding: 12px 20px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 14px;
+            transition: 0.2s;
         }
 
-        .edit-btn {
-            background: #d4af37;
-            color: #071426;
+        button:hover {
+            transform: translateY(-1px);
+        }
+
+        button:disabled {
+            opacity: 0.65;
+            cursor: wait;
+            transform: none;
+        }
+
+        .edit-btn,
+        .save-btn {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        .edit-btn:hover,
+        .save-btn:hover {
+            background: var(--navy);
         }
 
         .delete-btn {
-            background: #8f2f2f;
-            color: white;
+            background: #FDECEC;
+            color: var(--red);
+            border: 1px solid #F6D0D0;
         }
 
-        .save-btn {
-            background: #d4af37;
-            color: #071426;
+        .delete-btn:hover {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .save-btn,
+        .cancel-btn {
             width: 100%;
             margin-top: 10px;
             padding: 14px;
-            font-size: 16px;
+            font-size: 15px;
         }
 
         .cancel-btn {
-            background: #243a55;
-            color: white;
-            width: 100%;
-            margin-top: 10px;
-            padding: 14px;
+            background: #EAF3F9;
+            color: var(--navy);
+        }
+
+        .cancel-btn:hover {
+            background: #DCECF5;
         }
 
         .form {
             display: none;
-            margin-top: 20px;
-            border-top: 1px solid #243a55;
-            padding-top: 20px;
+            margin-top: 24px;
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+        }
+
+        .form h3 {
+            margin-bottom: 20px;
+            color: var(--navy);
+            font-size: 18px;
         }
 
         label {
             display: block;
-            color: #d4af37;
-            margin-bottom: 7px;
+            color: var(--navy);
+            margin-bottom: 8px;
             font-weight: bold;
+            font-size: 14px;
         }
 
         input,
         textarea,
         select {
             width: 100%;
-            background: #071426;
-            color: white;
-            border: 1px solid #344a64;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 16px;
+            background: #F8FBFD;
+            color: var(--navy);
+            border: 1px solid #D5E5EF;
+            border-radius: 10px;
+            padding: 13px;
+            margin-bottom: 17px;
             outline: none;
+            font-size: 14px;
         }
 
         input:focus,
         textarea:focus,
         select:focus {
-            border-color: #d4af37;
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(112, 197, 232, 0.18);
+            background: var(--white);
         }
 
         textarea {
             min-height: 120px;
             resize: vertical;
+            line-height: 1.8;
         }
 
         .row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .message {
-            text-align: center;
-            margin: 20px 0;
-            font-weight: bold;
-        }
-
-        .success {
-            color: #4ade80;
-        }
-
-        .error {
-            color: #ff6b6b;
+            gap: 16px;
         }
 
         .empty {
             text-align: center;
-            color: #9da8b5;
-            padding: 30px;
-            background: #0b1d33;
-            border-radius: 15px;
+            color: var(--text);
+            line-height: 2;
+            padding: 40px 20px;
+            background: var(--white);
+            border: 1px dashed #BCD9E9;
+            border-radius: 18px;
+        }
+
+        .empty-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            background: #E7F5FC;
+            color: var(--blue);
+            border-radius: 18px;
+            font-size: 28px;
         }
 
         @media (max-width: 650px) {
+            header {
+                padding: 16px 5%;
+            }
+
+            .logo {
+                font-size: 16px;
+            }
+
+            .logo span {
+                font-size: 12px;
+            }
+
+            .back {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+
+            .container {
+                width: 92%;
+                margin: 28px auto;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
             .row {
                 grid-template-columns: 1fr;
                 gap: 0;
+            }
+
+            .buttons button {
+                flex: 1;
             }
         }
     </style>
@@ -208,8 +337,8 @@
 
 <header>
     <div class="logo">
-        FROM UNIVERSITY TO FACTORY
-        <span>من الجامعة إلى المصنع</span>
+        LINKORA
+        <span>من الجامعة إلى سوق العمل</span>
     </div>
 
     <a href="./Company-dashboard.html" class="back">
@@ -217,238 +346,274 @@
     </a>
 </header>
 
-<div class="container">
+<main class="container">
 
-    <h1>إدارة الفرص</h1>
-
-    <p class="subtitle">
-        يمكنك تعديل الفرص المنشورة أو حذفها.
-    </p>
-
-    <div id="message" class="message"></div>
-
-    <div id="opportunities">
-        <div class="empty">جاري تحميل الفرص...</div>
+    <div class="page-heading">
+        <h1>إدارة الفرص</h1>
+        <p class="subtitle">
+            تابعي الفرص المنشورة من شركتك، وعدّلي بياناتها أو احذفيها عند الحاجة.
+        </p>
     </div>
 
-</div>
+    <div id="message" class="message" role="status" aria-live="polite"></div>
+
+    <div id="opportunities">
+        <div class="empty">
+            <div class="empty-icon">↻</div>
+            جاري تحميل الفرص...
+        </div>
+    </div>
+
+</main>
 
 <script>
-
     const companyEmail = localStorage.getItem("companyEmail");
 
     const container = document.getElementById("opportunities");
     const message = document.getElementById("message");
 
-    if (!companyEmail) {
+    let messageTimer;
 
+    if (!companyEmail) {
         container.innerHTML = `
             <div class="empty">
+                <div class="empty-icon">!</div>
                 لا يوجد حساب شركة مسجل حاليًا.
+                <br>
+                سجّلي الدخول أولًا لمتابعة إدارة الفرص.
             </div>
         `;
-
     } else {
-
         loadOpportunities();
     }
 
-
     async function loadOpportunities() {
+        container.innerHTML = `
+            <div class="empty">
+                <div class="empty-icon">↻</div>
+                جاري تحميل الفرص...
+            </div>
+        `;
 
         try {
-
             const response = await fetch(
                 `/company-opportunities?email=${encodeURIComponent(companyEmail)}`
             );
 
             const data = await response.json();
 
-            const opportunities =
-                Array.isArray(data)
-                    ? data
-                    : (data.opportunities || []);
+            if (!response.ok) {
+                throw new Error(data.message || "تعذر تحميل الفرص.");
+            }
+
+            const opportunities = Array.isArray(data)
+                ? data
+                : (data.opportunities || []);
 
             if (opportunities.length === 0) {
-
                 container.innerHTML = `
                     <div class="empty">
-                        لا توجد فرص منشورة حتى الآن.
+                        <div class="empty-icon">＋</div>
+                        <strong>لسه مفيش فرص منشورة</strong>
+                        <br>
+                        تقدري تضيفي فرصة جديدة من لوحة تحكم الشركة.
                     </div>
                 `;
-
                 return;
             }
 
             container.innerHTML = "";
 
             opportunities.forEach(opportunity => {
-
-                const card = document.createElement("div");
-
+                const card = document.createElement("article");
                 card.className = "card";
 
-                card.innerHTML = `
+                const title = document.createElement("h2");
+                title.textContent = opportunity.title || "بدون عنوان";
+                card.appendChild(title);
 
-                    <h2>${escapeHtml(opportunity.title || "بدون عنوان")}</h2>
+                const info = document.createElement("div");
+                info.className = "info";
 
-                    <div class="info">
+                const details = [
+                    ["النوع", opportunity.type],
+                    ["المجال", opportunity.field],
+                    ["الموقع", opportunity.location],
+                    ["آخر موعد للتقديم", opportunity.deadline]
+                ];
 
-                        <div>
-                            <strong>النوع:</strong>
-                            ${escapeHtml(opportunity.type || "غير محدد")}
-                        </div>
+                details.forEach(([labelText, value]) => {
+                    const line = document.createElement("div");
+                    const strong = document.createElement("strong");
 
-                        <div>
-                            <strong>المجال:</strong>
-                            ${escapeHtml(opportunity.field || "غير محدد")}
-                        </div>
+                    strong.textContent = labelText + ": ";
+                    line.appendChild(strong);
+                    line.appendChild(document.createTextNode(value || "غير محدد"));
 
-                        <div>
-                            <strong>الموقع:</strong>
-                            ${escapeHtml(opportunity.location || "غير محدد")}
-                        </div>
+                    info.appendChild(line);
+                });
 
-                        <div>
-                            <strong>آخر موعد:</strong>
-                            ${escapeHtml(opportunity.deadline || "غير محدد")}
-                        </div>
+                card.appendChild(info);
 
-                    </div>
+                const buttons = document.createElement("div");
+                buttons.className = "buttons";
 
-                    <div class="buttons">
+                const editButton = document.createElement("button");
+                editButton.className = "edit-btn";
+                editButton.textContent = "تعديل الفرصة";
+                editButton.addEventListener("click", () => {
+                    showEditForm(opportunity.id);
+                });
 
-                        <button
-                            class="edit-btn"
-                            onclick="showEditForm(${opportunity.id})"
-                        >
-                            تعديل
-                        </button>
+                const deleteButton = document.createElement("button");
+                deleteButton.className = "delete-btn";
+                deleteButton.textContent = "حذف الفرصة";
+                deleteButton.addEventListener("click", () => {
+                    deleteOpportunity(opportunity.id, deleteButton);
+                });
 
-                        <button
-                            class="delete-btn"
-                            onclick="deleteOpportunity(${opportunity.id})"
-                        >
-                            حذف
-                        </button>
+                buttons.append(editButton, deleteButton);
+                card.appendChild(buttons);
 
-                    </div>
-
-                    <div
-                        class="form"
-                        id="form-${opportunity.id}"
-                    >
-
-                        <label>عنوان الفرصة</label>
-
-                        <input
-                            id="title-${opportunity.id}"
-                            value="${escapeAttribute(opportunity.title || "")}"
-                        >
-
-                        <div class="row">
-
-                            <div>
-
-                                <label>نوع الفرصة</label>
-
-                                <select id="type-${opportunity.id}">
-
-                                    <option value="تدريب"
-                                        ${opportunity.type === "تدريب" ? "selected" : ""}>
-                                        تدريب
-                                    </option>
-
-                                    <option value="وظيفة"
-                                        ${opportunity.type === "وظيفة" ? "selected" : ""}>
-                                        وظيفة
-                                    </option>
-
-                                    <option value="تدريب صيفي"
-                                        ${opportunity.type === "تدريب صيفي" ? "selected" : ""}>
-                                        تدريب صيفي
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-                            <div>
-
-                                <label>المجال</label>
-
-                                <input
-                                    id="field-${opportunity.id}"
-                                    value="${escapeAttribute(opportunity.field || "")}"
-                                >
-
-                            </div>
-
-                        </div>
-
-                        <label>الموقع</label>
-
-                        <input
-                            id="location-${opportunity.id}"
-                            value="${escapeAttribute(opportunity.location || "")}"
-                        >
-
-                        <label>آخر موعد للتقديم</label>
-
-                        <input
-                            type="date"
-                            id="deadline-${opportunity.id}"
-                            value="${escapeAttribute(opportunity.deadline || "")}"
-                        >
-
-                        <label>الوصف</label>
-
-                        <textarea id="description-${opportunity.id}">${escapeHtml(opportunity.description || "")}</textarea>
-
-                        <label>المهارات المطلوبة</label>
-
-                        <input
-                            id="skills-${opportunity.id}"
-                            value="${escapeAttribute(opportunity.skills || "")}"
-                        >
-
-                        <button
-                            class="save-btn"
-                            onclick="saveOpportunity(${opportunity.id})"
-                        >
-                            حفظ التعديلات
-                        </button>
-
-                        <button
-                            class="cancel-btn"
-                            onclick="hideEditForm(${opportunity.id})"
-                        >
-                            إلغاء
-                        </button>
-
-                    </div>
-                `;
+                const editForm = createEditForm(opportunity);
+                card.appendChild(editForm);
 
                 container.appendChild(card);
-
             });
 
         } catch (error) {
-
             console.error(error);
 
             container.innerHTML = `
                 <div class="empty">
-                    تعذر تحميل الفرص.
+                    <div class="empty-icon">!</div>
+                    تعذر تحميل الفرص حاليًا.
+                    <br>
+                    ${escapeHtml(error.message || "حاولي مرة أخرى لاحقًا.")}
                 </div>
             `;
         }
     }
 
+    function createEditForm(opportunity) {
+        const id = opportunity.id;
+        const form = document.createElement("div");
+
+        form.className = "form";
+        form.id = `form-${id}`;
+
+        const heading = document.createElement("h3");
+        heading.textContent = "تعديل بيانات الفرصة";
+        form.appendChild(heading);
+
+        addInput(form, "عنوان الفرصة", `title-${id}`, opportunity.title);
+        addSelect(form, "نوع الفرصة", `type-${id}`, [
+            { value: "تدريب", label: "تدريب" },
+            { value: "وظيفة", label: "وظيفة" },
+            { value: "تدريب صيفي", label: "تدريب صيفي" }
+        ], opportunity.type);
+
+        addInput(form, "المجال", `field-${id}`, opportunity.field);
+
+        addInput(form, "الموقع", `location-${id}`, opportunity.location);
+
+        addInput(
+            form,
+            "آخر موعد للتقديم",
+            `deadline-${id}`,
+            opportunity.deadline,
+            "date"
+        );
+
+        addTextarea(
+            form,
+            "وصف الفرصة",
+            `description-${id}`,
+            opportunity.description
+        );
+
+        addInput(
+            form,
+            "المهارات المطلوبة",
+            `skills-${id}`,
+            opportunity.skills
+        );
+
+        const saveButton = document.createElement("button");
+        saveButton.className = "save-btn";
+        saveButton.textContent = "حفظ التعديلات";
+        saveButton.addEventListener("click", () => {
+            saveOpportunity(id, saveButton);
+        });
+
+        const cancelButton = document.createElement("button");
+        cancelButton.className = "cancel-btn";
+        cancelButton.textContent = "إلغاء";
+        cancelButton.addEventListener("click", () => {
+            hideEditForm(id);
+        });
+
+        form.append(saveButton, cancelButton);
+
+        return form;
+    }
+
+    function addInput(parent, labelText, id, value, type = "text") {
+        const label = document.createElement("label");
+        label.htmlFor = id;
+        label.textContent = labelText;
+
+        const input = document.createElement("input");
+        input.id = id;
+        input.type = type;
+        input.value = value || "";
+
+        parent.append(label, input);
+    }
+
+    function addTextarea(parent, labelText, id, value) {
+        const label = document.createElement("label");
+        label.htmlFor = id;
+        label.textContent = labelText;
+
+        const textarea = document.createElement("textarea");
+        textarea.id = id;
+        textarea.value = value || "";
+
+        parent.append(label, textarea);
+    }
+
+    function addSelect(parent, labelText, id, options, selectedValue) {
+        const label = document.createElement("label");
+        label.htmlFor = id;
+        label.textContent = labelText;
+
+        const select = document.createElement("select");
+        select.id = id;
+
+        options.forEach(optionData => {
+            const option = document.createElement("option");
+            option.value = optionData.value;
+            option.textContent = optionData.label;
+            select.appendChild(option);
+        });
+
+        if (selectedValue && !options.some(item => item.value === selectedValue)) {
+            const option = document.createElement("option");
+            option.value = selectedValue;
+            option.textContent = selectedValue;
+            select.appendChild(option);
+        }
+
+        select.value = selectedValue || options[0].value;
+
+        parent.append(label, select);
+    }
 
     function showEditForm(id) {
-
         const form = document.getElementById(`form-${id}`);
+
+        if (!form) return;
 
         form.style.display = "block";
 
@@ -458,166 +623,121 @@
         });
     }
 
-
     function hideEditForm(id) {
-
         const form = document.getElementById(`form-${id}`);
 
-        form.style.display = "none";
+        if (form) {
+            form.style.display = "none";
+        }
     }
 
-
-    async function saveOpportunity(id) {
-
+    async function saveOpportunity(id, button) {
         const updatedOpportunity = {
-
-            companyEmail: companyEmail,
-
+            companyEmail,
             title: document.getElementById(`title-${id}`).value.trim(),
-
             type: document.getElementById(`type-${id}`).value,
-
             field: document.getElementById(`field-${id}`).value.trim(),
-
             location: document.getElementById(`location-${id}`).value.trim(),
-
             deadline: document.getElementById(`deadline-${id}`).value,
-
             description: document.getElementById(`description-${id}`).value.trim(),
-
             skills: document.getElementById(`skills-${id}`).value.trim()
-
         };
 
-
         if (!updatedOpportunity.title) {
-
-            showMessage("اكتبي عنوان الفرصة.", "error");
-
+            showMessage("اكتبي عنوان الفرصة أولًا.", "error");
             return;
         }
 
+        button.disabled = true;
+        button.textContent = "جاري الحفظ...";
 
         try {
-
             const response = await fetch(`/opportunity/${id}`, {
-
                 method: "PUT",
-
                 headers: {
                     "Content-Type": "application/json"
                 },
-
                 body: JSON.stringify(updatedOpportunity)
-
             });
 
             const data = await response.json();
 
             if (!response.ok) {
-
                 showMessage(
-                    data.message || "حدث خطأ أثناء التعديل.",
+                    data.message || "حدث خطأ أثناء تعديل الفرصة.",
                     "error"
                 );
-
                 return;
             }
 
-            showMessage(
-                "تم تعديل الفرصة بنجاح ✅",
-                "success"
-            );
-
-            loadOpportunities();
+            showMessage("تم تعديل الفرصة بنجاح ✅", "success");
+            await loadOpportunities();
 
         } catch (error) {
-
             console.error(error);
-
-            showMessage(
-                "تعذر الاتصال بالسيرفر.",
-                "error"
-            );
+            showMessage("تعذر الاتصال بالسيرفر.", "error");
+        } finally {
+            button.disabled = false;
+            button.textContent = "حفظ التعديلات";
         }
     }
 
-
-    async function deleteOpportunity(id) {
-
+    async function deleteOpportunity(id, button) {
         const confirmed = confirm(
             "هل أنتِ متأكدة من حذف هذه الفرصة؟"
         );
 
-        if (!confirmed) {
-            return;
-        }
+        if (!confirmed) return;
 
+        button.disabled = true;
+        button.textContent = "جاري الحذف...";
 
         try {
-
-            const response = await fetch(
-                `/opportunity/${id}`,
-                {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        companyEmail: companyEmail
-                    })
-                }
-            );
+            const response = await fetch(`/opportunity/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    companyEmail
+                })
+            });
 
             const data = await response.json();
 
             if (!response.ok) {
-
                 showMessage(
-                    data.message || "حدث خطأ أثناء الحذف.",
+                    data.message || "حدث خطأ أثناء حذف الفرصة.",
                     "error"
                 );
-
                 return;
             }
 
-            showMessage(
-                "تم حذف الفرصة بنجاح ✅",
-                "success"
-            );
-
-            loadOpportunities();
+            showMessage("تم حذف الفرصة بنجاح ✅", "success");
+            await loadOpportunities();
 
         } catch (error) {
-
             console.error(error);
-
-            showMessage(
-                "تعذر الاتصال بالسيرفر.",
-                "error"
-            );
+            showMessage("تعذر الاتصال بالسيرفر.", "error");
+        } finally {
+            button.disabled = false;
+            button.textContent = "حذف الفرصة";
         }
     }
 
-
     function showMessage(text, type) {
+        clearTimeout(messageTimer);
 
         message.textContent = text;
+        message.className = `message ${type}`;
 
-        message.className =
-            `message ${type}`;
-
-        setTimeout(() => {
-
+        messageTimer = setTimeout(() => {
             message.textContent = "";
             message.className = "message";
-
-        }, 3000);
+        }, 4000);
     }
 
-
     function escapeHtml(value) {
-
         return String(value)
             .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
@@ -625,14 +745,8 @@
             .replace(/"/g, "&quot;")
             .replace(/'/g, "&#039;");
     }
-
-
-    function escapeAttribute(value) {
-
-        return escapeHtml(value);
-    }
-
 </script>
 
 </body>
 </html>
+```

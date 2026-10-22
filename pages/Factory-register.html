@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل مصنع | LINKORA</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #F1F8FC, #DCEFFA);
+            color: #123B5D;
+        }
+
+        nav {
+            background: #123B5D;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #70C5E8;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 14px;
+        }
+
+        .container {
+            width: min(1000px, 92%);
+            margin: 45px auto;
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            background: white;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px #123b5d18;
+        }
+
+        .welcome {
+            background: linear-gradient(145deg, #123B5D, #1769AA);
+            color: white;
+            padding: 35px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .factory-image {
+            width: 100%;
+            height: 230px;
+            margin-bottom: 25px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid #70C5E8;
+            background: #DCEFFA;
+        }
+
+        .factory-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .welcome h1 {
+            font-size: 29px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .welcome p {
+            color: #DCEFFA;
+            line-height: 2;
+            font-size: 15px;
+        }
+
+        .welcome .tag {
+            margin-top: 25px;
+            color: #A7D8F0;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        .form-box {
+            padding: 40px 35px;
+        }
+
+        .form-box h2 {
+            font-size: 27px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #52697A;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .field {
+            margin-bottom: 17px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #D5E5EF;
+            border-radius: 10px;
+            outline: none;
+            font-size: 14px;
+            background: #FAFCFE;
+            color: #123B5D;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #1769AA;
+            box-shadow: 0 0 0 3px #70C5E822;
+        }
+
+        textarea {
+            min-height: 95px;
+            resize: vertical;
+            line-height: 1.8;
+        }
+
+        button {
+            width: 100%;
+            border: none;
+            background: #1769AA;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #123B5D;
+        }
+
+        button:disabled {
+            opacity: 0.65;
+            cursor: wait;
+        }
+
+        .message {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 9px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 22px;
+            color: #52697A;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #1769AA;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        @media (max-width: 750px) {
+            .container {
+                grid-template-columns: 1fr;
+                margin: 25px auto;
+            }
+
+            .welcome {
+                padding: 30px 25px;
+            }
+
+            .factory-image {
+                height: 200px;
+            }
+
+            .welcome h1 {
+                font-size: 24px;
+            }
+
+            .form-box {
+                padding: 30px 22px;
+            }
+
+            nav a {
+                margin-right: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">LINK<span>ORA</span></div>
+    <div>
+        <a href="../index.html">الرئيسية</a>
+        <a href="./Login.html">تسجيل الدخول</a>
+    </div>
+</nav>
+
+<main class="container">
+
+    <section class="welcome">
+
+        <div class="factory-image">
+            <img
+                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=900&q=80"
+                alt="مهندسة تعمل داخل بيئة صناعية"
+                onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1567789884554-0b844b597180?auto=format&fit=crop&w=900&q=80';"
+            >
+        </div>
+
+        <h1>مصنعك شريك في صناعة المستقبل</h1>
+
+        <p>
+            انضم إلى LINKORA، وقرّب مصنعك من طلاب الجامعات والخريجين.
+            أنشئ حسابك وابدأ في نشر فرص التدريب والعمل والتواصل مع المواهب الجديدة.
+        </p>
+
+        <div class="tag">LINKORA | UNIVERSITY TO INDUSTRY</div>
+
+    </section>
+
+    <section class="form-box">
+
+        <h2>تسجيل مصنع جديد</h2>
+        <p class="subtitle">املأ البيانات التالية لإنشاء حساب مصنعك.</p>
+
+        <form id="factoryForm">
+
+            <div class="field">
+                <label for="name">اسم المصنع</label>
+                <input id="name" name="name" type="text"
+                       placeholder="اكتب اسم المصنع" required>
+            </div>
+
+            <div class="field">
+                <label for="email">البريد الإلكتروني</label>
+                <input id="email" name="email" type="email"
+                       placeholder="example@email.com" required>
+            </div>
+
+            <div class="field">
+                <label for="password">كلمة المرور</label>
+                <input id="password" name="password" type="password"
+                       placeholder="6 أحرف على الأقل" minlength="6" required>
+            </div>
+
+            <div class="field">
+                <label for="field">مجال المصنع</label>
+                <select id="field" name="field" required>
+                    <option value="">اختار المجال</option>
+                    <option value="كهرباء وإلكترونيات">كهرباء وإلكترونيات</option>
+                    <option value="ميكانيكا">ميكانيكا</option>
+                    <option value="تبريد وتكييف">تبريد وتكييف</option>
+                    <option value="برمجيات وتكنولوجيا">برمجيات وتكنولوجيا</option>
+                    <option value="إنتاج وتصنيع">إنتاج وتصنيع</option>
+                    <option value="طاقة متجددة">طاقة متجددة</option>
+                    <option value="أخرى">أخرى</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="location">موقع المصنع</label>
+                <input id="location" name="location" type="text"
+                       placeholder="المحافظة أو المدينة" required>
+            </div>
+
+            <div class="field">
+                <label for="description">نبذة عن المصنع</label>
+                <textarea id="description" name="description"
+                          placeholder="اكتب نبذة مختصرة عن المصنع ونشاطه"
+                          required></textarea>
+            </div>
+
+            <button id="submitButton" type="submit">
+                إنشاء حساب المصنع
+            </button>
+
+            <div id="message" class="message" role="status"></div>
+
+        </form>
+
+        <p class="login-link">
+            عندك حساب بالفعل؟
+            <a href="./Factory-login.html">سجّل الدخول</a>
+        </p>
+
+    </section>
+
+</main>
+
+<script>
+    const form = document.getElementById("factoryForm");
+    const message = document.getElementById("message");
+    const submitButton = document.getElementById("submitButton");
+
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        message.style.display = "none";
+        submitButton.disabled = true;
+        submitButton.textContent = "جارٍ إنشاء الحساب...";
+
+        const data = {
+            name: document.getElementById("name").value.trim(),
+            email: document.getElementById("email").value.trim(),
+            password: document.getElementById("password").value,
+            field: document.getElementById("field").value,
+            location: document.getElementById("location").value.trim(),
+            description: document.getElementById("description").value.trim()
+        };
+
+        try {
+            const response = await fetch("/factory-register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.message || "تعذّر إنشاء الحساب.");
+            }
+
+            localStorage.setItem("factoryEmail", data.email);
+
+            message.textContent =
+                result.message || "تم إنشاء الحساب بنجاح.";
+
+            message.style.display = "block";
+            message.style.background = "#E5F7EC";
+            message.style.color = "#176B3A";
+
+            submitButton.textContent = "تم التسجيل بنجاح";
+
+            setTimeout(function () {
+                window.location.href = "./Factory-dashboard.html";
+            }, 1000);
+
+        } catch (error) {
+            message.textContent =
+                error.message === "Failed to fetch"
+                    ? "مش قادرين نتصل بالسيرفر. تأكد إنه شغال."
+                    : error.message;
+
+            message.style.display = "block";
+            message.style.background = "#FDECEC";
+            message.style.color = "#A52626";
+
+            submitButton.disabled = false;
+            submitButton.textContent = "إنشاء حساب المصنع";
+        }
+    });
+</script>
+
+</body>
+</html>

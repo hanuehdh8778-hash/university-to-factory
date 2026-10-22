@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>طوّر مهاراتك | LINKORA</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+--blue:#1769AA;--baby:#A7D8F0;--sky:#70C5E8;
+--navy:#123B5D;--bg:#F1F8FC;--text:#52697A;--white:#fff
+}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--navy);line-height:1.8}
+nav{background:#fff;padding:15px 6%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;box-shadow:0 3px 18px #123b5d10}
+.logo{font-size:27px;font-weight:800;color:var(--blue);text-decoration:none}
+.nav-links{display:flex;flex-wrap:wrap;gap:17px}
+.nav-links a{text-decoration:none;color:var(--navy);font-size:13px;font-weight:700}
+.nav-links a:hover{color:var(--blue)}
+.hero{text-align:center;padding:55px 7%;background:linear-gradient(135deg,#DDF2FC,#F1F8FC,#C6E8F8)}
+.tag{display:inline-block;background:#fff;color:var(--blue);padding:5px 17px;border-radius:30px;font-size:13px;font-weight:800;margin-bottom:15px}
+.hero h1{font-size:clamp(30px,5vw,45px)}
+.hero h1 span{color:var(--blue)}
+.hero p{max-width:720px;margin:12px auto;color:var(--text)}
+.search-area{max-width:650px;margin:25px auto 0}
+.search-area input{width:100%;padding:14px 18px;border:1px solid #C9E3F2;border-radius:12px;font-family:inherit;font-size:15px;outline:none}
+.search-area input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #1769aa15}
+.categories{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:18px}
+.categories a{background:#fff;border:1px solid #D8EAF5;border-radius:30px;padding:7px 13px;color:var(--blue);text-decoration:none;font-size:12px;font-weight:700}
+.categories a:hover{background:var(--blue);color:#fff}
+.section{padding:48px 7%;scroll-margin-top:20px}
+.section-title{text-align:center;margin-bottom:28px}
+.section-title h2{font-size:27px;margin-bottom:6px}
+.section-title p{color:var(--text)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:20px;max-width:1150px;margin:auto}
+.course{background:#fff;border:1px solid #DFEDF6;border-radius:19px;padding:16px;box-shadow:0 6px 22px #123b5d08;display:flex;flex-direction:column;align-items:flex-start;transition:.25s;overflow:hidden}
+.course:hover{transform:translateY(-4px);box-shadow:0 10px 25px #1769aa12}
+.course-image{width:calc(100% + 32px);height:175px;object-fit:cover;border-radius:12px;margin:0 0 16px;display:block;background:#E3F4FC;align-self:stretch}
+.course-icon{width:52px;height:52px;display:flex;align-items:center;justify-content:center;background:#E3F4FC;border-radius:15px;font-size:26px;margin-bottom:12px}
+.level{font-size:12px;font-weight:700;color:var(--blue);background:#EAF6FC;padding:3px 10px;border-radius:20px;margin-bottom:10px}
+.course h3{font-size:18px;margin-bottom:8px}
+.course p{font-size:14px;color:var(--text);margin-bottom:17px;flex:1}
+.course a{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;padding:9px 15px;border-radius:9px;font-size:13px;font-weight:800}
+.course a:hover{background:var(--navy)}
+.note{max-width:1100px;margin:25px auto 0;background:#E4F3FB;padding:17px 20px;border-radius:13px;color:var(--text);font-size:13px}
+.empty{display:none;text-align:center;padding:30px;color:var(--text)}
+footer{background:var(--navy);color:#fff;text-align:center;padding:25px;font-size:13px}
+footer p{color:#D5E8F4}
+@media(max-width:700px){nav{justify-content:center}.nav-links{justify-content:center;gap:12px}.section{padding:38px 5%}.hero{padding:42px 5%}.course-image{height:190px}}
+</style>
+</head>
+
+<body>
+<nav>
+<a href="../index.html" class="logo">LINKORA</a>
+<div class="nav-links">
+<a href="../index.html">الرئيسية</a>
+<a href="Opportunities.html">الفرص المتاحة</a>
+<a href="Smart-Matching.html">المطابقة الذكية</a>
+<a href="About.html">عن LINKORA</a>
+<a href="Login.html">تسجيل الدخول</a>
+</div>
+</nav>
+
+<header class="hero">
+<span class="tag">LEARN · PRACTICE · GROW</span>
+<h1>طوّر مهاراتك مع <span>LINKORA</span></h1>
+<p>اختار تخصصك، وابدأ في تطوير مهاراتك العملية من خلال مصادر تعليمية تساعدك في الدراسة والاستعداد لسوق العمل.</p>
+<div class="search-area">
+<input id="searchInput" type="search" placeholder="ابحث عن كورس أو مهارة أو تخصص..." aria-label="البحث عن كورس">
+</div>
+<div class="categories">
+<a href="#programming">البرمجة</a>
+<a href="#mechanics">الميكانيكا والإنتاج</a>
+<a href="#refrigeration">التبريد والتكييف</a>
+<a href="#automotive">المحركات والمركبات</a>
+<a href="#power">القوى والآلات الكهربائية</a>
+<a href="#electronics">الإلكترونيات</a>
+<a href="#construction">الإنشاءات المدنية والمعمارية</a>
+<a href="#basic">العلوم الأساسية</a>
+<a href="#education">العلوم التربوية</a>
+<a href="#ai">التكنولوجيا والذكاء الاصطناعي</a>
+</div>
+</header>
+<!-- تحديات من قلب المصنع -->
+<section style="padding:35px 7%;background:#F1F8FC;">
+    <div style="
+        max-width:1150px;
+        margin:auto;
+        padding:30px;
+        border-radius:22px;
+        background:linear-gradient(135deg,#123638,#17645F);
+        color:white;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        flex-wrap:wrap;
+        gap:22px;
+        box-shadow:0 10px 28px #12363820;
+    ">
+        <div style="flex:1;min-width:230px;">
+            <span style="
+                display:inline-block;
+                background:#99F6E4;
+                color:#123638;
+                padding:4px 13px;
+                border-radius:20px;
+                font-size:12px;
+                font-weight:800;
+                margin-bottom:12px;
+            ">LEARN BY DOING</span>
+
+            <h2 style="font-size:25px;margin-bottom:10px;">
+                🏭 تحديات من قلب المصنع
+            </h2>
+
+            <p style="color:#D5F5EF;font-size:14px;line-height:2;">
+                اختبر معلوماتك الهندسية، وحل مواقف واقعية من عالم المصانع
+                والإلكترونيات والميكانيكا والتبريد والتكييف.
+            </p>
+        </div>
+
+        <a href="Challenges.html" style="
+            display:inline-block;
+            background:#14B8A6;
+            color:#083B38;
+            text-decoration:none;
+            padding:13px 22px;
+            border-radius:12px;
+            font-weight:800;
+            font-size:14px;
+            white-space:nowrap;
+            transition:.2s;
+        ">
+            ابدأ التحدي الآن ←
+        </a>
+    </div>
+</section>
+<!-- البرمجة -->
+<section class="section" id="programming">
+<div class="section-title"><h2>💻 البرمجة وتطوير الويب</h2><p>مهارات رقمية مفيدة لمختلف التخصصات الهندسية.</p></div>
+<div class="grid">
+<article class="course" data-search="python بايثون برمجة"><img class="course-image" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80" alt="تعلم البرمجة"><div class="course-icon">🐍</div><span class="level">مبتدئ</span><h3>تعلم Python</h3><p>المتغيرات والشروط والتكرار والدوال وحل المشكلات.</p><a href="https://www.khanacademy.org/computing" target="_blank" rel="noopener noreferrer">ابدأ التعلم ↗</a></article>
+<article class="course" data-search="html css تصميم المواقع"><img class="course-image" src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=900&q=80" alt="تصميم مواقع"><div class="course-icon">🌐</div><span class="level">مبتدئ</span><h3>HTML وCSS</h3><p>تعلم بناء صفحات الويب وتنسيق الألوان والخطوط والتصميم.</p><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development" target="_blank" rel="noopener noreferrer">ابدأ مجانًا ↗</a></article>
+<article class="course" data-search="javascript جافاسكريبت"><img class="course-image" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=80" alt="كتابة الأكواد"><div class="course-icon">⚡</div><span class="level">مبتدئ</span><h3>أساسيات JavaScript</h3><p>تعلم إضافة التفاعل إلى صفحات الويب.</p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank" rel="noopener noreferrer">افتح الدليل ↗</a></article>
+</div>
+</section>
+
+<!-- الميكانيكا -->
+<section class="section" id="mechanics" style="background:#E4F3FB">
+<div class="section-title"><h2>⚙️ الميكانيكا والإنتاج</h2><p>مبادئ الماكينات والتصنيع والتصميم الميكانيكي.</p></div>
+<div class="grid">
+<article class="course" data-search="ميكانيكا هندسة ميكانيكية mechanics"><img class="course-image" src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=900&q=80" alt="معدات هندسية"><div class="course-icon">⚙️</div><span class="level">مبادئ</span><h3>مقدمة في الميكانيكا</h3><p>تعرف على الأنظمة والآلات والمفاهيم الأساسية للهندسة الميكانيكية.</p><a href="https://www.nptel.ac.in/courses" target="_blank" rel="noopener noreferrer">ابحث عن كورسات ↗</a></article>
+<article class="course" data-search="الإنتاج التصنيع manufacturing production"><img class="course-image" src="https://images.unsplash.com/photo-1567789884554-0b844b597180?auto=format&fit=crop&w=900&q=80" alt="التصنيع"><div class="course-icon">🏭</div><span class="level">تطبيقي</span><h3>أساسيات الإنتاج والتصنيع</h3><p>تعرف على عمليات التصنيع وتنظيم خطوط الإنتاج داخل المصانع.</p><a href="https://www.nptel.ac.in/courses" target="_blank" rel="noopener noreferrer">استكشف الدروس ↗</a></article>
+<article class="course" data-search="رسم هندسي CAD تصميم"><img class="course-image" src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=900&q=80" alt="تصميم هندسي"><div class="course-icon">📐</div><span class="level">مهارة هندسية</span><h3>الرسم والتصميم الهندسي</h3><p>تعرف على الرسومات والأبعاد وبرامج التصميم بمساعدة الحاسوب.</p><a href="https://www.autodesk.com/learn" target="_blank" rel="noopener noreferrer">مصادر Autodesk ↗</a></article>
+</div>
+</section>
+
+<!-- التبريد والتكييف -->
+<section class="section" id="refrigeration">
+<div class="section-title"><h2>❄️ التبريد والتكييف</h2><p>أساسيات التبريد وانتقال الحرارة وأنظمة التكييف.</p></div>
+<div class="grid">
+<article class="course" data-search="تبريد تكييف HVAC refrigeration air conditioning"><img class="course-image" src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=900&q=80" alt="معدات تكييف وصيانة"><div class="course-icon">❄️</div><span class="level">مبادئ أساسية</span><h3>أساسيات التبريد والتكييف</h3><p>تعرف على دورة التبريد ومكوناتها ومبادئ انتقال الحرارة.</p><a href="https://www.energy.gov/energysaver/air-conditioning" target="_blank" rel="noopener noreferrer">تعلم من المصدر ↗</a></article>
+<article class="course" data-search="صيانة تكييف HVAC maintenance صيانة"><img class="course-image" src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=900&q=80" alt="صيانة معدات"><div class="course-icon">🧰</div><span class="level">مهارات مهنية</span><h3>مبادئ الصيانة</h3><p>تعرف على الفحص والصيانة الدورية وممارسات السلامة المهنية.</p><a href="https://www.energy.gov/energysaver" target="_blank" rel="noopener noreferrer">دليل تعليمي ↗</a></article>
+</div>
+</section>
+
+<!-- المحركات والمركبات -->
+<section class="section" id="automotive" style="background:#E4F3FB">
+<div class="section-title"><h2>🚗 المحركات والمركبات</h2><p>مقدمة عن المحركات وأنظمة المركبات.</p></div>
+<div class="grid">
+<article class="course" data-search="محركات سيارات automotive engine"><img class="course-image" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=900&q=80" alt="محرك سيارة"><div class="course-icon">🚘</div><span class="level">مبادئ</span><h3>مقدمة في محركات المركبات</h3><p>تعرف على الأجزاء الرئيسية للمحرك ومبادئ عمله.</p><a href="https://www.howacarworks.com/" target="_blank" rel="noopener noreferrer">افتح الشروحات ↗</a></article>
+<article class="course" data-search="أنظمة المركبات كهرباء سيارات vehicle systems"><img class="course-image" src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80" alt="مركبة"><div class="course-icon">🔩</div><span class="level">مقدمة</span><h3>أنظمة المركبات الأساسية</h3><p>استكشف المكونات الميكانيكية والكهربائية في المركبات.</p><a href="https://www.howacarworks.com/" target="_blank" rel="noopener noreferrer">ابدأ الاستكشاف ↗</a></article>
+</div>
+</section>
+
+<!-- القوى والآلات الكهربائية -->
+<section class="section" id="power">
+<div class="section-title"><h2>⚡ القوى والآلات الكهربائية</h2><p>الطاقة الكهربائية والآلات ودوائر التحكم.</p></div>
+<div class="grid">
+<article class="course" data-search="قوى كهربائية power systems كهرباء"><img class="course-image" src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=900&q=80" alt="نقل الكهرباء"><div class="course-icon">⚡</div><span class="level">أساسيات</span><h3>مقدمة في نظم القوى</h3><p>تعرف على توليد الكهرباء ونقلها وتوزيعها.</p><a href="https://www.khanacademy.org/science/electrical-engineering" target="_blank" rel="noopener noreferrer">استكشف الدروس ↗</a></article>
+<article class="course" data-search="آلات كهربائية motors generators محركات مولدات"><img class="course-image" src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=900&q=80" alt="معدات كهربائية"><div class="course-icon">🔌</div><span class="level">مبادئ هندسية</span><h3>مبادئ الآلات الكهربائية</h3><p>تعرف على المحركات والمولدات والمحولات الكهربائية.</p><a href="https://www.nptel.ac.in/courses" target="_blank" rel="noopener noreferrer">ابحث عن كورسات ↗</a></article>
+<article class="course" data-search="دوائر تحكم كهربائي control circuits"><img class="course-image" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="لوحة إلكترونية"><div class="course-icon">🎛️</div><span class="level">تطبيقات</span><h3>مقدمة في دوائر التحكم</h3><p>افهم مبادئ التحكم والرموز المستخدمة في الدوائر الكهربائية.</p><a href="https://www.allaboutcircuits.com/textbook/" target="_blank" rel="noopener noreferrer">افتح الكتاب ↗</a></article>
+</div>
+</section>
+
+<!-- الإلكترونيات -->
+<section class="section" id="electronics" style="background:#E4F3FB">
+<div class="section-title"><h2>🔌 الإلكترونيات وArduino</h2><p>تعلم الدوائر والمكونات الإلكترونية والمتحكمات.</p></div>
+<div class="grid">
+<article class="course" data-search="arduino اردوينو متحكمات مشروعات"><img class="course-image" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="لوحة إلكترونية"><div class="course-icon">🔧</div><span class="level">تعلم بالتطبيق</span><h3>Arduino Project Hub</h3><p>اكتشف مشروعات وأفكارًا تطبيقية باستخدام Arduino.</p><a href="https://projecthub.arduino.cc/" target="_blank" rel="noopener noreferrer">استكشف المشروعات ↗</a></article>
+<article class="course" data-search="arduino tutorials اردوينو دروس"><img class="course-image" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=900&q=80" alt="مشروع إلكتروني"><div class="course-icon">⚙️</div><span class="level">مصدر رسمي</span><h3>دروس Arduino الرسمية</h3><p>تعلم البرمجة والتعامل مع اللوحات والمكونات الإلكترونية.</p><a href="https://docs.arduino.cc/tutorials/" target="_blank" rel="noopener noreferrer">ابدأ الدروس ↗</a></article>
+<article class="course" data-search="دوائر إلكترونية electronics circuits"><img class="course-image" src="https://images.unsplash.com/photo-1553406830-ef2513450d76?auto=format&fit=crop&w=900&q=80" alt="مكونات إلكترونية"><div class="course-icon">🔋</div><span class="level">مفاهيم أساسية</span><h3>مقدمة في الدوائر الإلكترونية</h3><p>افهم الجهد والتيار والمقاومة ومبادئ الدوائر.</p><a href="https://www.allaboutcircuits.com/textbook/" target="_blank" rel="noopener noreferrer">افتح الكتاب ↗</a></article>
+<article class="course" data-search="دايود ترانزستور semiconductor diode transistor"><img class="course-image" src="https://images.unsplash.com/photo-1592664474505-51c549ad15c5?auto=format&fit=crop&w=900&q=80" alt="مكونات إلكترونية دقيقة"><div class="course-icon">🔬</div><span class="level">تمهيدي</span><h3>أساسيات أشباه الموصلات</h3><p>تعرف على الدايود والترانزستور والمكونات الإلكترونية.</p><a href="https://www.allaboutcircuits.com/textbook/semiconductors/" target="_blank" rel="noopener noreferrer">ابدأ التعلم ↗</a></article>
+</div>
+</section>
+
+<!-- الإنشاءات المدنية والمعمارية -->
+<section class="section" id="construction">
+<div class="section-title"><h2>🏗️ الإنشاءات المدنية والمعمارية</h2><p>الرسم الهندسي ومبادئ البناء والمساحة.</p></div>
+<div class="grid">
+<article class="course" data-search="مدني إنشاءات civil engineering construction"><img class="course-image" src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=900&q=80" alt="مشروع إنشائي"><div class="course-icon">🏗️</div><span class="level">مبادئ</span><h3>مقدمة في الهندسة المدنية</h3><p>تعرف على المنشآت ومواد البناء ومراحل تنفيذ المشروعات.</p><a href="https://www.coursera.org/browse/physical-science-and-engineering/civil-engineering" target="_blank" rel="noopener noreferrer">استكشف الكورسات ↗</a></article>
+<article class="course" data-search="رسم معماري architecture drawing تصميم"><img class="course-image" src="https://images.unsplash.com/photo-1503387762-592?auto=format&fit=crop&w=900&q=80" alt="رسم معماري"><div class="course-icon">📐</div><span class="level">مهارة هندسية</span><h3>أساسيات الرسم المعماري</h3><p>تعرف على المخططات والرسومات ومبادئ التصميم.</p><a href="https://www.autodesk.com/learn" target="_blank" rel="noopener noreferrer">مصادر تعليمية ↗</a></article>
+<article class="course" data-search="مساحة surveying قياس أراضي"><img class="course-image" src="https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=900&q=80" alt="مخططات وقياسات"><div class="course-icon">📏</div><span class="level">مقدمة</span><h3>مبادئ المساحة</h3><p>تعرف على القياسات والمخططات ومفاهيم المساحة الهندسية.</p><a href="https://www.nptel.ac.in/courses" target="_blank" rel="noopener noreferrer">ابحث عن كورسات ↗</a></article>
+</div>
+</section>
+
+<!-- الهندسة العامة -->
+<section class="section" id="engineering" style="background:#E4F3FB">
+<div class="section-title"><h2>🛠️ الهندسة والدوائر</h2><p>مصادر لفهم الحاسوب والمفاهيم الهندسية العامة.</p></div>
+<div class="grid">
+<article class="course" data-search="دوائر منطقية حاسوب computer hardware"><img class="course-image" src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=900&q=80" alt="مكونات الحاسوب"><div class="course-icon">💡</div><span class="level">مقدمة</span><h3>كيف يعمل الحاسوب؟</h3><p>تعرف على المعالج والذاكرة والبيانات والدوائر المنطقية.</p><a href="https://www.khanacademy.org/computing/computers-and-internet" target="_blank" rel="noopener noreferrer">ابدأ التعلم ↗</a></article>
+<article class="course" data-search="سلامة مهنية occupational safety health"><img class="course-image" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80" alt="بيئة عمل صناعية"><div class="course-icon">🦺</div><span class="level">مهم لكل التخصصات</span><h3>السلامة والصحة المهنية</h3><p>تعرف على مبادئ السلامة وتقليل المخاطر في الورش والمصانع.</p><a href="https://www.osha.gov/training" target="_blank" rel="noopener noreferrer">مصادر السلامة ↗</a></article>
+</div>
+</section>
+
+<!-- العلوم الأساسية -->
+<section class="section" id="basic">
+<div class="section-title"><h2>🧪 العلوم الأساسية</h2><p>راجع الرياضيات والفيزياء والكيمياء اللازمة للدراسة الهندسية.</p></div>
+<div class="grid">
+<article class="course" data-search="رياضيات math algebra calculus"><img class="course-image" src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=900&q=80" alt="رياضيات"><div class="course-icon">📐</div><span class="level">أساسيات</span><h3>الرياضيات الهندسية</h3><p>تدرب على الجبر والمعادلات والدوال والمهارات الرياضية الأساسية.</p><a href="https://www.khanacademy.org/math" target="_blank" rel="noopener noreferrer">ابدأ التعلم ↗</a></article>
+<article class="course" data-search="فيزياء physics حركة طاقة كهرباء"><img class="course-image" src="https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?auto=format&fit=crop&w=900&q=80" alt="فيزياء"><div class="course-icon">⚛️</div><span class="level">أساسيات</span><h3>مبادئ الفيزياء</h3><p>راجع الحركة والطاقة والكهرباء والمغناطيسية.</p><a href="https://www.khanacademy.org/science/physics" target="_blank" rel="noopener noreferrer">دروس الفيزياء ↗</a></article>
+<article class="course" data-search="كيمياء chemistry مواد تفاعلات"><img class="course-image" src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=900&q=80" alt="تجربة كيميائية"><div class="course-icon">🧪</div><span class="level">أساسيات</span><h3>مقدمة في الكيمياء</h3><p>تعرف على الذرات والمواد والتفاعلات الكيميائية الأساسية.</p><a href="https://www.khanacademy.org/science/chemistry" target="_blank" rel="noopener noreferrer">ابدأ التعلم ↗</a></article>
+</div>
+</section>
+
+<!-- العلوم التربوية -->
+<section class="section" id="education" style="background:#E4F3FB">
+<div class="section-title"><h2>👨‍🏫 العلوم التربوية</h2><p>طوّر مهارات التدريس والتواصل وإعداد الدروس.</p></div>
+<div class="grid">
+<article class="course" data-search="تدريس teaching طرق التدريس تعليم"><img class="course-image" src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=80" alt="التعليم داخل الفصل"><div class="course-icon">📚</div><span class="level">مهارة تعليمية</span><h3>مقدمة في طرق التدريس</h3><p>تعلم تخطيط الدروس وشرح المفاهيم وإشراك المتعلمين.</p><a href="https://www.open.edu/openlearn/education-development" target="_blank" rel="noopener noreferrer">مواد تعليمية ↗</a></article>
+<article class="course" data-search="تواصل presentation communication عرض تقديمي"><img class="course-image" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=80" alt="التواصل والعمل الجماعي"><div class="course-icon">🗣️</div><span class="level">مهارات شخصية</span><h3>التواصل والعرض التقديمي</h3><p>تدرب على تنظيم الأفكار وشرحها والتحدث أمام الآخرين.</p><a href="https://www.open.edu/openlearn/" target="_blank" rel="noopener noreferrer">ابدأ التعلم ↗</a></article>
+<article class="course" data-search="تكنولوجيا التعليم educational technology"><img class="course-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="التعلم بالتكنولوجيا"><div class="course-icon">💻</div><span class="level">تطبيق عملي</span><h3>التكنولوجيا في التعليم</h3><p>استكشف استخدام الأدوات الرقمية لدعم التعلم وتنظيم المحتوى.</p><a href="https://www.open.edu/openlearn/education-development" target="_blank" rel="noopener noreferrer">استكشف المواد ↗</a></article>
+</div>
+</section>
+
+<!-- الذكاء الاصطناعي -->
+<section class="section" id="ai">
+<div class="section-title"><h2>🤖 التكنولوجيا والذكاء الاصطناعي</h2><p>استكشف التقنيات الحديثة التي يمكن أن تدعم تخصصك.</p></div>
+<div class="grid">
+<article class="course" data-search="ذكاء اصطناعي artificial intelligence AI"><img class="course-image" src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=900&q=80" alt="روبوت وتقنيات ذكية"><div class="course-icon">🤖</div><span class="level">مقدمة عامة</span><h3>مقدمة في الذكاء الاصطناعي</h3><p>تعرف على مفاهيم الذكاء الاصطناعي وبعض تطبيقاته.</p><a href="https://www.khanacademy.org/computing" target="_blank" rel="noopener noreferrer">استكشف الدروس ↗</a></article>
+<article class="course" data-search="إنترنت الأشياء IoT electronics smart devices"><img class="course-image" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="إلكترونيات وتقنيات متصلة"><div class="course-icon">📡</div><span class="level">تكنولوجيا حديثة</span><h3>مقدمة في إنترنت الأشياء</h3><p>تعرف على فكرة ربط الأجهزة وأجهزة الاستشعار بالأنظمة الرقمية.</p><a href="https://docs.arduino.cc/" target="_blank" rel="noopener noreferrer">مصادر تطبيقية ↗</a></article>
+</div>
+<div class="note">الروابط تفتح مصادر خارجية؛ قد تختلف إتاحة المحتوى المجاني من مصدر لآخر. هذه الصفحة لا تمنح شهادات بنفسها، والكورسات المقترحة ليست بالضرورة مقررات رسمية بالكلية.</div>
+</section>
+
+<div class="empty" id="emptyMessage">لا توجد نتائج مطابقة لبحثك. جرّب كلمة أخرى 💙</div>
+<footer><p>LINKORA © 2026 — من الجامعة إلى سوق العمل</p><p>تعلّم مهارة اليوم، واقترب خطوة من هدفك.</p></footer>
+
+<script>
+const searchInput=document.getElementById("searchInput");
+const courses=document.querySelectorAll(".course");
+const sections=document.querySelectorAll(".section");
+const emptyMessage=document.getElementById("emptyMessage");
+
+searchInput.addEventListener("input",function(){
+ const query=this.value.trim().toLowerCase();
+ let visibleCount=0;
+
+ courses.forEach(function(course){
+  const searchableText=(course.innerText+" "+(course.dataset.search||"")).toLowerCase();
+  const matches=searchableText.includes(query);
+  course.style.display=matches?"flex":"none";
+  if(matches)visibleCount++;
+ });
+
+ sections.forEach(function(section){
+  const sectionCourses=section.querySelectorAll(".course");
+  if(sectionCourses.length){
+   const anyVisible=Array.from(sectionCourses).some(course=>course.style.display!=="none");
+   section.style.display=anyVisible?"block":"none";
+  }
+ });
+
+ emptyMessage.style.display=visibleCount===0?"block":"none";
+});
+</script>
+</body>
+</html>

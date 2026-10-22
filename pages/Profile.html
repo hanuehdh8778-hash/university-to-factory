@@ -1,13 +1,28 @@
-```html
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F1F8FC">
 
-    <title>تعديل بياناتي | من الجامعة إلى المصنع</title>
+    <title>تعديل بياناتي | LINKORA</title>
 
     <style>
+        :root {
+            --blue: #1769AA;
+            --baby-blue: #A7D8F0;
+            --sky-blue: #70C5E8;
+            --navy: #123B5D;
+            --background: #F1F8FC;
+            --text: #52697A;
+            --white: #FFFFFF;
+            --border: #DCEAF3;
+            --green: #16845B;
+            --red: #C83D4D;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -16,107 +31,227 @@
 
         body {
             font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-            background: #071426;
-            color: #ddd;
+            background:
+                radial-gradient(circle at 5% 10%, rgba(167,216,240,.3), transparent 30%),
+                var(--background);
+            color: var(--navy);
             min-height: 100vh;
-        }
-
-        header {
-            background: #091a2e;
-            padding: 20px 8%;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #1b2b40;
+            flex-direction: column;
         }
 
-        .logo {
-            color: #d4af37;
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        header a {
-            color: #ddd;
+        a {
             text-decoration: none;
         }
 
-        .container {
+        header {
+            background: var(--white);
+            padding: 17px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 3px 15px rgba(18,59,93,.04);
+        }
+
+        .brand h1 {
+            color: var(--blue);
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .brand p {
+            color: var(--text);
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .header-link {
+            color: var(--blue);
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .header-link:hover {
+            color: var(--navy);
+        }
+
+        main {
+            flex: 1;
             width: 90%;
-            max-width: 650px;
-            margin: 50px auto;
+            max-width: 680px;
+            margin: 45px auto;
         }
 
         .card {
-            background: #0d1d33;
-            padding: 30px;
-            border-radius: 18px;
-            border: 1px solid #1b2b40;
-            box-shadow: 0 10px 30px rgba(0,0,0,.25);
+            background: var(--white);
+            padding: 35px;
+            border-radius: 22px;
+            border: 1px solid var(--border);
+            box-shadow: 0 15px 45px rgba(18,59,93,.08);
         }
 
-        h1 {
-            color: #d4af37;
+        .icon-box {
+            width: 65px;
+            height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+            border-radius: 18px;
+            background: #E5F5FC;
+            font-size: 29px;
+        }
+
+        .eyebrow {
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
             text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: var(--navy);
+            text-align: center;
+            font-size: 29px;
             margin-bottom: 10px;
         }
 
         .subtitle {
             text-align: center;
-            color: #9daaba;
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 14px;
             margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
-            color: #ccc;
+            margin-bottom: 9px;
+            color: var(--navy);
+            font-size: 14px;
+            font-weight: 700;
         }
 
         input {
             width: 100%;
-            padding: 13px;
-            margin-bottom: 20px;
-            border: 1px solid #33445b;
-            border-radius: 10px;
-            background: #071426;
-            color: white;
+            padding: 14px 15px;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            background: #FAFCFE;
+            color: var(--navy);
+            font-family: inherit;
             font-size: 15px;
             outline: none;
+            transition: .2s;
+        }
+
+        input::placeholder {
+            color: #91A5B4;
         }
 
         input:focus {
-            border-color: #d4af37;
+            border-color: var(--blue);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(23,105,170,.09);
         }
 
-        button {
+        .hint {
+            display: block;
+            margin-top: 8px;
+            color: var(--text);
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .save-btn {
             width: 100%;
             padding: 14px;
             border: none;
-            border-radius: 10px;
-            background: #d4af37;
-            color: #071426;
-            font-size: 16px;
-            font-weight: bold;
+            border-radius: 11px;
+            background: var(--blue);
+            color: var(--white);
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 800;
             cursor: pointer;
+            transition: .2s;
         }
 
-        button:hover {
-            opacity: .9;
+        .save-btn:hover {
+            background: var(--navy);
+            transform: translateY(-2px);
+        }
+
+        .save-btn:disabled {
+            opacity: .65;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 14px;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
         }
 
         .back {
             display: block;
             text-align: center;
-            margin-top: 18px;
-            color: #d4af37;
-            text-decoration: none;
+            margin-top: 22px;
+            color: var(--blue);
+            font-size: 14px;
+            font-weight: 700;
         }
 
-        #message {
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        footer {
             text-align: center;
-            margin-top: 20px;
-            font-weight: bold;
+            padding: 22px 15px;
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            color: var(--text);
+            font-size: 13px;
+        }
+
+        footer span {
+            color: var(--blue);
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                padding: 18px 5%;
+            }
+
+            main {
+                width: 92%;
+                margin: 28px auto;
+            }
+
+            .card {
+                padding: 26px 20px;
+            }
+
+            h2 {
+                font-size: 25px;
+            }
         }
     </style>
 </head>
@@ -124,143 +259,211 @@
 <body>
 
 <header>
-    <div class="logo">FROM UNIVERSITY TO FACTORY</div>
-    <a href="./Student-dashboard.html">العودة للوحة الطالب</a>
+    <a class="brand" href="../index.html">
+        <h1>LINKORA</h1>
+        <p>من الجامعة إلى سوق العمل</p>
+    </a>
+
+    <a class="header-link" href="./Student-dashboard.html">
+        ← العودة للوحة الطالب
+    </a>
 </header>
 
-<div class="container">
+<main>
 
-    <div class="card">
+    <section class="card">
 
-        <h1>تعديل بياناتي</h1>
+        <div class="icon-box" aria-hidden="true">👤</div>
+
+        <div class="eyebrow">YOUR PROFILE</div>
+
+        <h2>تعديل بياناتي</h2>
 
         <p class="subtitle">
-            يمكنك تعديل اسمك والبريد الإلكتروني
+            حدّث بياناتك الشخصية عشان تفضل معلومات حسابك على LINKORA صحيحة.
         </p>
 
         <form id="profileForm">
 
-            <label>الاسم</label>
-            <input
-                type="text"
-                id="name"
-                placeholder="اكتب اسمك"
-                required
-            >
+            <div class="form-group">
+                <label for="name">الاسم بالكامل</label>
 
-            <label>البريد الإلكتروني</label>
-            <input
-                type="email"
-                id="email"
-                placeholder="اكتب البريد الإلكتروني"
-                required
-            >
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="اكتب اسمك"
+                    autocomplete="name"
+                    required
+                >
+            </div>
 
-            <button type="submit">
+            <div class="form-group">
+                <label for="email">البريد الإلكتروني</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="example@email.com"
+                    autocomplete="email"
+                    required
+                >
+
+                <span class="hint">
+                    لو غيّرت البريد الإلكتروني، هنحدّثه في بيانات حسابك المحفوظة بالمتصفح.
+                </span>
+            </div>
+
+            <button class="save-btn" type="submit" id="saveButton">
                 💾 حفظ التعديلات
             </button>
 
         </form>
 
-        <div id="message"></div>
+        <div id="message" role="status" aria-live="polite"></div>
 
         <a class="back" href="./Student-dashboard.html">
-            ← العودة للوحة الطالب
+            العودة للوحة الطالب ←
         </a>
 
-    </div>
+    </section>
 
-</div>
+</main>
+
+<footer>
+    © 2026 <span>LINKORA</span> — من الجامعة إلى سوق العمل
+</footer>
 
 <script>
+    const oldEmail = localStorage.getItem("userEmail");
 
-const oldEmail = localStorage.getItem("userEmail");
+    const profileForm = document.getElementById("profileForm");
+    const saveButton = document.getElementById("saveButton");
+    const message = document.getElementById("message");
 
-if (!oldEmail) {
-    window.location.href = "./Login.html";
-}
-
-// تحميل البيانات الحالية
-fetch(`/profile?email=${encodeURIComponent(oldEmail)}`)
-    .then(response => response.json())
-    .then(data => {
-
-        if (data && !data.error) {
-            document.getElementById("name").value = data.name || "";
-            document.getElementById("email").value = data.email || oldEmail;
-        }
-
-    })
-    .catch(error => {
-        console.error(error);
-    });
-
-
-// حفظ التعديلات
-document.getElementById("profileForm").addEventListener("submit", async function(e) {
-
-    e.preventDefault();
-
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-
-    if (!name || !email) {
-        showMessage("من فضلك املئي كل البيانات", false);
-        return;
+    function showMessage(text, success = false) {
+        message.textContent = text;
+        message.style.color = success ? "#16845B" : "#C83D4D";
     }
 
-    try {
-
-        const response = await fetch("/update-profile", {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                oldEmail: oldEmail,
-                name: name,
-                email: email
-            })
-        });
-
+    async function readResponse(response) {
         const data = await response.json();
 
         if (!response.ok) {
-            showMessage(data.message || "حدث خطأ", false);
+            throw new Error(data.message || "تعذر تنفيذ الطلب.");
+        }
+
+        return data;
+    }
+
+    /* التحقق من تسجيل الدخول */
+    if (!oldEmail) {
+        window.location.href = "./Login.html";
+    } else {
+        loadProfile();
+    }
+
+    /* تحميل البيانات الحالية */
+    async function loadProfile() {
+        try {
+            const response = await fetch(
+                "/profile?email=" + encodeURIComponent(oldEmail)
+            );
+
+            const data = await readResponse(response);
+            const user = data.user || data;
+
+            document.getElementById("name").value = user.name || "";
+            document.getElementById("email").value = user.email || oldEmail;
+
+        } catch (error) {
+            console.error("Load profile:", error);
+            showMessage("تعذر تحميل بياناتك. تأكد إن السيرفر شغال وحاول تاني.");
+        }
+    }
+
+    /* حفظ التعديلات */
+    profileForm.addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+
+        if (!name || !email) {
+            showMessage("من فضلك املأ كل البيانات.");
             return;
         }
 
-        // تحديث البريد في المتصفح
-        localStorage.setItem("userEmail", email);
+        saveButton.disabled = true;
+        saveButton.textContent = "جاري حفظ التعديلات...";
+        message.textContent = "";
 
-        const user = JSON.parse(localStorage.getItem("user") || "{}");
-        user.name = name;
-        user.email = email;
-        localStorage.setItem("user", JSON.stringify(user));
+        try {
+            const response = await fetch("/update-profile", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    oldEmail: oldEmail,
+                    name: name,
+                    email: email
+                })
+            });
 
-        showMessage("✅ تم حفظ التعديلات بنجاح", true);
+            const data = await readResponse(response);
 
-    } catch (error) {
+            /*
+             * تحديث بيانات المستخدم المحفوظة في المتصفح
+             * بعد نجاح تحديث البيانات على السيرفر فقط.
+             */
+            localStorage.setItem("userEmail", email);
 
-        console.error(error);
-        showMessage("حدث خطأ في الاتصال بالسيرفر", false);
+            const storageKeys = [
+                "user",
+                "student",
+                "userData"
+            ];
 
-    }
+            storageKeys.forEach(key => {
+                try {
+                    const storedUser = JSON.parse(
+                        localStorage.getItem(key) || "{}"
+                    );
 
-});
+                    if (storedUser && typeof storedUser === "object") {
+                        storedUser.name = name;
+                        storedUser.email = email;
 
+                        localStorage.setItem(
+                            key,
+                            JSON.stringify(storedUser)
+                        );
+                    }
+                } catch (error) {
+                    console.warn("تعذر تحديث بيانات التخزين:", key);
+                }
+            });
 
-function showMessage(text, success) {
+            showMessage(
+                data.message || "تم حفظ التعديلات بنجاح.",
+                true
+            );
 
-    const message = document.getElementById("message");
+        } catch (error) {
+            console.error("Update profile:", error);
 
-    message.textContent = text;
-    message.style.color = success ? "#4caf50" : "#ff6b6b";
+            showMessage(
+                error.message || "حدث خطأ في الاتصال بالسيرفر."
+            );
 
-}
-
+        } finally {
+            saveButton.disabled = false;
+            saveButton.textContent = "💾 حفظ التعديلات";
+        }
+    });
 </script>
 
 </body>
 </html>
-```

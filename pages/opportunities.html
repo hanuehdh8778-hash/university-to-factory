@@ -1,11 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الفرص المتاحة | LINKORA</title>
 
-    <title>الفرص المتاحة | من الجامعة إلى المصنع</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -14,224 +17,429 @@
             padding: 0;
         }
 
+        :root {
+            --blue: #1769AA;
+            --sky: #70C5E8;
+            --baby: #A7D8F0;
+            --navy: #123B5D;
+            --background: #F1F8FC;
+            --white: #FFFFFF;
+            --text: #24445E;
+            --muted: #71879A;
+            --border: #DFECF5;
+        }
+
         body {
-            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-            background: #071426;
-            color: white;
             min-height: 100vh;
+            background: var(--background);
+            color: var(--text);
+            font-family: 'Cairo', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
         }
 
         header {
-            padding: 20px 7%;
+            min-height: 78px;
+            padding: 14px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #071426;
-            border-bottom: 1px solid rgba(212, 175, 55, .25);
+            gap: 22px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
         }
 
-        .logo-en {
-            color: #d4af37;
-            font-size: 19px;
+        .brand {
+            color: var(--navy);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 27px;
             font-weight: 800;
-            letter-spacing: 2px;
+            direction: ltr;
         }
 
-        .logo-ar {
-            font-size: 13px;
-            color: #ddd;
-            margin-top: 4px;
+        .brand span {
+            color: var(--blue);
+        }
+
+        .brand-caption {
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 12px;
         }
 
         nav {
             display: flex;
-            gap: 25px;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 23px;
         }
 
         nav a {
-            color: #ddd;
-            text-decoration: none;
-            transition: .3s;
+            color: #46657D;
+            font-size: 14px;
+            font-weight: 600;
+            transition: .2s;
         }
 
-        nav a:hover {
-            color: #d4af37;
+        nav a:hover,
+        nav a.active {
+            color: var(--blue);
         }
 
         .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 55px 20px 35px;
             text-align: center;
-            padding: 60px 20px 40px;
-            background:
-                radial-gradient(circle at top, rgba(212,175,55,.10), transparent 45%);
+            background: linear-gradient(135deg, #E8F5FC, #F8FCFF 55%, #DFF1FA);
+        }
+
+        .hero::before,
+        .hero::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero::before {
+            width: 220px;
+            height: 220px;
+            top: -120px;
+            right: -55px;
+            background: rgba(112, 197, 232, .25);
+        }
+
+        .hero::after {
+            width: 260px;
+            height: 260px;
+            bottom: -190px;
+            left: -60px;
+            background: rgba(23, 105, 170, .10);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 6px 15px;
+            margin-bottom: 13px;
+            border-radius: 30px;
+            color: var(--blue);
+            background: #DDF1FC;
+            font-size: 13px;
+            font-weight: 700;
         }
 
         .hero h1 {
-            font-size: 42px;
             margin-bottom: 10px;
+            color: var(--navy);
+            font-size: clamp(30px, 4vw, 43px);
+            font-weight: 800;
         }
 
         .hero h1 span {
-            color: #d4af37;
+            color: var(--blue);
         }
 
         .hero p {
-            color: #aeb8c5;
-            font-size: 17px;
+            color: #607D93;
+            font-size: 16px;
+            line-height: 1.9;
         }
 
         .search-box {
-            width: min(700px, 90%);
-            margin: 30px auto;
+            width: min(720px, 92%);
+            margin: 25px auto 0;
         }
 
         .search-box input {
             width: 100%;
-            padding: 17px 22px;
-            border-radius: 10px;
-            border: 1px solid rgba(212,175,55,.4);
-            background: #0c2038;
-            color: white;
-            font-size: 16px;
+            min-height: 55px;
+            padding: 15px 20px;
+            border: 1px solid #D2E5F1;
+            border-radius: 14px;
             outline: none;
+            background: white;
+            color: var(--navy);
+            font-family: 'Cairo', sans-serif;
+            font-size: 14px;
+            box-shadow: 0 8px 25px rgba(18, 59, 93, .06);
+            transition: .2s;
         }
 
         .search-box input:focus {
-            border-color: #d4af37;
-            box-shadow: 0 0 15px rgba(212,175,55,.12);
+            border-color: var(--blue);
+            box-shadow: 0 0 0 4px rgba(23, 105, 170, .08);
+        }
+
+        .search-hint {
+            margin-top: 9px;
+            color: var(--muted);
+            font-size: 12px;
         }
 
         .container {
-            width: min(1150px, 90%);
-            margin: 20px auto 80px;
+            width: min(1180px, 92%);
+            margin: 28px auto 70px;
+        }
+
+        .results-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .results-heading h2 {
+            color: var(--navy);
+            font-size: 21px;
+        }
+
+        .count {
+            color: var(--blue);
+            background: #E1F2FC;
+            border-radius: 30px;
+            padding: 5px 12px;
+            font-size: 12px;
+            font-weight: 700;
         }
 
         #opportunities {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 23px;
         }
 
         .card {
-            background: #0c2038;
-            border: 1px solid rgba(212,175,55,.2);
-            border-radius: 16px;
-            padding: 25px;
-            transition: .3s;
-            box-shadow: 0 10px 30px rgba(0,0,0,.15);
+            min-width: 0;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: var(--white);
+            box-shadow: 0 8px 25px rgba(18, 59, 93, .055);
+            transition: transform .25s, box-shadow .25s, border-color .25s;
         }
 
         .card:hover {
-            transform: translateY(-6px);
-            border-color: #d4af37;
+            transform: translateY(-5px);
+            border-color: #B7DDF2;
+            box-shadow: 0 14px 30px rgba(18, 59, 93, .11);
+        }
+
+        .card-image {
+            position: relative;
+            height: 175px;
+            overflow: hidden;
+            background: #DCEFF9;
+        }
+
+        .card-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .35s;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.04);
+        }
+
+        .image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(18, 59, 93, .22), transparent 65%);
+            pointer-events: none;
         }
 
         .badge {
+            position: absolute;
+            top: 13px;
+            right: 13px;
+            z-index: 1;
             display: inline-block;
-            color: #071426;
-            background: #d4af37;
+            max-width: calc(100% - 26px);
             padding: 6px 12px;
-            border-radius: 20px;
+            border-radius: 30px;
+            background: white;
+            color: var(--blue);
             font-size: 12px;
-            font-weight: bold;
-            margin-bottom: 15px;
+            font-weight: 800;
+            box-shadow: 0 3px 10px rgba(18, 59, 93, .1);
         }
 
-        .card h2 {
-            color: white;
-            font-size: 21px;
-            margin-bottom: 18px;
+        .card-body {
+            padding: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 13px;
+            color: var(--navy);
+            font-size: 19px;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
         }
 
         .info {
-            color: #b7c1cd;
-            line-height: 2;
-            font-size: 14px;
+            display: grid;
+            gap: 8px;
+            color: #607D93;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .info div {
+            overflow-wrap: anywhere;
         }
 
         .info strong {
-            color: #d4af37;
+            color: var(--navy);
+        }
+
+        .description {
+            margin-top: 11px;
+            color: #71879A;
+            font-size: 13px;
+            line-height: 1.9;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .buttons {
             display: flex;
             gap: 10px;
-            margin-top: 22px;
+            margin-top: 19px;
         }
 
         .btn {
             flex: 1;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 42px;
+            padding: 9px 10px;
+            border-radius: 10px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
             text-align: center;
-            text-decoration: none;
-            padding: 11px 8px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 14px;
-            transition: .3s;
+            transition: .2s;
         }
 
         .details {
-            border: 1px solid #d4af37;
-            color: #d4af37;
+            border: 1px solid #C9E3F2;
+            color: var(--blue);
+            background: #F6FBFE;
         }
 
         .details:hover {
-            background: #d4af37;
-            color: #071426;
+            background: #E7F5FD;
+            border-color: var(--blue);
         }
 
         .apply {
-            background: #d4af37;
-            color: #071426;
+            border: 1px solid var(--blue);
+            color: white;
+            background: var(--blue);
         }
 
         .apply:hover {
-            box-shadow: 0 7px 18px rgba(212,175,55,.2);
-            transform: translateY(-2px);
+            background: var(--navy);
+            border-color: var(--navy);
         }
 
         .message {
-            text-align: center;
-            padding: 50px 20px;
-            color: #9daaba;
-            font-size: 17px;
             grid-column: 1 / -1;
+            padding: 45px 20px;
+            text-align: center;
+            border: 1px dashed #C6DDEB;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, .75);
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 2;
+        }
+
+        .message strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--navy);
+            font-size: 18px;
         }
 
         footer {
+            padding: 25px 15px;
+            border-top: 1px solid var(--border);
+            background: white;
+            color: var(--muted);
             text-align: center;
-            padding: 25px;
-            color: #8995a5;
-            border-top: 1px solid rgba(212,175,55,.2);
+            font-size: 12px;
         }
 
-        footer span {
-            color: #d4af37;
+        footer strong {
+            display: inline-block;
+            color: var(--blue);
+            font-family: 'Montserrat', sans-serif;
+            direction: ltr;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 950px) {
             #opportunities {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
             header {
                 flex-direction: column;
-                gap: 18px;
             }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 620px) {
+            header {
+                padding: 15px 5%;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 12px 18px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .hero {
+                padding: 40px 15px 28px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
             #opportunities {
                 grid-template-columns: 1fr;
             }
 
-            .hero h1 {
-                font-size: 32px;
+            .container {
+                width: 92%;
+                margin-top: 22px;
             }
 
-            nav {
-                gap: 14px;
-                flex-wrap: wrap;
-                justify-content: center;
+            .card-image {
+                height: 195px;
+            }
+
+            .results-heading h2 {
+                font-size: 18px;
             }
         }
     </style>
@@ -240,233 +448,249 @@
 <body>
 
     <header>
-
         <div>
-            <div class="logo-en">FROM UNIVERSITY TO FACTORY</div>
-            <div class="logo-ar">من الجامعة إلى المصنع</div>
+            <a href="../index.html" class="brand">LINK<span>ORA</span></a>
+            <p class="brand-caption">من الجامعة إلى سوق العمل</p>
         </div>
 
         <nav>
             <a href="../index.html">الرئيسية</a>
-            <a href="./Opportunities.html">الفرص</a>
-            <a href="./Company-register.html">الشركات</a>
+            <a href="./Opportunities.html" class="active">الفرص المتاحة</a>
+            <a href="./Student-register.html">🎓 أنا طالب</a>
+            <a href="./Company-register.html">الشركات والمصانع</a>
             <a href="./Login.html">تسجيل الدخول</a>
         </nav>
-
     </header>
 
-
     <section class="hero">
+        <div class="hero-content">
+            <span class="eyebrow">خطوتك الجاية تبدأ هنا</span>
+            <h1>اكتشف الفرص <span>المتاحة</span></h1>
+            <p>فرص تدريب وعمل تساعدك تربط دراستك بخبرات سوق العمل.</p>
 
-        <h1>
-            الفرص <span>المتاحة</span>
-        </h1>
-
-        <p>
-            اكتشف فرص التدريب والعمل المناسبة لمجالك
-        </p>
-
-        <div class="search-box">
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="ابحث عن فرصة، مجال، مكان أو نوع الفرصة..."
-            >
-        </div>
-
-    </section>
-
-
-    <main class="container">
-
-        <div id="opportunities">
-            <div class="message">
-                جاري تحميل الفرص...
+            <div class="search-box">
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="🔎 ابحث باسم الفرصة أو المجال أو المكان أو نوعها..."
+                    aria-label="ابحث عن الفرص المتاحة"
+                >
+                <p class="search-hint">اكتب كلمة للبحث في الفرص المنشورة على LINKORA.</p>
             </div>
         </div>
+    </section>
 
+    <main class="container">
+        <div class="results-heading">
+            <h2>فرص ممكن تناسبك</h2>
+            <span class="count" id="resultsCount">جاري التحميل...</span>
+        </div>
+
+        <div id="opportunities" aria-live="polite">
+            <div class="message">
+                <strong>لحظة واحدة...</strong>
+                جاري تحميل الفرص المتاحة.
+            </div>
+        </div>
     </main>
 
-
     <footer>
-        © 2026 <span>From University To Factory</span> — جميع الحقوق محفوظة
+        <strong>LINKORA</strong> © 2026 — من الجامعة إلى سوق العمل
     </footer>
 
-
     <script>
-
-        const opportunitiesContainer =
-            document.getElementById("opportunities");
-
-        const searchInput =
-            document.getElementById("searchInput");
+        const opportunitiesContainer = document.getElementById("opportunities");
+        const searchInput = document.getElementById("searchInput");
+        const resultsCount = document.getElementById("resultsCount");
 
         let allOpportunities = [];
 
+        // تأمين النصوص القادمة من قاعدة البيانات قبل عرضها في الصفحة.
+        function escapeHTML(value) {
+            return String(value ?? "").replace(/[&<>"']/g, function (character) {
+                return {
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#39;"
+                }[character];
+            });
+        }
+
+        function normalize(value) {
+            return String(value ?? "").toLocaleLowerCase("ar").trim();
+        }
+
+        function imageForOpportunity(opportunity, index) {
+            const field = normalize(opportunity.field);
+
+            if (
+                field.includes("برمج") ||
+                field.includes("سوفت") ||
+                field.includes("تقنية") ||
+                field.includes("حاسب")
+            ) {
+                return "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80";
+            }
+
+            if (
+                field.includes("كهرب") ||
+                field.includes("إلكترون") ||
+                field.includes("الكترون")
+            ) {
+                return "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80";
+            }
+
+            if (
+                field.includes("ميكاني") ||
+                field.includes("مصنع") ||
+                field.includes("إنتاج") ||
+                field.includes("انتاج")
+            ) {
+                return "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=900&q=80";
+            }
+
+            if (
+                field.includes("تصميم") ||
+                field.includes("جرافيك")
+            ) {
+                return "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80";
+            }
+
+            const images = [
+                "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=80",
+                "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80",
+                "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80"
+            ];
+
+            return images[index % images.length];
+        }
+
+        function displayOpportunities(opportunities) {
+            resultsCount.textContent = `عدد الفرص: ${opportunities.length}`;
+
+            if (!opportunities.length) {
+                const hasSearch = searchInput.value.trim().length > 0;
+
+                opportunitiesContainer.innerHTML = `
+                    <div class="message">
+                        <strong>${hasSearch ? "مفيش نتائج مطابقة للبحث" : "لسه مفيش فرص متاحة"}</strong>
+                        ${hasSearch
+                            ? "جرّبي كلمة تانية أو ابحثي باسم المجال أو المكان."
+                            : "لما الشركات والمصانع تنشر فرص جديدة، هتظهر هنا."}
+                    </div>
+                `;
+                return;
+            }
+
+            opportunitiesContainer.innerHTML = opportunities.map((opportunity, index) => {
+                const id = encodeURIComponent(String(opportunity.id ?? ""));
+                const title = String(opportunity.title || "فرصة بدون عنوان");
+
+                const safeTitle = escapeHTML(title);
+                const type = escapeHTML(opportunity.type || "فرصة");
+                const field = escapeHTML(opportunity.field || "غير محدد");
+                const location = escapeHTML(opportunity.location || "غير محدد");
+                const skills = escapeHTML(opportunity.skills || "غير محددة");
+                const deadline = escapeHTML(opportunity.deadline || "غير محدد");
+                const description = escapeHTML(opportunity.description || "");
+                const image = imageForOpportunity(opportunity, index);
+
+                const detailsUrl = `./Opportunity-details.html?id=${id}`;
+                const applyUrl = `./Apply.html?id=${id}&name=${encodeURIComponent(title)}`;
+
+                return `
+                    <article class="card">
+                        <div class="card-image">
+                            <img
+                                src="${image}"
+                                alt="صورة توضيحية لفرصة ${safeTitle}"
+                                loading="lazy"
+                                onerror="this.onerror=null;this.style.display='none';"
+                            >
+                            <span class="badge">${type}</span>
+                            <div class="image-overlay"></div>
+                        </div>
+
+                        <div class="card-body">
+                            <h3>${safeTitle}</h3>
+
+                            <div class="info">
+                                <div>📘 <strong>المجال:</strong> ${field}</div>
+                                <div>📍 <strong>المكان:</strong> ${location}</div>
+                                <div>🧩 <strong>المهارات:</strong> ${skills}</div>
+                                <div>📅 <strong>آخر موعد:</strong> ${deadline}</div>
+                            </div>
+
+                            ${description ? `<p class="description">${description}</p>` : ""}
+
+                            <div class="buttons">
+                                <a class="btn details" href="${detailsUrl}">التفاصيل</a>
+                                <a class="btn apply" href="${applyUrl}">قدّم على الفرصة ←</a>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            }).join("");
+        }
 
         async function loadOpportunities() {
-
             try {
+                const response = await fetch("/all-opportunities");
 
-                const response =
-                    await fetch("/all-opportunities");
+                if (!response.ok) {
+                    throw new Error(`HTTP error: ${response.status}`);
+                }
 
-                const data =
-                    await response.json();
+                const data = await response.json();
 
                 if (Array.isArray(data)) {
-
                     allOpportunities = data;
-
-                } else if (Array.isArray(data.opportunities)) {
-
+                } else if (data && Array.isArray(data.opportunities)) {
                     allOpportunities = data.opportunities;
-
                 } else {
-
                     allOpportunities = [];
-
                 }
 
                 displayOpportunities(allOpportunities);
 
             } catch (error) {
+                console.error("Error loading opportunities:", error);
 
-                console.error(error);
+                resultsCount.textContent = "تعذّر التحميل";
 
                 opportunitiesContainer.innerHTML = `
                     <div class="message">
-                        حدث خطأ أثناء تحميل الفرص.
+                        <strong>مش قادرين نحمّل الفرص دلوقتي</strong>
+                        اتأكدي إن السيرفر شغال، وبعدها حدّثي الصفحة.
                     </div>
                 `;
             }
         }
-
-
-        function displayOpportunities(opportunities) {
-
-            if (!opportunities.length) {
-
-                opportunitiesContainer.innerHTML = `
-                    <div class="message">
-                        لا توجد فرص متاحة حاليًا.
-                    </div>
-                `;
-
-                return;
-            }
-
-
-            opportunitiesContainer.innerHTML =
-                opportunities.map(opportunity => {
-
-                    return `
-
-                        <div class="card">
-
-                            <span class="badge">
-                                ${opportunity.type || "فرصة"}
-                            </span>
-
-                            <h2>
-                                ${opportunity.title || "فرصة بدون عنوان"}
-                            </h2>
-
-                            <div class="info">
-
-                                <div>
-                                    <strong>المجال:</strong>
-                                    ${opportunity.field || "غير محدد"}
-                                </div>
-
-                                <div>
-                                    <strong>المكان:</strong>
-                                    ${opportunity.location || "غير محدد"}
-                                </div>
-
-                                <div>
-                                    <strong>المهارات:</strong>
-                                    ${opportunity.skills || "غير محددة"}
-                                </div>
-
-                                <div>
-                                    <strong>آخر موعد:</strong>
-                                    ${opportunity.deadline || "غير محدد"}
-                                </div>
-
-                            </div>
-
-                            <div class="buttons">
-
-                                <a
-                                    class="btn details"
-                                    href="./Opportunity-details.html?id=${opportunity.id}"
-                                >
-                                    التفاصيل
-                                </a>
-
-                                <a
-                                    class="btn apply"
-                                    href="./Apply.html?id=${opportunity.id}&name=${encodeURIComponent(opportunity.title || "")}"
-                                >
-                                    التقديم
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                    `;
-
-                }).join("");
-        }
-
 
         searchInput.addEventListener("input", function () {
+            const search = normalize(this.value);
 
-            const search =
-                this.value.trim().toLowerCase();
+            const filtered = allOpportunities.filter(opportunity => {
+                const searchableText = [
+                    opportunity.title,
+                    opportunity.field,
+                    opportunity.location,
+                    opportunity.type,
+                    opportunity.skills,
+                    opportunity.description,
+                    opportunity.deadline
+                ].map(normalize).join(" ");
 
-            const filtered =
-                allOpportunities.filter(opportunity => {
-
-                    return (
-
-                        (opportunity.title || "")
-                            .toLowerCase()
-                            .includes(search)
-
-                        ||
-
-                        (opportunity.field || "")
-                            .toLowerCase()
-                            .includes(search)
-
-                        ||
-
-                        (opportunity.location || "")
-                            .toLowerCase()
-                            .includes(search)
-
-                        ||
-
-                        (opportunity.type || "")
-                            .toLowerCase()
-                            .includes(search)
-
-                    );
-
-                });
+                return searchableText.includes(search);
+            });
 
             displayOpportunities(filtered);
-
         });
 
-
         loadOpportunities();
-
     </script>
 
 </body>
-
 </html>

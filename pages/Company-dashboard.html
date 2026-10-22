@@ -1,335 +1,868 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة تحكم الشركة | من الجامعة إلى المصنع</title>
+    <title>لوحة الشركة | LINKORA</title>
 
     <style>
+        :root {
+            --blue: #1769AA;
+            --sky: #70C5E8;
+            --baby: #A7D8F0;
+            --light: #F1F8FC;
+            --navy: #123B5D;
+            --text: #52697A;
+            --white: #FFFFFF;
+            --border: #DFECF4;
+        }
+
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            box-sizing: border-box;
         }
 
         body {
-            background: #071426;
-            color: white;
-            min-height: 100vh;
+            font-family: Arial, Tahoma, sans-serif;
+            background: var(--light);
+            color: var(--navy);
+            line-height: 1.8;
         }
 
-        header {
-            background: #0b1d33;
-            border-bottom: 1px solid #d4af37;
-            padding: 20px 7%;
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .navbar {
+            background: white;
+            padding: 15px 7%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            box-shadow: 0 3px 15px #123b5d0b;
         }
 
         .logo {
-            color: #d4af37;
-            font-size: 22px;
-            font-weight: bold;
+            color: var(--blue);
+            font-size: 27px;
+            font-weight: 900;
+            letter-spacing: 1px;
         }
 
         .logo span {
             display: block;
-            color: white;
-            font-size: 14px;
-            margin-top: 5px;
+            font-size: 11px;
+            color: var(--text);
+            letter-spacing: 0;
+            font-weight: normal;
+            margin-top: -5px;
         }
 
-        .back {
-            color: #d4af37;
-            text-decoration: none;
-            border: 1px solid #d4af37;
-            padding: 10px 18px;
-            border-radius: 8px;
+        .nav-links {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue);
+        }
+
+        .nav-login {
+            background: var(--blue);
+            color: white !important;
+            padding: 9px 17px;
+            border-radius: 9px;
         }
 
         .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 40px auto;
+            width: min(1150px, 90%);
+            margin: auto;
         }
 
-        .welcome {
-            background: #0b1d33;
-            border: 1px solid #243a55;
-            border-radius: 18px;
-            padding: 30px;
-            margin-bottom: 25px;
-        }
-
-        .welcome h1 {
-            color: #d4af37;
-            margin-bottom: 10px;
-        }
-
-        .welcome p {
-            color: #c8d0da;
-            line-height: 1.8;
-        }
-
-        .company-info {
+        .hero {
+            margin: 30px auto;
+            min-height: 350px;
+            border-radius: 25px;
+            overflow: hidden;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin-top: 25px;
+            grid-template-columns: 1fr 1fr;
+            background: white;
+            box-shadow: 0 12px 35px #123b5d0c;
         }
 
-        .info-box {
-            background: #071426;
-            border: 1px solid #243a55;
+        .hero-content {
+            padding: 42px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .eyebrow {
+            background: #E2F4FC;
+            color: var(--blue);
+            padding: 5px 13px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: clamp(26px, 3vw, 39px);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            color: var(--blue);
+        }
+
+        .hero p {
+            color: var(--text);
+            margin-bottom: 23px;
+            max-width: 480px;
+        }
+
+        .primary-btn {
+            display: inline-block;
+            background: var(--blue);
+            color: white;
+            border: none;
+            padding: 12px 23px;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .primary-btn:hover {
+            background: var(--navy);
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            min-height: 350px;
+            position: relative;
+            background: #D9EDF8;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            min-height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-label {
+            position: absolute;
+            bottom: 18px;
+            right: 18px;
+            left: 18px;
+            background: #123B5DDB;
+            color: white;
+            padding: 12px 16px;
             border-radius: 12px;
+            backdrop-filter: blur(5px);
+        }
+
+        .image-label strong {
+            display: block;
+            font-size: 15px;
+        }
+
+        .image-label span {
+            font-size: 12px;
+            color: #D8EFFB;
+        }
+
+        .section {
+            margin: 42px auto;
+        }
+
+        .section-heading {
+            margin-bottom: 22px;
+        }
+
+        .section-heading h2 {
+            font-size: 25px;
+            margin-bottom: 4px;
+        }
+
+        .section-heading p {
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .photo-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: 0.25s;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px #123b5d12;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            display: block;
+            background: #DDEFF8;
+        }
+
+        .photo-card-content {
             padding: 18px;
         }
 
-        .info-box strong {
+        .photo-card h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .photo-card p {
+            color: var(--text);
+            font-size: 13px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 28px auto;
+        }
+
+        .stat {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 19px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
             display: block;
-            color: #d4af37;
-            margin-bottom: 8px;
+            color: var(--blue);
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: var(--text);
+            font-size: 13px;
         }
 
         .actions {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 18px;
-            margin: 25px 0;
         }
 
-        .action {
-            background: #0b1d33;
-            border: 1px solid #243a55;
-            border-radius: 16px;
-            padding: 25px;
-            text-decoration: none;
-            color: white;
+        .action-card {
+            background: white;
+            padding: 24px;
+            border: 1px solid var(--border);
+            border-radius: 17px;
             transition: 0.2s;
         }
 
-        .action:hover {
-            border-color: #d4af37;
+        .action-card:hover {
+            border-color: var(--sky);
+            box-shadow: 0 8px 24px #123b5d0c;
             transform: translateY(-3px);
         }
 
-        .action h3 {
-            color: #d4af37;
-            margin-bottom: 10px;
+        .action-icon {
+            width: 48px;
+            height: 48px;
+            background: #E4F5FC;
+            color: var(--blue);
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            font-size: 24px;
+            margin-bottom: 13px;
         }
 
-        .action p {
-            color: #aeb8c5;
-            line-height: 1.6;
+        .action-card h3 {
+            font-size: 17px;
+            margin-bottom: 6px;
         }
 
-        .section {
-            background: #0b1d33;
-            border: 1px solid #243a55;
+        .action-card p {
+            color: var(--text);
+            font-size: 13px;
+            margin-bottom: 14px;
+        }
+
+        .action-link {
+            color: var(--blue);
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .company-box {
+            background: white;
+            border: 1px solid var(--border);
             border-radius: 18px;
             padding: 25px;
+            margin-top: 20px;
         }
 
-        .section h2 {
-            color: #d4af37;
-            margin-bottom: 20px;
+        .company-box h3 {
+            margin-bottom: 15px;
         }
 
-        .opportunity {
-            background: #071426;
-            border: 1px solid #243a55;
-            border-radius: 12px;
+        .company-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .detail {
+            background: var(--light);
+            padding: 13px;
+            border-radius: 10px;
+            overflow-wrap: anywhere;
+        }
+
+        .detail small {
+            color: var(--text);
+            display: block;
+        }
+
+        .detail strong {
+            font-size: 14px;
+        }
+
+        .opportunity-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .opportunity-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            background: white;
+            border: 1px solid var(--border);
+            padding: 17px;
+            border-radius: 13px;
+        }
+
+        .opportunity-item h4 {
+            margin-bottom: 3px;
+        }
+
+        .opportunity-item p {
+            color: var(--text);
+            font-size: 13px;
+        }
+
+        .status {
+            color: var(--blue);
+            background: #E4F5FC;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .message {
+            color: var(--text);
             padding: 18px;
-            margin-bottom: 12px;
+            text-align: center;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--border);
         }
 
-        .opportunity h3 {
+        .error-message {
+            color: #A12B35;
+            background: #FFF0F1;
+            border-color: #F2D1D4;
+        }
+
+        .footer {
+            background: var(--navy);
             color: white;
-            margin-bottom: 8px;
-        }
-
-        .opportunity p {
-            color: #b9c2ce;
-            margin: 5px 0;
-        }
-
-        .empty {
-            color: #9da8b5;
+            margin-top: 55px;
+            padding: 28px 7%;
             text-align: center;
-            padding: 25px;
         }
 
-        footer {
-            text-align: center;
-            color: #7f8b99;
-            padding: 30px;
-            margin-top: 30px;
+        .footer p {
+            color: #D4E6F2;
+            font-size: 13px;
+        }
+
+        @media (max-width: 800px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                padding: 28px;
+            }
+
+            .hero-image {
+                grid-row: 1;
+                min-height: 240px;
+            }
+
+            .hero-image img {
+                min-height: 240px;
+                max-height: 300px;
+            }
+
+            .photo-grid,
+            .actions {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .navbar {
+                padding: 14px 5%;
+            }
+
+            .nav-links {
+                width: 100%;
+                font-size: 12px;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .photo-grid,
+            .actions,
+            .stats,
+            .company-details {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                margin-top: 20px;
+            }
+
+            .hero-content {
+                padding: 23px;
+            }
+
+            .opportunity-item {
+                align-items: flex-start;
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">
-        FROM UNIVERSITY TO FACTORY
-        <span>من الجامعة إلى المصنع</span>
-    </div>
-
-    <a href="../index.html" class="back">الرئيسية</a>
-</header>
-
-<div class="container">
-
-    <div class="welcome">
-        <h1>لوحة تحكم الشركة</h1>
-        <p id="welcomeText">جاري تحميل بيانات الشركة...</p>
-
-        <div class="company-info">
-            <div class="info-box">
-                <strong>اسم الشركة</strong>
-                <span id="companyName">...</span>
-            </div>
-
-            <div class="info-box">
-                <strong>المجال</strong>
-                <span id="companyField">...</span>
-            </div>
-
-            <div class="info-box">
-                <strong>الموقع</strong>
-                <span id="companyLocation">...</span>
-            </div>
-
-            <div class="info-box">
-                <strong>البريد الإلكتروني</strong>
-                <span id="companyEmail">...</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="actions">
-
-        <a href="./Add-opportunity.html" class="action">
-            <h3>➕ إضافة فرصة</h3>
-            <p>أضف فرصة تدريب أو عمل جديدة للطلاب.</p>
+    <header class="navbar">
+        <a class="logo" href="../index.html">
+            LINKORA
+            <span>من الجامعة إلى سوق العمل</span>
         </a>
 
-        <a href="./Edit-opportunity.html" class="action">
-            <h3>✏️ إدارة الفرص</h3>
-            <p>تعديل الفرص المنشورة أو حذفها.</p>
-        </a>
+        <nav class="nav-links">
+            <a href="../index.html">الرئيسية</a>
+            <a href="./Opportunities.html">الفرص</a>
+            <a href="./Company-register.html">الشركات</a>
+            <a href="./Applicants.html">المتقدمون</a>
+            <a class="nav-login" href="./Login.html">تسجيل الدخول</a>
+        </nav>
+    </header>
 
-        <a href="./Applicants.html" class="action">
-            <h3>👥 المتقدمون</h3>
-            <p>عرض الطلاب المتقدمين ومتابعة طلباتهم.</p>
-        </a>
+    <main class="container">
 
-        <a href="./Opportunities.html" class="action">
-            <h3>🔎 عرض الفرص</h3>
-            <p>مشاهدة جميع الفرص الموجودة على المنصة.</p>
-        </a>
+        <section class="hero">
+            <div class="hero-content">
+                <span class="eyebrow">مساحة شركتك على LINKORA</span>
 
-    </div>
+                <h1 id="welcomeText">
+                    معًا نربط <span>التعليم بالصناعة</span>
+                </h1>
 
-    <div class="section">
-        <h2>الفرص المنشورة</h2>
-        <div id="opportunities">
-            <div class="empty">جاري تحميل الفرص...</div>
-        </div>
-    </div>
+                <p>
+                    انشر فرص التدريب والعمل، واكتشف المواهب الهندسية،
+                    وساعد الطلاب على الانتقال من الجامعة إلى سوق العمل.
+                </p>
 
-</div>
+                <a class="primary-btn" href="./Add-opportunity.html">
+                    + أضف فرصة جديدة
+                </a>
+            </div>
 
-<footer>
-    © 2026 من الجامعة إلى المصنع
-</footer>
+            <div class="hero-image">
+                <img
+                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=85"
+                    alt="مهندسة تعمل على مشروع تقني"
+                    onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#1769AA,#70C5E8)'"
+                >
 
-<script>
+                <div class="image-label">
+                    <strong>من الجامعة إلى المصنع</strong>
+                    <span>فرص حقيقية تربط الكفاءات باحتياجات الصناعة</span>
+                </div>
+            </div>
+        </section>
 
-    const companyEmail = localStorage.getItem("companyEmail");
+        <section class="stats">
+            <div class="stat">
+                <span class="stat-number" id="opportunityCount">—</span>
+                <span class="stat-label">فرص شركتك المنشورة</span>
+            </div>
 
-    if (!companyEmail) {
-        document.getElementById("welcomeText").textContent =
-            "لم يتم العثور على حساب شركة مسجل حاليًا.";
-    } else {
+            <div class="stat">
+                <span class="stat-number">01</span>
+                <span class="stat-label">مساحة واحدة لإدارة فرصك</span>
+            </div>
 
-        fetch(`/company-profile?email=${encodeURIComponent(companyEmail)}`)
-            .then(response => response.json())
-            .then(data => {
+            <div class="stat">
+                <span class="stat-number">∞</span>
+                <span class="stat-label">إمكانيات للتواصل مع المواهب</span>
+            </div>
+        </section>
 
-                const company = data.company || data;
+        <section class="section">
+            <div class="section-heading">
+                <h2>التعليم يلتقي بالصناعة</h2>
+                <p>مساحة تجمع الطلاب والمهندسين والمعامل والمصانع في طريق واحد.</p>
+            </div>
 
-                document.getElementById("companyName").textContent =
-                    company.name || "غير متوفر";
+            <div class="photo-grid">
+                <article class="photo-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=900&q=80"
+                        alt="فريق يعمل في بيئة هندسية"
+                        loading="lazy"
+                    >
+                    <div class="photo-card-content">
+                        <h3>المهندسون والخبرات</h3>
+                        <p>اكتشف المواهب التي يمكنها دعم فريق العمل في شركتك.</p>
+                    </div>
+                </article>
 
-                document.getElementById("companyField").textContent =
-                    company.field || "غير متوفر";
+                <article class="photo-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=900&q=80"
+                        alt="معدات وتقنيات هندسية"
+                        loading="lazy"
+                    >
+                    <div class="photo-card-content">
+                        <h3>المعامل والتكنولوجيا</h3>
+                        <p>اربط الدراسة العملية بالتقنيات المستخدمة في سوق العمل.</p>
+                    </div>
+                </article>
 
-                document.getElementById("companyLocation").textContent =
-                    company.location || "غير متوفر";
+                <article class="photo-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=900&q=80"
+                        alt="منشأة صناعية حديثة"
+                        loading="lazy"
+                    >
+                    <div class="photo-card-content">
+                        <h3>المصانع والصناعة</h3>
+                        <p>شارك فرص التدريب والعمل التي يحتاجها القطاع الصناعي.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
 
-                document.getElementById("companyEmail").textContent =
-                    company.email || companyEmail;
+        <section class="section">
+            <div class="section-heading">
+                <h2>إدارة شركتك</h2>
+                <p>كل الأدوات الأساسية التي تحتاجها في مكان واحد.</p>
+            </div>
 
-                document.getElementById("welcomeText").textContent =
-                    `مرحبًا بك في منصة من الجامعة إلى المصنع، ${company.name || "الشركة"} 👋`;
+            <div class="actions">
+                <a class="action-card" href="./Add-opportunity.html">
+                    <div class="action-icon">＋</div>
+                    <h3>إضافة فرصة</h3>
+                    <p>انشر فرصة تدريب أو وظيفة جديدة للطلاب والخريجين.</p>
+                    <span class="action-link">إضافة فرصة ←</span>
+                </a>
 
-            })
-            .catch(error => {
-                console.error(error);
+                <a class="action-card" href="./Edit-opportunity.html">
+                    <div class="action-icon">✎</div>
+                    <h3>إدارة الفرص</h3>
+                    <p>تابع فرص شركتك وعدّل بيانات الفرص المنشورة.</p>
+                    <span class="action-link">إدارة الفرص ←</span>
+                </a>
 
-                document.getElementById("welcomeText").textContent =
-                    "تعذر تحميل بيانات الشركة.";
+                <a class="action-card" href="./Applicants.html">
+                    <div class="action-icon">♙</div>
+                    <h3>طلبات التقديم</h3>
+                    <p>تابع الطلاب المتقدمين لفرص شركتك.</p>
+                    <span class="action-link">عرض المتقدمين ←</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <h2>بيانات الشركة</h2>
+                <p>معلومات حساب الشركة المسجل على المنصة.</p>
+            </div>
+
+            <div class="company-box">
+                <h3 id="companyName">بيانات الشركة</h3>
+
+                <div class="company-details">
+                    <div class="detail">
+                        <small>المجال</small>
+                        <strong id="companyField">جارٍ التحميل...</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>الموقع</small>
+                        <strong id="companyLocation">جارٍ التحميل...</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>البريد الإلكتروني</small>
+                        <strong id="companyEmail">جارٍ التحميل...</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>حساب الشركة</small>
+                        <strong>LINKORA</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <h2>فرص شركتك المنشورة</h2>
+                <p>آخر الفرص المرتبطة بحساب شركتك.</p>
+            </div>
+
+            <div class="opportunity-list" id="opportunities">
+                <div class="message">جارٍ تحميل الفرص...</div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="logo" style="color:#FFFFFF;">LINKORA</div>
+        <p>من الجامعة إلى سوق العمل — نربط التعليم بالصناعة ونصنع فرص المستقبل.</p>
+    </footer>
+
+    <script>
+        const API = "";
+
+        function getCompanyEmail() {
+            return (
+                localStorage.getItem("companyEmail") ||
+                localStorage.getItem("company_email") ||
+                ""
+            ).trim();
+        }
+
+        function showText(id, value, fallback = "غير متوفر") {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent =
+                    value !== undefined && value !== null && String(value).trim()
+                        ? String(value)
+                        : fallback;
+            }
+        }
+
+        async function fetchJSON(url, options = {}) {
+            const response = await fetch(API + url, options);
+
+            let data;
+            try {
+                data = await response.json();
+            } catch {
+                throw new Error("تعذر قراءة استجابة الخادم.");
+            }
+
+            if (!response.ok) {
+                throw new Error(data.message || data.error || "حدث خطأ في الاتصال.");
+            }
+
+            return data;
+        }
+
+        function getCompanyObject(data) {
+            if (!data) return {};
+            if (data.company && typeof data.company === "object") return data.company;
+            if (data.profile && typeof data.profile === "object") return data.profile;
+            return data;
+        }
+
+        async function loadCompanyProfile(email) {
+            try {
+                const data = await fetchJSON(
+                    "/company-profile?email=" + encodeURIComponent(email)
+                );
+
+                const company = getCompanyObject(data);
+
+                showText("companyName", company.name || company.companyName, "شركتك");
+                showText("companyField", company.field);
+                showText("companyLocation", company.location);
+                showText("companyEmail", company.email || email);
+
+                const name = company.name || company.companyName || "شركتك";
+                showText("welcomeText", "أهلًا بك في LINKORA، " + name);
+            } catch (error) {
+                showText("companyName", "بيانات الشركة");
+                showText("companyField", "تعذر تحميل البيانات");
+                showText("companyLocation", "تعذر تحميل البيانات");
+                showText("companyEmail", email);
+                console.error("Company profile:", error);
+            }
+        }
+
+        function renderOpportunities(items) {
+            const container = document.getElementById("opportunities");
+            container.replaceChildren();
+
+            const count = Array.isArray(items) ? items.length : 0;
+            showText("opportunityCount", count);
+
+            if (!count) {
+                const message = document.createElement("div");
+                message.className = "message";
+                message.textContent = "لا توجد فرص منشورة حاليًا. يمكنك إضافة أول فرصة لشركتك.";
+                container.appendChild(message);
+                return;
+            }
+
+            items.forEach((item) => {
+                const card = document.createElement("article");
+                card.className = "opportunity-item";
+
+                const info = document.createElement("div");
+                const title = document.createElement("h4");
+                title.textContent = item.title || item.opportunity_name || "فرصة بدون عنوان";
+
+                const description = document.createElement("p");
+                const details = [
+                    item.type,
+                    item.field,
+                    item.location
+                ].filter(Boolean);
+
+                description.textContent = details.length
+                    ? details.join(" • ")
+                    : "تفاصيل الفرصة متاحة من صفحة إدارة الفرص.";
+
+                info.append(title, description);
+
+                const status = document.createElement("span");
+                status.className = "status";
+                status.textContent = "منشورة";
+
+                card.append(info, status);
+                container.appendChild(card);
             });
+        }
 
-        fetch(`/company-opportunities?email=${encodeURIComponent(companyEmail)}`)
-            .then(response => response.json())
-            .then(data => {
+        async function loadCompanyOpportunities(email) {
+            const container = document.getElementById("opportunities");
 
-                const opportunities =
-                    Array.isArray(data) ? data : (data.opportunities || []);
+            try {
+                const data = await fetchJSON(
+                    "/company-opportunities?email=" + encodeURIComponent(email)
+                );
+
+                const items = Array.isArray(data)
+                    ? data
+                    : Array.isArray(data.opportunities)
+                        ? data.opportunities
+                        : Array.isArray(data.items)
+                            ? data.items
+                            : [];
+
+                renderOpportunities(items);
+            } catch (error) {
+                showText("opportunityCount", "—");
+
+                container.replaceChildren();
+
+                const message = document.createElement("div");
+                message.className = "message error-message";
+                message.textContent =
+                    "تعذر تحميل الفرص. تأكدي أن السيرفر يعمل، ثم حدّثي الصفحة.";
+                container.appendChild(message);
+
+                console.error("Company opportunities:", error);
+            }
+        }
+
+        async function initDashboard() {
+            const email = getCompanyEmail();
+
+            if (!email) {
+                showText("companyName", "لم يتم تحديد حساب الشركة");
+                showText("companyField", "سجلي الدخول أولًا");
+                showText("companyLocation", "—");
+                showText("companyEmail", "—");
+                showText("welcomeText", "أهلًا بك في LINKORA");
 
                 const container = document.getElementById("opportunities");
+                container.replaceChildren();
 
-                if (opportunities.length === 0) {
-                    container.innerHTML =
-                        `<div class="empty">لا توجد فرص منشورة حتى الآن.</div>`;
-                    return;
-                }
+                const message = document.createElement("div");
+                message.className = "message";
+                message.textContent = "سجلي الدخول بحساب الشركة لعرض بياناتك وفرصك المنشورة.";
 
-                container.innerHTML = "";
+                const loginLink = document.createElement("a");
+                loginLink.className = "primary-btn";
+                loginLink.href = "./Company-login.html";
+                loginLink.textContent = "تسجيل دخول الشركة";
+                loginLink.style.marginTop = "12px";
 
-                opportunities.forEach(opportunity => {
+                container.append(message, loginLink);
+                showText("opportunityCount", "—");
+                return;
+            }
 
-                    const div = document.createElement("div");
+            await Promise.all([
+                loadCompanyProfile(email),
+                loadCompanyOpportunities(email)
+            ]);
+        }
 
-                    div.className = "opportunity";
-
-                    div.innerHTML = `
-                        <h3>${opportunity.title || "بدون عنوان"}</h3>
-                        <p><strong>النوع:</strong> ${opportunity.type || "غير محدد"}</p>
-                        <p><strong>المجال:</strong> ${opportunity.field || "غير محدد"}</p>
-                        <p><strong>الموقع:</strong> ${opportunity.location || "غير محدد"}</p>
-                        <p><strong>آخر موعد:</strong> ${opportunity.deadline || "غير محدد"}</p>
-                    `;
-
-                    container.appendChild(div);
-                });
-
-            })
-            .catch(error => {
-
-                console.error(error);
-
-                document.getElementById("opportunities").innerHTML =
-                    `<div class="empty">تعذر تحميل الفرص.</div>`;
-            });
-    }
-
-</script>
+        document.addEventListener("DOMContentLoaded", initDashboard);
+    </script>
 
 </body>
 </html>
+```

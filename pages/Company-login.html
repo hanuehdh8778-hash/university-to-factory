@@ -1,10 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>دخول الشركة | من الجامعة إلى المصنع</title>
+    <title>دخول الشركة | LINKORA</title>
 
     <style>
         * {
@@ -14,89 +15,139 @@
             font-family: Arial, sans-serif;
         }
 
+        :root {
+            --blue: #1769AA;
+            --sky: #70C5E8;
+            --baby: #A7D8F0;
+            --light: #F1F8FC;
+            --navy: #123B5D;
+            --text: #52697A;
+            --white: #FFFFFF;
+        }
+
         body {
             min-height: 100vh;
-            background: #071426;
-            color: white;
+            background: var(--light);
+            color: var(--navy);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 24px;
         }
 
         .container {
             width: 100%;
-            max-width: 450px;
-            background: #0d1d33;
-            border: 1px solid rgba(212, 175, 55, 0.35);
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+            max-width: 460px;
+            background: var(--white);
+            border: 1px solid #DCECF5;
+            border-radius: 24px;
+            padding: 38px;
+            box-shadow: 0 15px 45px rgba(18, 59, 93, 0.10);
         }
 
         .logo {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 32px;
+        }
+
+        .logo-icon {
+            width: 65px;
+            height: 65px;
+            margin: 0 auto 15px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--blue), var(--sky));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 27px;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(23, 105, 170, 0.18);
         }
 
         .logo h1 {
-            color: #d4af37;
-            font-size: 24px;
-            margin-bottom: 8px;
+            color: var(--blue);
+            font-size: 25px;
+            margin-bottom: 9px;
+            direction: ltr;
         }
 
         .logo p {
-            color: #ddd;
+            color: var(--text);
             font-size: 15px;
         }
 
         h2 {
             text-align: center;
-            font-size: 24px;
-            margin-bottom: 25px;
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 28px;
         }
 
         .input-group {
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         label {
             display: block;
-            margin-bottom: 7px;
-            color: #eee;
+            margin-bottom: 9px;
+            color: var(--navy);
             font-size: 14px;
+            font-weight: bold;
         }
 
         input {
             width: 100%;
-            padding: 14px;
-            background: #071426;
-            border: 1px solid #33445c;
-            border-radius: 10px;
-            color: white;
+            padding: 15px;
+            background: #F8FBFD;
+            border: 1px solid #D5E5EF;
+            border-radius: 12px;
+            color: var(--navy);
             font-size: 15px;
             outline: none;
+            transition: 0.2s;
+        }
+
+        input::placeholder {
+            color: #91A6B5;
         }
 
         input:focus {
-            border-color: #d4af37;
+            border-color: var(--blue);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(112, 197, 232, 0.20);
         }
 
         button {
             width: 100%;
-            padding: 14px;
-            margin-top: 5px;
+            padding: 15px;
+            margin-top: 6px;
             border: none;
-            border-radius: 10px;
-            background: #d4af37;
-            color: #071426;
+            border-radius: 12px;
+            background: var(--blue);
+            color: white;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
+            transition: 0.2s;
         }
 
         button:hover {
-            background: #e3c45b;
+            background: var(--navy);
+            transform: translateY(-1px);
+        }
+
+        button:disabled {
+            opacity: 0.7;
+            cursor: wait;
+            transform: none;
         }
 
         .message {
@@ -104,15 +155,19 @@
             min-height: 22px;
             margin-top: 18px;
             font-size: 14px;
+            line-height: 1.7;
         }
 
         .links {
             text-align: center;
-            margin-top: 22px;
+            margin-top: 25px;
+            font-size: 14px;
+            line-height: 1.8;
         }
 
         .links a {
-            color: #d4af37;
+            color: var(--blue);
+            font-weight: bold;
             text-decoration: none;
         }
 
@@ -123,28 +178,46 @@
         .back {
             display: block;
             text-align: center;
-            margin-top: 18px;
-            color: #bbb;
+            margin-top: 22px;
+            color: var(--text);
             text-decoration: none;
             font-size: 14px;
         }
 
         .back:hover {
-            color: white;
+            color: var(--blue);
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 27px 22px;
+            }
+
+            .logo h1 {
+                font-size: 22px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
+    <main class="container">
 
         <div class="logo">
-            <h1>FROM UNIVERSITY TO FACTORY</h1>
-            <p>من الجامعة إلى المصنع</p>
+            <div class="logo-icon">L</div>
+            <h1>LINKORA</h1>
+            <p>من الجامعة إلى سوق العمل</p>
         </div>
 
-        <h2>دخول الشركة</h2>
+        <h2>أهلًا بعودتك!</h2>
+        <p class="subtitle">
+            سجّلي الدخول إلى حساب شركتك لإدارة الفرص والتواصل مع الطلاب.
+        </p>
 
         <form id="companyLoginForm">
 
@@ -153,7 +226,8 @@
                 <input
                     type="email"
                     id="email"
-                    placeholder="أدخل البريد الإلكتروني"
+                    placeholder="أدخلي البريد الإلكتروني"
+                    autocomplete="email"
                     required
                 >
             </div>
@@ -163,32 +237,35 @@
                 <input
                     type="password"
                     id="password"
-                    placeholder="أدخل كلمة المرور"
+                    placeholder="أدخلي كلمة المرور"
+                    autocomplete="current-password"
                     required
                 >
             </div>
 
-            <button type="submit">تسجيل الدخول</button>
+            <button type="submit" id="loginButton">
+                تسجيل الدخول
+            </button>
 
         </form>
 
-        <div class="message" id="message"></div>
+        <div class="message" id="message" role="status" aria-live="polite"></div>
 
         <div class="links">
-            <a href="./Company-register.html">
-                ليس لديك حساب؟ إنشاء حساب شركة
-            </a>
+            ليس لديك حساب؟
+            <a href="./Company-register.html">إنشاء حساب شركة</a>
         </div>
 
         <a class="back" href="../index.html">
-            العودة للصفحة الرئيسية
+            ← العودة للصفحة الرئيسية
         </a>
 
-    </div>
+    </main>
 
     <script>
         const form = document.getElementById("companyLoginForm");
         const message = document.getElementById("message");
+        const loginButton = document.getElementById("loginButton");
 
         form.addEventListener("submit", async function (e) {
             e.preventDefault();
@@ -197,7 +274,8 @@
             const password = document.getElementById("password").value;
 
             message.textContent = "جاري تسجيل الدخول...";
-            message.style.color = "#d4af37";
+            message.style.color = "#1769AA";
+            loginButton.disabled = true;
 
             try {
                 const response = await fetch("/company-login", {
@@ -214,7 +292,6 @@
                 const data = await response.json();
 
                 if (response.ok) {
-
                     localStorage.setItem(
                         "companyEmail",
                         data.email || email
@@ -223,7 +300,7 @@
                     message.textContent =
                         data.message || "تم تسجيل الدخول بنجاح";
 
-                    message.style.color = "#4ade80";
+                    message.style.color = "#16804A";
 
                     setTimeout(() => {
                         window.location.href =
@@ -231,24 +308,24 @@
                     }, 1000);
 
                 } else {
-
                     message.textContent =
-                        data.message || "البريد الإلكتروني أو كلمة المرور غير صحيحة";
+                        data.message ||
+                        "البريد الإلكتروني أو كلمة المرور غير صحيحة";
 
-                    message.style.color = "#ff6b6b";
+                    message.style.color = "#D93636";
+                    loginButton.disabled = false;
                 }
 
             } catch (error) {
-
                 console.error(error);
 
-                message.textContent =
-                    "تعذر الاتصال بالسيرفر";
-
-                message.style.color = "#ff6b6b";
+                message.textContent = "تعذر الاتصال بالسيرفر، حاولي مرة أخرى.";
+                message.style.color = "#D93636";
+                loginButton.disabled = false;
             }
         });
     </script>
 
 </body>
 </html>
+```

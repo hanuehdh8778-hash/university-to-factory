@@ -1,0 +1,717 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>اكتشف LINKORA</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --blue: #1769AA;
+    --sky: #70C5E8;
+    --cyan: #A7E5F8;
+    --dark: #123B5D;
+    --text: #52697A;
+    --bg: #F1F8FC;
+    --border: #DFEDF5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    color: var(--dark);
+    background: var(--bg);
+    line-height: 1.8;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.container {
+    width: min(1050px, 92%);
+    margin: auto;
+}
+
+/* Navbar */
+
+header {
+    background: white;
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+    padding: 12px 0;
+}
+
+.logo {
+    font-family: Arial, sans-serif;
+    direction: ltr;
+    font-size: 25px;
+    font-weight: 900;
+    color: var(--blue);
+}
+
+.logo span {
+    color: var(--dark);
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+}
+
+nav a {
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+nav a:hover {
+    color: var(--blue);
+}
+
+/* Intro */
+
+.intro {
+    padding: 55px 0 28px;
+    text-align: center;
+    background:
+        radial-gradient(circle at 50% 0%, #D7EFFB, transparent 65%),
+        linear-gradient(135deg, #F8FCFF, #EAF6FC);
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 15px;
+    background: white;
+    border: 1px solid #C9E5F4;
+    border-radius: 30px;
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+h1 {
+    font-size: clamp(30px, 5vw, 46px);
+    line-height: 1.5;
+    font-weight: 900;
+    margin: 15px 0 10px;
+}
+
+.highlight {
+    color: var(--blue);
+}
+
+.intro p {
+    max-width: 650px;
+    margin: auto;
+    color: var(--text);
+    font-size: 14px;
+}
+
+/* Interactive journey */
+
+.journey {
+    padding: 25px 0 65px;
+}
+
+.journey-card {
+    max-width: 850px;
+    margin: auto;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 18px 50px #123B5D12;
+}
+
+.progress-wrap {
+    padding: 22px 25px 0;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.progress-track {
+    height: 7px;
+    background: #EAF3F8;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 33.333%;
+    background: linear-gradient(90deg, var(--blue), var(--sky));
+    border-radius: inherit;
+    transition: width .5s ease;
+}
+
+.scene {
+    padding: 25px 35px 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 25px;
+    min-height: 330px;
+}
+
+.scene[hidden] {
+    display: none;
+}
+
+.scene-art {
+    min-height: 225px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #F2FAFE, #E5F4FC);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.scene-art svg {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+
+.scene.active .float {
+    animation: float 3s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.scene.active .appear {
+    animation: appear .65s ease both;
+}
+
+.scene.active .delay {
+    animation: appear .65s .18s ease both;
+}
+
+.scene-copy h2 {
+    font-size: clamp(23px, 3vw, 30px);
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.scene-copy p {
+    color: var(--text);
+    font-size: 14px;
+    margin-bottom: 17px;
+}
+
+.scene-number {
+    display: inline-block;
+    color: var(--blue);
+    background: #E8F5FC;
+    border-radius: 8px;
+    padding: 4px 11px;
+    font-size: 12px;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.scene-link {
+    display: inline-flex;
+    color: var(--blue);
+    font-weight: 900;
+    font-size: 13px;
+    border-bottom: 1px solid #B7DDEE;
+    padding-bottom: 3px;
+}
+
+.controls {
+    border-top: 1px solid var(--border);
+    padding: 18px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.controls button {
+    border: 0;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 900;
+    transition: .2s;
+}
+
+.controls button:hover {
+    transform: translateY(-2px);
+}
+
+.next-btn {
+    color: white;
+    background: var(--blue);
+}
+
+.next-btn:hover {
+    background: #10578F;
+}
+
+.prev-btn {
+    color: var(--blue);
+    background: #EAF6FC;
+}
+
+.prev-btn:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border: 0;
+    border-radius: 50%;
+    background: #C9DFEC;
+    padding: 0;
+}
+
+.dot.active {
+    background: var(--blue);
+    outline: 3px solid #D9EFFA;
+}
+
+/* Features */
+
+.features {
+    padding: 55px 0;
+    background: white;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 29px;
+    font-weight: 900;
+    margin-bottom: 25px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.card {
+    padding: 24px 18px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: #FBFDFF;
+    text-align: center;
+    transition: .25s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--sky);
+}
+
+.card-icon {
+    font-size: 31px;
+    margin-bottom: 8px;
+}
+
+.card h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.card p {
+    font-size: 13px;
+    color: var(--text);
+}
+
+/* Footer */
+
+footer {
+    padding: 22px 0;
+    text-align: center;
+    background: #102F48;
+    color: #DCEAF4;
+    font-size: 12px;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-9px); }
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 650px) {
+    .navbar {
+        justify-content: center;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+    .scene {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 18px;
+    }
+
+    .scene-art {
+        min-height: 190px;
+    }
+
+    .scene-copy {
+        text-align: center;
+    }
+
+    .controls {
+        justify-content: center;
+    }
+
+    .dots {
+        order: -1;
+        width: 100%;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container navbar">
+        <a href="../index.html" class="logo">LINK<span>ORA</span></a>
+
+        <nav>
+            <a href="../index.html">الرئيسية</a>
+            <a href="Opportunities.html">الفرص المتاحة</a>
+            <a href="Skills.html">طوّري مهاراتك</a>
+            <a href="Simulators.html">المعامل الافتراضية</a>
+            <a href="About.html">اكتشف LINKORA</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<section class="intro">
+    <div class="container">
+        <span class="badge">رحلة تفاعلية داخل LINKORA</span>
+        <h1>من الجامعة <span class="highlight">إلى سوق العمل</span></h1>
+        <p>
+            اكتشف إزاي LINKORA بتساعدك تتعلم، وتطوّر مهاراتك،
+            وتوصل لفرص التدريب والعمل — خطوة بخطوة.
+        </p>
+    </div>
+</section>
+
+<section class="journey">
+<div class="container">
+
+<div class="journey-card">
+
+    <div class="progress-wrap">
+        <div class="progress-info">
+            <span id="stepLabel">الخطوة ١ من ٣</span>
+            <span id="stepPercent">٣٣٪</span>
+        </div>
+        <div class="progress-track">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+    </div>
+
+    <!-- المشهد الأول -->
+    <section class="scene active" data-scene="0">
+        <div class="scene-art">
+            <svg viewBox="0 0 320 250" role="img" aria-label="رسم طالب جامعي">
+                <circle cx="160" cy="120" r="90" fill="#D9F0FC"/>
+                <g class="float">
+                    <rect x="73" y="154" width="174" height="55" rx="10" fill="#1769AA"/>
+                    <rect x="90" y="164" width="140" height="8" rx="4" fill="#70C5E8"/>
+                    <rect x="112" y="179" width="96" height="7" rx="3" fill="#FFFFFF" opacity=".85"/>
+                    <rect x="135" y="191" width="50" height="6" rx="3" fill="#FFFFFF" opacity=".65"/>
+                </g>
+                <g class="appear">
+                    <path d="M113 94 L160 75 L207 94 L160 113 Z" fill="#2489C5"/>
+                    <path d="M130 101 L130 119 Q160 143 190 119 L190 101 L160 113 Z" fill="#1769AA"/>
+                    <path d="M207 94 V120" stroke="#1769AA" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="207" cy="125" r="6" fill="#70C5E8"/>
+                </g>
+                <g class="delay">
+                    <circle cx="88" cy="80" r="13" fill="#FFFFFF"/>
+                    <path d="M82 80 L87 85 L95 74" fill="none" stroke="#1769AA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="236" cy="64" r="10" fill="#70C5E8"/>
+                    <path d="M232 64 L236 68 L242 60" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+            </svg>
+        </div>
+
+        <div class="scene-copy">
+            <span class="scene-number">الخطوة الأولى</span>
+            <h2>كل رحلة عظيمة بتبدأ من الجامعة 🎓</h2>
+            <p>
+                عندك علم وطموح، لكن محتاج تعرف إزاي تحوّل اللي بتدرسه
+                لمهارات وخبرة تساعدك في مستقبلك المهني.
+            </p>
+            <a class="scene-link" href="Student-register.html">
+                ابدأ بإنشاء حساب طالب ←
+            </a>
+        </div>
+    </section>
+
+    <!-- المشهد الثاني -->
+    <section class="scene" data-scene="1" hidden>
+        <div class="scene-art">
+            <svg viewBox="0 0 320 250" role="img" aria-label="رسم معمل إلكترونيات">
+                <circle cx="160" cy="120" r="90" fill="#D9F0FC"/>
+                <g class="float">
+                    <rect x="67" y="75" width="186" height="115" rx="12" fill="#123B5D"/>
+                    <rect x="80" y="88" width="160" height="88" rx="7" fill="#E8F7FD"/>
+                    <rect x="98" y="105" width="44" height="38" rx="5" fill="#1769AA"/>
+                    <rect x="175" y="105" width="44" height="38" rx="5" fill="#70C5E8"/>
+                    <path d="M142 124 H175 M120 143 V158 H198 V143" fill="none" stroke="#1769AA" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="120" cy="124" r="6" fill="#FFFFFF"/>
+                    <circle cx="197" cy="124" r="6" fill="#FFFFFF"/>
+                </g>
+                <g class="appear">
+                    <path d="M104 62 L125 62 L125 76 L104 76 Z" fill="#70C5E8"/>
+                    <path d="M113 55 V62 M116 55 V62" stroke="#1769AA" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="225" cy="66" r="13" fill="#FFFFFF"/>
+                    <path d="M219 66 L224 71 L232 61" fill="none" stroke="#1769AA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+            </svg>
+        </div>
+
+        <div class="scene-copy">
+            <span class="scene-number">الخطوة الثانية</span>
+            <h2>اتعلّم وجرّب بنفسك 🧪</h2>
+            <p>
+                اكتشف المعامل الافتراضية، وجرّب محاكاة تعليمية
+                في الكهرباء والإلكترونيات والميكانيكا والتبريد والبناء.
+            </p>
+            <a class="scene-link" href="Simulators.html">
+                استكشف المعامل الافتراضية ←
+            </a>
+        </div>
+    </section>
+
+    <!-- المشهد الثالث -->
+    <section class="scene" data-scene="2" hidden>
+        <div class="scene-art">
+            <svg viewBox="0 0 320 250" role="img" aria-label="رسم مصنع وفرص مهنية">
+                <circle cx="160" cy="120" r="90" fill="#D9F0FC"/>
+                <g class="float">
+                    <path d="M65 190 V119 L119 150 V119 L173 150 V98 H250 V190 Z" fill="#1769AA"/>
+                    <rect x="190" y="119" width="20" height="24" rx="3" fill="#A7E5F8"/>
+                    <rect x="220" y="119" width="20" height="24" rx="3" fill="#A7E5F8"/>
+                    <rect x="86" y="164" width="24" height="26" rx="3" fill="#A7E5F8"/>
+                    <rect x="125" y="164" width="24" height="26" rx="3" fill="#A7E5F8"/>
+                    <rect x="188" y="157" width="45" height="33" rx="4" fill="#70C5E8"/>
+                    <path d="M202 157 V143 Q210 132 218 143 V157" fill="none" stroke="#123B5D" stroke-width="4"/>
+                </g>
+                <g class="appear">
+                    <circle cx="91" cy="77" r="20" fill="#FFFFFF"/>
+                    <path d="M81 77 L89 85 L102 68" fill="none" stroke="#1769AA" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M209 66 L220 55 L231 66 L220 77 Z" fill="#70C5E8"/>
+                </g>
+            </svg>
+        </div>
+
+        <div class="scene-copy">
+            <span class="scene-number">الخطوة الثالثة</span>
+            <h2>قرّب حلمك من الواقع 🏭</h2>
+            <p>
+                اكتشف فرص التدريب والعمل، وقدّم على الفرص المناسبة،
+                وابدأ بناء خبرتك والتواصل مع الشركات والمصانع.
+            </p>
+            <a class="scene-link" href="Opportunities.html">
+                استكشف الفرص المتاحة ←
+            </a>
+        </div>
+    </section>
+
+    <div class="controls">
+        <button type="button" class="prev-btn" id="prevBtn" disabled>
+            → السابق
+        </button>
+
+        <div class="dots" aria-label="اختيار مشهد">
+            <button type="button" class="dot active" data-go="0" aria-label="المشهد الأول"></button>
+            <button type="button" class="dot" data-go="1" aria-label="المشهد الثاني"></button>
+            <button type="button" class="dot" data-go="2" aria-label="المشهد الثالث"></button>
+        </div>
+
+        <button type="button" class="next-btn" id="nextBtn">
+            التالي ←
+        </button>
+    </div>
+
+</div>
+</div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <h2 class="section-title">كل اللي تحتاجه في مكان واحد</h2>
+
+        <div class="cards">
+            <article class="card">
+                <div class="card-icon">🎓</div>
+                <h3>فرص للطلاب</h3>
+                <p>اكتشف فرص التدريب والعمل المناسبة لتخصصك.</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">🧪</div>
+                <h3>تطبيق عملي</h3>
+                <p>جرّب المعامل الافتراضية وطوّر مهاراتك التقنية.</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">🏭</div>
+                <h3>تواصل مع الشركات</h3>
+                <p>اقترب من احتياجات سوق العمل وخطوتك المهنية القادمة.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div class="container">
+        LINKORA © 2026 — من الجامعة إلى سوق العمل
+    </div>
+</footer>
+
+<script>
+(() => {
+    const scenes = Array.from(document.querySelectorAll("[data-scene]"));
+    const dots = Array.from(document.querySelectorAll("[data-go]"));
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const progressBar = document.getElementById("progressBar");
+    const stepLabel = document.getElementById("stepLabel");
+    const stepPercent = document.getElementById("stepPercent");
+
+    let current = 0;
+
+    const arabicNumbers = ["١", "٢", "٣"];
+    const percentages = ["٣٣٪", "٦٧٪", "١٠٠٪"];
+
+    function showScene(index) {
+        current = Math.max(0, Math.min(index, scenes.length - 1));
+
+        scenes.forEach((scene, i) => {
+            const isActive = i === current;
+            scene.hidden = !isActive;
+            scene.classList.toggle("active", isActive);
+        });
+
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === current);
+            dot.setAttribute("aria-current", i === current ? "step" : "false");
+        });
+
+        stepLabel.textContent =
+            "الخطوة " + arabicNumbers[current] + " من " + arabicNumbers.length;
+
+        stepPercent.textContent = percentages[current];
+        progressBar.style.width = ((current + 1) / scenes.length * 100) + "%";
+
+        prevBtn.disabled = current === 0;
+
+        if (current === scenes.length - 1) {
+            nextBtn.textContent = "ابدأ رحلتك 🚀";
+        } else {
+            nextBtn.textContent = "التالي ←";
+        }
+    }
+
+    prevBtn.addEventListener("click", () => {
+        showScene(current - 1);
+    });
+
+    nextBtn.addEventListener("click", () => {
+        if (current < scenes.length - 1) {
+            showScene(current + 1);
+        } else {
+            window.location.href = "Opportunities.html";
+        }
+    });
+
+    dots.forEach(dot => {
+        dot.addEventListener("click", () => {
+            showScene(Number(dot.dataset.go));
+        });
+    });
+
+    showScene(0);
+})();
+</script>
+
+</body>
+</html>

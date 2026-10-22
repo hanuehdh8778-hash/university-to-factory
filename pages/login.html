@@ -1,14 +1,28 @@
-```html
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F1F8FC">
 
-    <title>تسجيل الدخول | من الجامعة إلى المصنع</title>
+    <title>تسجيل الدخول | LINKORA</title>
 
     <style>
+        :root {
+            --blue: #1769AA;
+            --baby-blue: #A7D8F0;
+            --sky-blue: #70C5E8;
+            --navy: #123B5D;
+            --background: #F1F8FC;
+            --text: #52697A;
+            --white: #FFFFFF;
+            --border: #DCEAF3;
+            --success: #16845B;
+            --error: #C83D4D;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -17,62 +31,104 @@
 
         body {
             font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-            background: #071426;
-            color: white;
+            background: var(--background);
+            color: var(--navy);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
         }
 
         header {
-            padding: 20px 7%;
+            background: var(--white);
+            padding: 17px 7%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(212, 175, 55, .25);
+            gap: 20px;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 3px 15px rgba(18, 59, 93, 0.04);
+        }
+
+        .brand {
+            flex-shrink: 0;
         }
 
         .logo-en {
-            color: #d4af37;
-            font-size: 19px;
-            font-weight: 800;
+            color: var(--blue);
+            font-size: 25px;
+            font-weight: 900;
             letter-spacing: 2px;
         }
 
         .logo-ar {
-            color: #ddd;
-            font-size: 13px;
+            color: var(--text);
+            font-size: 12px;
             margin-top: 4px;
         }
 
         nav {
             display: flex;
-            gap: 25px;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
         }
 
         nav a {
-            color: #ddd;
-            text-decoration: none;
-            transition: .3s;
+            color: var(--navy);
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
         }
 
-        nav a:hover {
-            color: #d4af37;
+        nav a:hover,
+        nav a.active {
+            color: var(--blue);
         }
 
         .page {
-            min-height: calc(100vh - 150px);
+            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 60px 20px;
+            padding: 45px 20px;
+            background:
+                radial-gradient(
+                    circle at 10% 15%,
+                    rgba(167, 216, 240, 0.32),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 85%,
+                    rgba(112, 197, 232, 0.20),
+                    transparent 28%
+                ),
+                var(--background);
         }
 
         .login-card {
             width: min(470px, 100%);
-            background: #0c2038;
-            border: 1px solid rgba(212, 175, 55, .25);
-            border-radius: 18px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 22px;
             padding: 38px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, .25);
+            box-shadow: 0 18px 55px rgba(18, 59, 93, 0.10);
+        }
+
+        .icon-box {
+            width: 65px;
+            height: 65px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #E5F5FC;
+            border-radius: 18px;
+            color: var(--blue);
+            font-size: 30px;
         }
 
         .title {
@@ -81,20 +137,23 @@
         }
 
         .label {
-            color: #d4af37;
-            font-size: 13px;
-            letter-spacing: 3px;
-            font-weight: bold;
+            color: var(--blue);
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: 800;
             margin-bottom: 10px;
         }
 
         .title h1 {
-            font-size: 34px;
-            margin-bottom: 8px;
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: var(--navy);
         }
 
         .title p {
-            color: #9daaba;
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.8;
         }
 
         .form-group {
@@ -103,58 +162,70 @@
 
         label {
             display: block;
-            color: #d4af37;
-            margin-bottom: 8px;
-            font-weight: bold;
+            color: var(--navy);
+            margin-bottom: 9px;
+            font-size: 14px;
+            font-weight: 700;
         }
 
         input {
             width: 100%;
-            padding: 14px 16px;
-            border-radius: 9px;
-            border: 1px solid rgba(255, 255, 255, .12);
-            background: #071426;
-            color: white;
+            padding: 14px 15px;
+            border-radius: 11px;
+            border: 1px solid var(--border);
+            background: #FAFCFE;
+            color: var(--navy);
             font-size: 15px;
+            font-family: inherit;
             outline: none;
+            transition: 0.2s;
+        }
+
+        input::placeholder {
+            color: #98AAB8;
         }
 
         input:focus {
-            border-color: #d4af37;
+            border-color: var(--blue);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(23, 105, 170, 0.09);
         }
 
         button {
             width: 100%;
             padding: 14px;
             border: none;
-            border-radius: 9px;
-            background: #d4af37;
-            color: #071426;
-            font-size: 16px;
-            font-weight: bold;
+            border-radius: 11px;
+            background: var(--blue);
+            color: var(--white);
+            font-size: 15px;
+            font-family: inherit;
+            font-weight: 800;
             cursor: pointer;
-            transition: .3s;
+            transition: 0.25s;
             margin-top: 5px;
         }
 
         button:hover {
+            background: var(--navy);
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, .2);
+            box-shadow: 0 8px 20px rgba(23, 105, 170, 0.18);
         }
 
         button:disabled {
-            opacity: .6;
+            opacity: 0.65;
             cursor: not-allowed;
             transform: none;
+            box-shadow: none;
         }
 
         .forgot {
             display: block;
             text-align: center;
-            margin-top: 15px;
-            color: #d4af37;
-            text-decoration: none;
-            font-size: 14px;
+            margin-top: 17px;
+            color: var(--blue);
+            font-size: 13px;
+            font-weight: 700;
             cursor: pointer;
         }
 
@@ -165,86 +236,108 @@
         .message {
             text-align: center;
             margin-top: 18px;
-            line-height: 1.7;
+            line-height: 1.8;
+            font-size: 14px;
+            overflow-wrap: anywhere;
         }
 
         .register {
             text-align: center;
-            margin-top: 22px;
-            color: #9daaba;
+            margin-top: 24px;
+            color: var(--text);
+            font-size: 14px;
         }
 
         .register a {
-            color: #d4af37;
-            text-decoration: none;
-            font-weight: bold;
+            color: var(--blue);
+            font-weight: 800;
+        }
+
+        .register a:hover {
+            text-decoration: underline;
         }
 
         .back {
             display: block;
             text-align: center;
-            margin-top: 18px;
-            color: #d4af37;
-            text-decoration: none;
+            margin-top: 19px;
+            color: var(--text);
+            font-size: 13px;
         }
 
-        footer {
-            text-align: center;
-            padding: 25px;
-            color: #8995a5;
-            border-top: 1px solid rgba(212, 175, 55, .2);
-        }
-
-        footer span {
-            color: #d4af37;
+        .back:hover {
+            color: var(--blue);
         }
 
         .reset-box {
             display: none;
             margin-top: 25px;
             padding-top: 25px;
-            border-top: 1px solid rgba(212, 175, 55, .2);
+            border-top: 1px solid var(--border);
         }
 
         .reset-title {
             text-align: center;
-            color: #d4af37;
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 18px;
+            color: var(--blue);
+            font-size: 19px;
+            font-weight: 800;
+            margin-bottom: 20px;
         }
 
         .cancel {
-            background: transparent;
-            color: #9daaba;
-            border: 1px solid rgba(255, 255, 255, .15);
+            background: var(--white);
+            color: var(--text);
+            border: 1px solid var(--border);
             margin-top: 10px;
         }
 
         .cancel:hover {
+            background: var(--background);
+            color: var(--navy);
             box-shadow: none;
             transform: none;
         }
 
-        @media (max-width: 650px) {
+        footer {
+            text-align: center;
+            padding: 22px 15px;
+            color: var(--text);
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            font-size: 13px;
+        }
 
+        footer span {
+            color: var(--blue);
+            font-weight: 800;
+        }
+
+        @media (max-width: 700px) {
             header {
                 flex-direction: column;
-                gap: 18px;
+                padding: 18px 5%;
+                gap: 15px;
             }
 
             nav {
-                gap: 14px;
-                flex-wrap: wrap;
                 justify-content: center;
+                gap: 13px 18px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .page {
+                padding: 30px 15px;
             }
 
             .login-card {
-                padding: 25px;
+                padding: 28px 22px;
             }
 
             .title h1 {
-                font-size: 29px;
+                font-size: 27px;
             }
         }
     </style>
@@ -253,96 +346,56 @@
 <body>
 
     <header>
-
-        <div>
-            <div class="logo-en">
-                FROM UNIVERSITY TO FACTORY
-            </div>
-
-            <div class="logo-ar">
-                من الجامعة إلى المصنع
-            </div>
-        </div>
+        <a class="brand" href="../index.html">
+            <div class="logo-en">LINKORA</div>
+            <div class="logo-ar">من الجامعة إلى سوق العمل</div>
+        </a>
 
         <nav>
-
-            <a href="../index.html">
-                الرئيسية
-            </a>
-
-            <a href="./Opportunities.html">
-                الفرص
-            </a>
-
-            <a href="./Company-register.html">
-                الشركات
-            </a>
-
-            <a href="./Login.html">
-                تسجيل الدخول
-            </a>
-
+            <a href="../index.html">الرئيسية</a>
+            <a href="./Opportunities.html">الفرص</a>
+            <a href="./Student-register.html">أنا طالب</a>
+            <a href="./Company-register.html">الشركات</a>
+            <a href="./Login.html" class="active">تسجيل الدخول</a>
         </nav>
-
     </header>
-
 
     <main class="page">
 
-        <div class="login-card">
+        <section class="login-card">
+
+            <div class="icon-box" aria-hidden="true">↗</div>
 
             <div class="title">
-
-                <div class="label">
-                    STUDENT LOGIN
-                </div>
-
-                <h1>
-                    تسجيل الدخول
-                </h1>
-
-                <p>
-                    ادخلي لحسابك وتابعي فرصك وتقديماتك
-                </p>
-
+                <div class="label">WELCOME BACK TO LINKORA</div>
+                <p>سجّل دخولك وتابع فرصك وتقديماتك وخطوتك الجاية في سوق العمل.</p>
             </div>
-
-
-            <!-- تسجيل الدخول -->
 
             <form id="loginForm">
 
                 <div class="form-group">
-
-                    <label for="email">
-                        البريد الإلكتروني
-                    </label>
-
+                    <label for="email">البريد الإلكتروني</label>
                     <input
                         type="email"
                         id="email"
+                        name="email"
                         placeholder="example@email.com"
+                        autocomplete="email"
                         required
                     >
-
                 </div>
 
-
                 <div class="form-group">
-
-                    <label for="password">
-                        كلمة المرور
-                    </label>
-
+                    <label for="password">كلمة المرور</label>
                     <input
                         type="password"
                         id="password"
-                        placeholder="أدخلي كلمة المرور"
+                        name="password"
+                        placeholder="أدخل كلمة المرور"
+                        autocomplete="current-password"
                         required
                     >
-
                 </div>
-
 
                 <button type="submit" id="loginButton">
                     تسجيل الدخول
@@ -350,72 +403,47 @@
 
             </form>
 
-
-            <!-- نسيت كلمة المرور -->
-
-            <a class="forgot" id="forgotPassword">
+            <a class="forgot" id="forgotPassword" href="#resetBox">
                 نسيت كلمة المرور؟
             </a>
 
-
-            <!-- صندوق تغيير كلمة المرور -->
-
             <div class="reset-box" id="resetBox">
 
-                <div class="reset-title">
-                    تغيير كلمة المرور
-                </div>
-
+                <div class="reset-title">تغيير كلمة المرور</div>
 
                 <div class="form-group">
-
-                    <label for="resetEmail">
-                        البريد الإلكتروني
-                    </label>
-
+                    <label for="resetEmail">البريد الإلكتروني</label>
                     <input
                         type="email"
                         id="resetEmail"
                         placeholder="example@email.com"
+                        autocomplete="email"
                     >
-
                 </div>
 
-
                 <div class="form-group">
-
-                    <label for="newPassword">
-                        كلمة المرور الجديدة
-                    </label>
-
+                    <label for="newPassword">كلمة المرور الجديدة</label>
                     <input
                         type="password"
                         id="newPassword"
                         placeholder="6 أحرف أو أرقام على الأقل"
+                        autocomplete="new-password"
                     >
-
                 </div>
 
-
                 <div class="form-group">
-
-                    <label for="confirmPassword">
-                        تأكيد كلمة المرور
-                    </label>
-
+                    <label for="confirmPassword">تأكيد كلمة المرور</label>
                     <input
                         type="password"
                         id="confirmPassword"
-                        placeholder="أعيدي كتابة كلمة المرور"
+                        placeholder="أعد كتابة كلمة المرور"
+                        autocomplete="new-password"
                     >
-
                 </div>
-
 
                 <button type="button" id="resetButton">
                     تغيير كلمة المرور
                 </button>
-
 
                 <button type="button" class="cancel" id="cancelReset">
                     إلغاء
@@ -423,207 +451,95 @@
 
             </div>
 
-
-            <div id="message" class="message"></div>
-
+            <div id="message" class="message" role="status" aria-live="polite"></div>
 
             <div class="register">
-
                 ليس لديك حساب؟
-
-                <a href="./Register.html">
-                    إنشاء حساب
-                </a>
-
+                <a href="./Student-register.html">إنشاء حساب طالب</a>
             </div>
 
+            <a class="back" href="../index.html">← العودة للرئيسية</a>
 
-            <a class="back" href="../index.html">
-                ← العودة للرئيسية
-            </a>
-
-        </div>
+        </section>
 
     </main>
 
-
     <footer>
-
-        © 2026
-        <span>
-            From University To Factory
-        </span>
-        — جميع الحقوق محفوظة
-
+        © 2026 <span>LINKORA</span> — من الجامعة إلى سوق العمل
     </footer>
 
-
     <script>
+        const form = document.getElementById("loginForm");
+        const button = document.getElementById("loginButton");
+        const message = document.getElementById("message");
 
-        /* =========================
-           تسجيل الدخول
-        ========================= */
+        function showMessage(text, type = "error") {
+            message.style.color = type === "success"
+                ? "#16845B"
+                : "#C83D4D";
 
-        const form =
-            document.getElementById("loginForm");
+            message.textContent = text;
+        }
 
-        const button =
-            document.getElementById("loginButton");
-
-        const message =
-            document.getElementById("message");
-
-
+        /* تسجيل الدخول */
         form.addEventListener("submit", async function (event) {
-
             event.preventDefault();
 
-
-            const email =
-                document.getElementById("email").value.trim();
-
-            const password =
-                document.getElementById("password").value;
-
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
 
             button.disabled = true;
-
-            button.textContent =
-                "جاري تسجيل الدخول...";
-
+            button.textContent = "جاري تسجيل الدخول...";
             message.textContent = "";
 
-
             try {
+                const response = await fetch("/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, password })
+                });
 
-                const response =
-                    await fetch("/login", {
-
-                        method: "POST",
-
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-
-                        body: JSON.stringify({
-                            email: email,
-                            password: password
-                        })
-
-                    });
-
-
-                const data =
-                    await response.json();
-
+                const data = await response.json();
 
                 if (!response.ok) {
-
-                    message.style.color =
-                        "#ff7777";
-
-                    message.textContent =
-                        data.message ||
-                        "بيانات الدخول غير صحيحة";
-
-                    button.disabled = false;
-
-                    button.textContent =
-                        "تسجيل الدخول";
-
+                    showMessage(data.message || "بيانات الدخول غير صحيحة");
                     return;
                 }
 
-
                 const userData = {
-
-                    name:
-                        data.user?.name ||
-                        data.name ||
-                        "",
-
-                    email:
-                        data.user?.email ||
-                        data.email ||
-                        email
-
+                    name: data.user?.name || data.name || "",
+                    email: data.user?.email || data.email || email
                 };
 
+                localStorage.setItem("user", JSON.stringify(userData));
+                localStorage.setItem("userEmail", userData.email);
+                localStorage.setItem("student", JSON.stringify(userData));
+                localStorage.setItem("userData", JSON.stringify(userData));
 
-                localStorage.setItem(
-                    "user",
-                    JSON.stringify(userData)
-                );
-
-
-                localStorage.setItem(
-                    "userEmail",
-                    userData.email
-                );
-
-
-                localStorage.setItem(
-                    "student",
-                    JSON.stringify(userData)
-                );
-
-
-                localStorage.setItem(
-                    "userData",
-                    JSON.stringify(userData)
-                );
-
-
-                message.style.color =
-                    "#d4af37";
-
-                message.textContent =
-                    "✅ تم تسجيل الدخول بنجاح";
-
+                showMessage("تم تسجيل الدخول بنجاح", "success");
 
                 setTimeout(function () {
-
-                    window.location.href =
-                        "./Student-dashboard.html";
-
+                    window.location.href = "./Student-dashboard.html";
                 }, 700);
 
-
             } catch (error) {
-
                 console.error(error);
-
-                message.style.color =
-                    "#ff7777";
-
-                message.textContent =
-                    "حدث خطأ في الاتصال بالسيرفر.";
-
+                showMessage("حصلت مشكلة في الاتصال بالسيرفر. تأكد إن السيرفر شغال.");
+            } finally {
                 button.disabled = false;
-
-                button.textContent =
-                    "تسجيل الدخول";
-
+                button.textContent = "تسجيل الدخول";
             }
-
         });
 
+        /* إظهار نموذج تغيير كلمة المرور */
+        const forgotPassword = document.getElementById("forgotPassword");
+        const resetBox = document.getElementById("resetBox");
+        const cancelReset = document.getElementById("cancelReset");
 
-        /* =========================
-           إظهار تغيير كلمة المرور
-        ========================= */
-
-        const forgotPassword =
-            document.getElementById("forgotPassword");
-
-        const resetBox =
-            document.getElementById("resetBox");
-
-        const cancelReset =
-            document.getElementById("cancelReset");
-
-
-        forgotPassword.addEventListener("click", function () {
+        forgotPassword.addEventListener("click", function (event) {
+            event.preventDefault();
 
             resetBox.style.display = "block";
 
@@ -632,170 +548,85 @@
 
             message.textContent = "";
 
+            resetBox.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest"
+            });
         });
-
 
         cancelReset.addEventListener("click", function () {
-
             resetBox.style.display = "none";
-
             message.textContent = "";
-
         });
 
-
-        /* =========================
-           تغيير كلمة المرور
-        ========================= */
-
-        const resetButton =
-            document.getElementById("resetButton");
-
+        /* تغيير كلمة المرور */
+        const resetButton = document.getElementById("resetButton");
 
         resetButton.addEventListener("click", async function () {
-
-            const email =
-                document.getElementById("resetEmail").value.trim();
-
-            const newPassword =
-                document.getElementById("newPassword").value;
-
-            const confirmPassword =
-                document.getElementById("confirmPassword").value;
-
+            const email = document.getElementById("resetEmail").value.trim();
+            const newPassword = document.getElementById("newPassword").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
 
             if (!email || !newPassword || !confirmPassword) {
-
-                message.style.color =
-                    "#ff7777";
-
-                message.textContent =
-                    "من فضلك املئي جميع البيانات";
-
+                showMessage("من فضلك املأ جميع البيانات");
                 return;
-
             }
-
 
             if (newPassword.length < 6) {
-
-                message.style.color =
-                    "#ff7777";
-
-                message.textContent =
-                    "كلمة المرور لازم تكون 6 أحرف أو أرقام على الأقل";
-
+                showMessage("كلمة المرور لازم تكون 6 أحرف أو أرقام على الأقل");
                 return;
-
             }
-
 
             if (newPassword !== confirmPassword) {
-
-                message.style.color =
-                    "#ff7777";
-
-                message.textContent =
-                    "كلمتا المرور غير متطابقتين";
-
+                showMessage("كلمتا المرور غير متطابقتين");
                 return;
-
             }
-
 
             resetButton.disabled = true;
-
-            resetButton.textContent =
-                "جاري تغيير كلمة المرور...";
-
+            resetButton.textContent = "جاري تغيير كلمة المرور...";
+            message.textContent = "";
 
             try {
+                const response = await fetch("/reset-password", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email,
+                        newPassword
+                    })
+                });
 
-                const response =
-                    await fetch("/reset-password", {
-
-                        method: "POST",
-
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-
-                        body: JSON.stringify({
-
-                            email: email,
-
-                            newPassword: newPassword
-
-                        })
-
-                    });
-
-
-                const data =
-                    await response.json();
-
+                const data = await response.json();
 
                 if (!response.ok) {
-
-                    message.style.color =
-                        "#ff7777";
-
-                    message.textContent =
-                        data.message ||
-                        "تعذر تغيير كلمة المرور";
-
-                    resetButton.disabled = false;
-
-                    resetButton.textContent =
-                        "تغيير كلمة المرور";
-
+                    showMessage(data.message || "تعذر تغيير كلمة المرور");
                     return;
-
                 }
 
+                showMessage(
+                    "تم تغيير كلمة المرور بنجاح. يمكنك تسجيل الدخول الآن.",
+                    "success"
+                );
 
-                message.style.color =
-                    "#d4af37";
+                document.getElementById("email").value = email;
+                document.getElementById("password").value = newPassword;
 
-                message.textContent =
-                    "✅ تم تغيير كلمة المرور بنجاح. تقدري تسجلي دخول دلوقتي";
+                document.getElementById("newPassword").value = "";
+                document.getElementById("confirmPassword").value = "";
 
-
-                document.getElementById("password").value =
-                    newPassword;
-
-                resetBox.style.display =
-                    "none";
-
-
-                resetButton.disabled = false;
-
-                resetButton.textContent =
-                    "تغيير كلمة المرور";
-
+                resetBox.style.display = "none";
 
             } catch (error) {
-
                 console.error(error);
-
-                message.style.color =
-                    "#ff7777";
-
-                message.textContent =
-                    "حدث خطأ في الاتصال بالسيرفر";
-
+                showMessage("حصلت مشكلة في الاتصال بالسيرفر.");
+            } finally {
                 resetButton.disabled = false;
-
-                resetButton.textContent =
-                    "تغيير كلمة المرور";
-
+                resetButton.textContent = "تغيير كلمة المرور";
             }
-
         });
-
     </script>
 
 </body>
-
 </html>
-```

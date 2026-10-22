@@ -1,61 +1,195 @@
 
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل طالب | LINKORA</title>
 
-    <title>تسجيل طالب | من الجامعة إلى المصنع</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+        }
+
+        :root {
+            --blue: #1769AA;
+            --sky: #70C5E8;
+            --baby: #A7D8F0;
+            --navy: #123B5D;
+            --background: #F1F8FC;
+            --white: #FFFFFF;
+            --text: #24445E;
+            --muted: #71879A;
         }
 
         body {
             min-height: 100vh;
-            background: #071426;
-            color: white;
+            background: var(--background);
+            color: var(--text);
+            font-family: 'Cairo', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .topbar {
+            min-height: 78px;
+            padding: 14px 6%;
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 30px 15px;
+            justify-content: space-between;
+            gap: 20px;
+            background: var(--white);
+            border-bottom: 1px solid #E0EDF5;
         }
 
-        .container {
+        .brand {
+            color: var(--navy);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 27px;
+            font-weight: 800;
+            direction: ltr;
+        }
+
+        .brand span {
+            color: var(--blue);
+        }
+
+        .brand-caption {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        .home-link {
+            color: var(--blue);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .home-link:hover {
+            color: var(--navy);
+        }
+
+        .page {
+            width: min(1150px, 92%);
+            margin: 38px auto;
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            align-items: stretch;
+            gap: 25px;
+        }
+
+        .visual {
+            position: relative;
+            min-height: 650px;
+            overflow: hidden;
+            border-radius: 25px;
+            background: var(--navy);
+            box-shadow: 0 15px 40px rgba(18, 59, 93, 0.12);
+        }
+
+        .visual img {
+            position: absolute;
+            inset: 0;
             width: 100%;
-            max-width: 520px;
-            background: #0d1d33;
-            border: 1px solid rgba(212, 175, 55, 0.35);
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+            height: 100%;
+            object-fit: cover;
         }
 
-        .logo {
-            text-align: center;
-            margin-bottom: 30px;
+        .visual::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(9, 38, 63, 0.96),
+                rgba(18, 59, 93, 0.38),
+                rgba(18, 59, 93, 0.05)
+            );
         }
 
-        .logo h1 {
-            color: #d4af37;
-            font-size: 25px;
+        .visual-content {
+            position: absolute;
+            z-index: 1;
+            bottom: 35px;
+            right: 30px;
+            left: 30px;
+            color: white;
+        }
+
+        .visual-label {
+            display: inline-block;
+            padding: 7px 14px;
+            margin-bottom: 17px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.12);
+            font-size: 13px;
+        }
+
+        .visual-content h2 {
+            font-size: clamp(27px, 3vw, 38px);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .visual-content p {
+            color: #E4F4FF;
+            font-size: 15px;
+            line-height: 2;
+        }
+
+        .visual-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .visual-points span {
+            padding: 8px 12px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.13);
+            font-size: 12px;
+        }
+
+        .form-card {
+            padding: 34px;
+            border: 1px solid #E0EDF5;
+            border-radius: 25px;
+            background: var(--white);
+            box-shadow: 0 15px 40px rgba(18, 59, 93, 0.07);
+        }
+
+        .form-heading {
+            margin-bottom: 27px;
+        }
+
+        .form-heading .eyebrow {
+            color: var(--blue);
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .form-heading h1 {
+            color: var(--navy);
+            font-size: 27px;
             margin-bottom: 8px;
         }
 
-        .logo p {
-            color: #ddd;
-            font-size: 15px;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 24px;
+        .form-heading p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.9;
         }
 
         .input-group {
@@ -64,378 +198,383 @@
 
         label {
             display: block;
-            margin-bottom: 7px;
-            color: #eee;
+            color: var(--navy);
             font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 7px;
         }
 
-        input,
-        select {
+        input, select {
+            display: block;
             width: 100%;
-            padding: 13px 14px;
-            border: 1px solid #33445c;
-            border-radius: 10px;
-            background: #071426;
-            color: white;
+            min-height: 48px;
+            padding: 12px 14px;
+            border: 1px solid #D7E5EF;
+            border-radius: 11px;
+            background: #FAFCFE;
+            color: var(--navy);
+            font-family: 'Cairo', sans-serif;
+            font-size: 14px;
             outline: none;
-            font-size: 15px;
+            transition: 0.2s;
         }
 
-        input:focus,
-        select:focus {
-            border-color: #d4af37;
+        input::placeholder {
+            color: #9AABBA;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--blue);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(23, 105, 170, 0.09);
         }
 
         select option {
-            background: #071426;
-            color: white;
+            color: var(--navy);
         }
 
-        button {
+        .submit-btn {
             width: 100%;
-            padding: 14px;
+            min-height: 51px;
             margin-top: 8px;
+            padding: 13px;
             border: none;
-            border-radius: 10px;
-            background: #d4af37;
-            color: #071426;
+            border-radius: 12px;
+            background: var(--blue);
+            color: white;
+            font-family: 'Cairo', sans-serif;
             font-size: 16px;
-            font-weight: bold;
+            font-weight: 700;
             cursor: pointer;
+            transition: 0.2s;
         }
 
-        button:hover {
-            background: #e3c45b;
+        .submit-btn:hover {
+            background: var(--navy);
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: wait;
+            transform: none;
         }
 
         .message {
+            min-height: 24px;
+            margin-top: 15px;
             text-align: center;
-            margin-top: 18px;
-            min-height: 22px;
             font-size: 14px;
+            overflow-wrap: anywhere;
         }
 
         .links {
+            margin-top: 20px;
             text-align: center;
-            margin-top: 22px;
-        }
-
-        .links a {
-            color: #d4af37;
-            text-decoration: none;
-        }
-
-        .links a:hover {
-            text-decoration: underline;
-        }
-
-        .back {
-            display: block;
-            text-align: center;
-            margin-top: 15px;
-            color: #bbb;
-            text-decoration: none;
             font-size: 14px;
         }
 
-        .back:hover {
-            color: white;
+        .links span {
+            color: var(--muted);
+        }
+
+        .links a {
+            color: var(--blue);
+            font-weight: 700;
+        }
+
+        .links a:hover {
+            color: var(--navy);
+            text-decoration: underline;
+        }
+
+        .footer {
+            padding: 0 15px 25px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        @media (max-width: 850px) {
+            .page {
+                max-width: 600px;
+                grid-template-columns: 1fr;
+                margin: 25px auto;
+            }
+
+            .visual {
+                min-height: 350px;
+                order: 1;
+            }
+
+            .form-card {
+                order: 2;
+            }
+
+            .visual-content {
+                bottom: 24px;
+                right: 22px;
+                left: 22px;
+            }
+
+            .visual-content h2 {
+                font-size: 27px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .topbar {
+                padding: 13px 5%;
+            }
+
+            .brand {
+                font-size: 23px;
+            }
+
+            .brand-caption {
+                font-size: 10px;
+            }
+
+            .home-link {
+                font-size: 12px;
+            }
+
+            .page {
+                width: 94%;
+                gap: 15px;
+                margin: 18px auto;
+            }
+
+            .form-card {
+                padding: 23px 18px;
+                border-radius: 19px;
+            }
+
+            .form-heading h1 {
+                font-size: 24px;
+            }
+
+            .visual {
+                min-height: 310px;
+                border-radius: 19px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
-
-        <div class="logo">
-
-            <h1>
-                FROM UNIVERSITY TO FACTORY
-            </h1>
-
-            <p>
-                من الجامعة إلى المصنع
-            </p>
-
+    <header class="topbar">
+        <div>
+            <a href="../index.html" class="brand">LINK<span>ORA</span></a>
+            <p class="brand-caption">من الجامعة إلى سوق العمل</p>
         </div>
 
-        <h2>
-            تسجيل طالب 🎓
-        </h2>
+        <a href="../index.html" class="home-link">← الصفحة الرئيسية</a>
+    </header>
 
-        <form id="studentRegisterForm">
+    <main class="page">
 
-            <div class="input-group">
+        <section class="visual">
+            <img
+                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=85"
+                alt="طلاب جامعيون يستعدون لمستقبلهم المهني"
+                onerror="this.style.display='none';"
+            >
 
-                <label for="name">
-                    الاسم بالكامل
-                </label>
+            <div class="visual-content">
+                <span class="visual-label">🎓 مستقبلك يبدأ من هنا</span>
 
-                <input
-                    type="text"
-                    id="name"
-                    required>
+                <h2>حوّل طموحك<br>إلى فرصة حقيقية</h2>
 
+                <p>
+                    أنشئ حسابك على LINKORA، واكتشف فرص التدريب والعمل
+                    التي تساعدك على ربط دراستك بسوق العمل.
+                </p>
+
+                <div class="visual-points">
+                    <span>📚 طوّر خبراتك</span>
+                    <span>💼 اكتشف الفرص</span>
+                    <span>🚀 ابدأ مستقبلك</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-card">
+
+            <div class="form-heading">
+                <p class="eyebrow">أهلاً بيك في LINKORA</p>
+                <h1>إنشاء حساب طالب 🎓</h1>
+                <p>املأ بياناتك عشان تبدأ رحلتك من الجامعة إلى سوق العمل.</p>
             </div>
 
-            <div class="input-group">
+            <form id="studentRegisterForm">
 
-                <label for="email">
-                    البريد الإلكتروني
-                </label>
+                <div class="input-group">
+                    <label for="name">الاسم بالكامل</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="اكتب اسمك بالكامل"
+                        autocomplete="name"
+                        required
+                    >
+                </div>
 
-                <input
-                    type="email"
-                    id="email"
-                    required>
+                <div class="input-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="example@email.com"
+                        autocomplete="email"
+                        dir="ltr"
+                        required
+                    >
+                </div>
 
+                <div class="input-group">
+                    <label for="password">كلمة المرور</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="أنشئ كلمة مرور"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="college">الكلية</label>
+                    <input
+                        type="text"
+                        id="college"
+                        name="college"
+                        placeholder="اسم الكلية"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="department">القسم / التخصص</label>
+                    <input
+                        type="text"
+                        id="department"
+                        name="department"
+                        placeholder="مثال: كهرباء وإلكترونيات"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="study_year">السنة الدراسية</label>
+                    <select id="study_year" name="study_year" required>
+                        <option value="">اختر السنة الدراسية</option>
+                        <option value="الفرقة الأولى">الفرقة الأولى</option>
+                        <option value="الفرقة الثانية">الفرقة الثانية</option>
+                        <option value="الفرقة الثالثة">الفرقة الثالثة</option>
+                        <option value="الفرقة الرابعة">الفرقة الرابعة</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="skills">المهارات</label>
+                    <input
+                        type="text"
+                        id="skills"
+                        name="skills"
+                        placeholder="مثال: Arduino, إلكترونيات"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    إنشاء حساب الطالب ←
+                </button>
+
+            </form>
+
+            <div class="message" id="message" role="status" aria-live="polite"></div>
+
+            <div class="links">
+                <span>عندك حساب بالفعل؟</span>
+                <a href="./Login.html">تسجيل الدخول</a>
             </div>
 
-            <div class="input-group">
+        </section>
 
-                <label for="password">
-                    كلمة المرور
-                </label>
+    </main>
 
-                <input
-                    type="password"
-                    id="password"
-                    required>
-
-            </div>
-
-            <div class="input-group">
-
-                <label for="college">
-                    الكلية
-                </label>
-
-                <input
-                    type="text"
-                    id="college"
-                    required>
-
-            </div>
-
-            <div class="input-group">
-
-                <label for="department">
-                    القسم / التخصص
-                </label>
-
-                <input
-                    type="text"
-                    id="department"
-                    required>
-
-            </div>
-
-            <div class="input-group">
-
-                <label for="study_year">
-                    السنة الدراسية
-                </label>
-
-                <select
-                    id="study_year"
-                    required>
-
-                    <option value="">
-                        اختر السنة الدراسية
-                    </option>
-
-                    <option value="الفرقة الأولى">
-                        الفرقة الأولى
-                    </option>
-
-                    <option value="الفرقة الثانية">
-                        الفرقة الثانية
-                    </option>
-
-                    <option value="الفرقة الثالثة">
-                        الفرقة الثالثة
-                    </option>
-
-                    <option value="الفرقة الرابعة">
-                        الفرقة الرابعة
-                    </option>
-
-                </select>
-
-            </div>
-
-            <div class="input-group">
-
-                <label for="skills">
-                    المهارات
-                </label>
-
-                <input
-                    type="text"
-                    id="skills"
-                    placeholder="مثال: Arduino, إلكترونيات"
-                    required>
-
-            </div>
-
-            <button type="submit">
-                إنشاء حساب الطالب
-            </button>
-
-        </form>
-
-        <div
-            class="message"
-            id="message">
-        </div>
-
-        <div class="links">
-
-            <a href="./login.html">
-                لدي حساب بالفعل؟ تسجيل الدخول
-            </a>
-
-        </div>
-
-        <a
-            class="back"
-            href="../index.html">
-
-            العودة للصفحة الرئيسية
-
-        </a>
-
-    </div>
+    <footer class="footer">
+        LINKORA © من الجامعة إلى سوق العمل
+    </footer>
 
     <script>
+        const form = document.getElementById("studentRegisterForm");
+        const message = document.getElementById("message");
+        const submitBtn = document.getElementById("submitBtn");
 
-        const form =
-            document.getElementById(
-                "studentRegisterForm"
-            );
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
 
-        const message =
-            document.getElementById(
-                "message"
-            );
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const college = document.getElementById("college").value.trim();
+            const department = document.getElementById("department").value.trim();
+            const study_year = document.getElementById("study_year").value;
+            const skills = document.getElementById("skills").value.trim();
 
-        form.addEventListener(
-            "submit",
-            async function (e) {
+            message.textContent = "جاري إنشاء الحساب...";
+            message.style.color = "#1769AA";
+            submitBtn.disabled = true;
+            submitBtn.textContent = "جاري التسجيل...";
 
-                e.preventDefault();
+            try {
+                const response = await fetch("/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        password,
+                        college,
+                        department,
+                        study_year,
+                        skills
+                    })
+                });
 
-                const name =
-                    document
-                        .getElementById("name")
-                        .value
-                        .trim();
+                const data = await response.json();
 
-                const email =
-                    document
-                        .getElementById("email")
-                        .value
-                        .trim();
-
-                const password =
-                    document
-                        .getElementById("password")
-                        .value;
-
-                const college =
-                    document
-                        .getElementById("college")
-                        .value
-                        .trim();
-
-                const department =
-                    document
-                        .getElementById("department")
-                        .value
-                        .trim();
-
-                const study_year =
-                    document
-                        .getElementById("study_year")
-                        .value;
-
-                const skills =
-                    document
-                        .getElementById("skills")
-                        .value
-                        .trim();
-
-                message.textContent =
-                    "جاري إنشاء الحساب...";
-
-                message.style.color =
-                    "#d4af37";
-
-                try {
-
-                    const response =
-                        await fetch(
-                            "/register",
-                            {
-                                method: "POST",
-
-                                headers: {
-                                    "Content-Type":
-                                        "application/json"
-                                },
-
-                                body:
-                                    JSON.stringify({
-                                        name,
-                                        email,
-                                        password,
-                                        college,
-                                        department,
-                                        study_year,
-                                        skills
-                                    })
-                            }
-                        );
-
-                    const data =
-                        await response.json();
-
-                    if (response.ok) {
-
-                        message.textContent =
-                            data.message ||
-                            "تم إنشاء حساب الطالب بنجاح";
-
-                        message.style.color =
-                            "#4ade80";
-
-                    } else {
-
-                        message.textContent =
-                            data.message ||
-                            "حدث خطأ أثناء التسجيل";
-
-                        message.style.color =
-                            "#ff6b6b";
-                    }
-
-                } catch (error) {
-
-                    console.error(error);
-
+                if (response.ok) {
                     message.textContent =
-                        "تعذر الاتصال بالسيرفر";
-
-                    message.style.color =
-                        "#ff6b6b";
+                        data.message || "تم إنشاء حساب الطالب بنجاح";
+                    message.style.color = "#16834A";
+                    form.reset();
+                } else {
+                    message.textContent =
+                        data.message || "حدث خطأ أثناء التسجيل";
+                    message.style.color = "#D93045";
                 }
 
-            }
-        );
+            } catch (error) {
+                console.error(error);
+                message.textContent = "تعذر الاتصال بالسيرفر، تأكد إنه شغال.";
+                message.style.color = "#D93045";
 
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "إنشاء حساب الطالب ←";
+            }
+        });
     </script>
 
 </body>
-
 </html>

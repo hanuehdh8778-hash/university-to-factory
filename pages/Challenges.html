@@ -1,0 +1,454 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تحديات من قلب المصنع | LINKORA</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --dark:#123638;
+  --deep:#0B2527;
+  --teal:#14B8A6;
+  --mint:#99F6E4;
+  --bg:#F2F8F7;
+  --white:#FFFFFF;
+  --text:#607775;
+  --border:#DCEAE7;
+  --danger:#D95757;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Cairo',sans-serif;
+  background:var(--bg);
+  color:var(--dark);
+  line-height:1.8;
+}
+button,a{font-family:inherit}
+a{text-decoration:none}
+nav{
+  background:var(--dark);
+  color:white;
+  padding:15px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+.logo{font-size:27px;font-weight:800;color:var(--mint)}
+.nav-links{display:flex;gap:20px;flex-wrap:wrap}
+.nav-links a{color:#E2F7F3;font-size:13px;font-weight:700}
+.nav-links a:hover{color:var(--mint)}
+.hero{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(120deg,#0B2527,#123F3D 65%,#176B62);
+  color:white;
+  padding:65px 7%;
+}
+.hero-inner{max-width:1150px;margin:auto}
+.eyebrow{
+  display:inline-block;
+  border:1px solid #99F6E455;
+  color:var(--mint);
+  padding:5px 14px;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:17px;
+}
+.hero h1{font-size:clamp(30px,5vw,48px);line-height:1.5}
+.hero h1 span{color:var(--mint)}
+.hero p{max-width:650px;color:#D4E8E4;margin-top:12px}
+.hero-stats{
+  display:flex;gap:12px;flex-wrap:wrap;margin-top:28px
+}
+.stat{
+  background:#FFFFFF12;
+  border:1px solid #FFFFFF20;
+  border-radius:12px;
+  padding:10px 17px;
+  min-width:125px;
+}
+.stat strong{display:block;color:var(--mint);font-size:20px}
+.stat span{font-size:12px;color:#D4E8E4}
+main{max-width:1200px;margin:auto;padding:38px 5% 60px}
+.section-head{
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:12px;margin-bottom:22px
+}
+.section-head h2{font-size:25px}
+.section-head p{font-size:13px;color:var(--text)}
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:25px}
+.filter{
+  cursor:pointer;background:white;border:1px solid var(--border);
+  color:var(--dark);padding:8px 15px;border-radius:25px;
+  font-size:12px;font-weight:800
+}
+.filter.active,.filter:hover{background:var(--dark);color:white;border-color:var(--dark)}
+.grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px
+}
+.card{
+  background:white;border:1px solid var(--border);
+  border-radius:18px;overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:transform .2s,box-shadow .2s
+}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 28px #12363812}
+.card-image{height:190px;position:relative;background:#DDEBE7}
+.card-image img{width:100%;height:100%;object-fit:cover;display:block}
+.card-image .number{
+  position:absolute;top:12px;right:12px;background:var(--teal);
+  color:#073B36;border-radius:9px;padding:4px 11px;
+  font-size:12px;font-weight:800
+}
+.card-body{padding:19px;display:flex;flex-direction:column;flex:1}
+.tag{
+  color:#087F72;background:#DDF8F2;padding:4px 10px;
+  border-radius:20px;font-size:11px;font-weight:800;
+  align-self:flex-start;margin-bottom:10px
+}
+.card h3{font-size:18px;line-height:1.7}
+.card p{color:var(--text);font-size:13px;margin:8px 0 16px;flex:1}
+.card-meta{font-size:12px;color:var(--text);margin-bottom:15px}
+.primary,.secondary{
+  cursor:pointer;border:0;border-radius:10px;padding:11px 15px;
+  font-size:13px;font-weight:800;transition:.2s
+}
+.primary{background:var(--teal);color:#073B36}
+.primary:hover{background:#0E9F91}
+.secondary{background:#E7F1EF;color:var(--dark)}
+.secondary:hover{background:#D6E8E4}
+.card .primary{width:100%}
+.safety{
+  margin-top:28px;padding:17px 20px;border-radius:14px;
+  background:#E1F5F0;border:1px solid #C6EAE1;
+  font-size:13px;color:#315C56
+}
+.safety strong{color:var(--dark)}
+footer{
+  background:var(--deep);color:#E0F4F0;text-align:center;
+  padding:25px;font-size:13px
+}
+
+/* نافذة التحدي */
+.modal{
+  display:none;position:fixed;inset:0;background:#061B1BD9;
+  z-index:20;overflow-y:auto;padding:20px;
+  align-items:center;justify-content:center
+}
+.modal.open{display:flex}
+.modal-box{
+  background:white;width:100%;max-width:650px;
+  border-radius:20px;padding:25px;
+  max-height:90vh;overflow-y:auto
+}
+.modal-top{
+  display:flex;justify-content:space-between;gap:12px;align-items:center
+}
+.modal-top h2{font-size:22px}
+.close{
+  border:0;background:#E8F2EF;border-radius:9px;
+  width:38px;height:38px;cursor:pointer;font-size:21px
+}
+.progress-track{height:7px;background:#E4EFEC;border-radius:10px;margin:17px 0}
+.progress-fill{height:100%;width:0;background:var(--teal);border-radius:10px;transition:.3s}
+.question-label{color:#0B9989;font-size:12px;font-weight:800}
+.question{font-size:19px;margin:8px 0 18px}
+.options{display:grid;gap:10px}
+.option{
+  border:1px solid var(--border);border-radius:12px;
+  padding:13px;text-align:right;background:white;
+  color:var(--dark);cursor:pointer;font-size:14px
+}
+.option:hover:not(:disabled){border-color:var(--teal);background:#F0FBF8}
+.option:disabled{cursor:default;opacity:1}
+.option.correct{background:#E0F7EB;border-color:#38A169}
+.option.wrong{background:#FCE8E8;border-color:var(--danger)}
+.feedback{
+  display:none;margin-top:16px;padding:14px;border-radius:12px;
+  font-size:13px;background:#E7F7F1;color:#24594D
+}
+.feedback.show{display:block}
+.feedback.bad{background:#FFF0ED;color:#8D3830}
+.modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}
+.modal-actions button{flex:1}
+.result{text-align:center;padding:20px 5px}
+.result-icon{font-size:55px}
+.result h3{font-size:25px;margin:10px}
+.result p{color:var(--text);margin-bottom:18px}
+.result strong{color:#078F80}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){
+  .grid{grid-template-columns:1fr}
+  .hero{padding:45px 6%}
+  main{padding:30px 5%}
+  nav{justify-content:center}
+  .nav-links{justify-content:center;gap:12px}
+  .card-image{height:210px}
+  .modal-box{padding:18px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="logo">LINKORA</a>
+  <div class="nav-links">
+    <a href="../index.html">الرئيسية</a>
+    <a href="Opportunities.html">الفرص</a>
+    <a href="Skills.html">طوّر مهاراتك</a>
+    <a href="Smart-Matching.html">المطابقة الذكية</a>
+    <a href="Login.html">تسجيل الدخول</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">LINKORA INDUSTRIAL LAB</span>
+    <h1>تحديات من قلب <span>المصنع</span> 🏭</h1>
+    <p>تخيّل نفسك وسط بيئة العمل، حلّل المشكلة، اختار قرارك، واكتشف طريقة التفكير الهندسي الصحيحة من خلال محاكاة تعليمية تفاعلية.</p>
+    <div class="hero-stats">
+      <div class="stat"><strong id="availableCount">3</strong><span>تحديات متاحة</span></div>
+      <div class="stat"><strong id="solvedCount">0</strong><span>تحديات أكملتها</span></div>
+      <div class="stat"><strong id="scoreCount">0</strong><span>نقاطك</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="section-head">
+    <div>
+      <h2>اختار مهمتك 🎯</h2>
+      <p>كل موقف فرصة تتعلم منها مهارة جديدة.</p>
+    </div>
+  </div>
+
+  <div class="filters">
+    <button class="filter active" data-filter="all">كل التحديات</button>
+    <button class="filter" data-filter="electronics">الإلكترونيات</button>
+    <button class="filter" data-filter="mechanics">الميكانيكا</button>
+    <button class="filter" data-filter="cooling">التبريد والتكييف</button>
+  </div>
+
+  <div class="grid">
+    <article class="card" data-category="electronics">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="لوحة إلكترونية">
+        <span class="number">التحدي 01</span>
+      </div>
+      <div class="card-body">
+        <span class="tag">⚡ الإلكترونيات</span>
+        <h3>دائرة كهربائية لا تعمل</h3>
+        <p>أثناء تجربة تعليمية منخفضة الجهد، لاحظت أن دائرة إلكترونية لا تعمل. ما أول خطوة منطقية؟</p>
+        <div class="card-meta">◷ 2 دقيقة · مستوى مبتدئ</div>
+        <button class="primary" onclick="startChallenge('electronics')">ابدأ التحدي ←</button>
+      </div>
+    </article>
+
+    <article class="card" data-category="mechanics">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1567789884554-0b844b597180?auto=format&fit=crop&w=900&q=80" alt="معدات صناعية">
+        <span class="number">التحدي 02</span>
+      </div>
+      <div class="card-body">
+        <span class="tag">⚙️ الميكانيكا</span>
+        <h3>صوت غير معتاد في ماكينة</h3>
+        <p>في محاكاة داخل المصنع، لاحظ فريق العمل صوتًا غير معتاد من ماكينة. ما التصرف الأكثر أمانًا؟</p>
+        <div class="card-meta">◷ 2 دقيقة · مستوى مبتدئ</div>
+        <button class="primary" onclick="startChallenge('mechanics')">ابدأ التحدي ←</button>
+      </div>
+    </article>
+
+    <article class="card" data-category="cooling">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=900&q=80" alt="معدات صيانة وتكييف">
+        <span class="number">التحدي 03</span>
+      </div>
+      <div class="card-body">
+        <span class="tag">❄️ التبريد والتكييف</span>
+        <h3>وحدة تكييف تبريدها ضعيف</h3>
+        <p>في سيناريو تدريبي، التبريد أقل من المعتاد. أي فحص أولي آمن يمكن اقتراحه؟</p>
+        <div class="card-meta">◷ 2 دقيقة · مستوى مبتدئ</div>
+        <button class="primary" onclick="startChallenge('cooling')">ابدأ التحدي ←</button>
+      </div>
+    </article>
+  </div>
+
+  <div class="safety">
+    <strong>🦺 السلامة أولًا:</strong>
+    هذه تحديات تعليمية افتراضية وليست إرشادات لصيانة معدات حقيقية. لا تفتح لوحات كهربائية أو تلمس أجزاء متحركة أو تعمل على معدات تحت الضغط. في موقع العمل، اتبع تعليمات السلامة واستعن بالمشرف المختص.
+  </div>
+</main>
+
+<div class="modal" id="challengeModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <div class="modal-top">
+      <h2 id="modalTitle">التحدي</h2>
+      <button class="close" onclick="closeModal()" aria-label="إغلاق">×</button>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div id="questionArea"></div>
+  </div>
+</div>
+
+<footer>
+  <strong>LINKORA</strong>
+  <p>من الجامعة إلى سوق العمل — تعلّم، جرّب، وطوّر مهاراتك.</p>
+</footer>
+
+<script>
+const challenges = {
+  electronics: {
+    title: "⚡ تحدي الإلكترونيات",
+    question: "ما أول خطوة مناسبة في تجربة تعليمية منخفضة الجهد؟",
+    options: [
+      "تغيير كل المكونات عشوائيًا",
+      "فصل مصدر الطاقة ثم مراجعة التوصيلات وفق مخطط الدائرة",
+      "زيادة الجهد حتى تعمل الدائرة",
+      "لمس المكونات لمعرفة مكان المشكلة"
+    ],
+    answer: 1,
+    explanation: "ممتاز! البداية المنهجية هي فصل مصدر الطاقة ومراجعة التوصيلات ومخطط الدائرة. لا ترفع الجهد عشوائيًا ولا تلمس الدائرة وهي موصولة بالطاقة."
+  },
+  mechanics: {
+    title: "⚙️ تحدي الميكانيكا",
+    question: "ما القرار الأكثر أمانًا عند ملاحظة صوت غير معتاد في ماكينة؟",
+    options: [
+      "الاقتراب من الأجزاء المتحركة",
+      "محاولة شد الأجزاء أثناء التشغيل",
+      "إبعاد الأشخاص وإبلاغ المشرف واتباع إجراء الإيقاف الآمن المعتمد",
+      "تجاهل الصوت ومواصلة التشغيل"
+    ],
+    answer: 2,
+    explanation: "صحيح! حماية الأشخاص وإبلاغ المشرف واتباع إجراءات الإيقاف المعتمدة أهم من محاولة التشخيص أثناء التشغيل. فحص الماكينة مسؤولية شخص مؤهل وبعد تأمينها."
+  },
+  cooling: {
+    title: "❄️ تحدي التبريد والتكييف",
+    question: "في سيناريو تدريبي، ما الفحص الأولي الآمن الذي يمكن اقتراحه؟",
+    options: [
+      "فتح دائرة وسيط التبريد فورًا",
+      "لمس الأسلاك أثناء تشغيل الجهاز",
+      "تغيير إعدادات الكهرباء الداخلية دون خبرة",
+      "مراجعة إعدادات الحرارة والتأكد من عدم وجود عائق ظاهر أمام فتحات الهواء"
+    ],
+    answer: 3,
+    explanation: "إجابة صحيحة! يمكن مراجعة الإعدادات وفتحات الهواء من الخارج. أي فحص داخلي أو عمل كهربائي أو تعامل مع وسيط التبريد يجب أن يقوم به فني مؤهل وفق إجراءات السلامة."
+  }
+};
+
+let currentChallenge = null;
+let answered = false;
+let score = 0;
+let solved = new Set();
+
+const modal = document.getElementById("challengeModal");
+const questionArea = document.getElementById("questionArea");
+
+function startChallenge(id) {
+  currentChallenge = id;
+  answered = false;
+  const item = challenges[id];
+
+  document.getElementById("modalTitle").textContent = item.title;
+  document.getElementById("progressFill").style.width = "35%";
+
+  questionArea.innerHTML = `
+    <span class="question-label">سؤال التحدي</span>
+    <h3 class="question">${item.question}</h3>
+    <div class="options">
+      ${item.options.map((option,index)=>`
+        <button class="option" onclick="chooseAnswer(${index})">
+          ${String.fromCharCode(1571+index)}. ${option}
+        </button>
+      `).join("")}
+    </div>
+    <div class="feedback" id="feedback" aria-live="polite"></div>
+    <div class="modal-actions">
+      <button class="secondary" onclick="closeModal()">إغلاق</button>
+      <button class="primary" id="nextButton" style="display:none" onclick="showResult()">عرض النتيجة</button>
+    </div>
+  `;
+
+  modal.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function chooseAnswer(index) {
+  if (answered) return;
+  answered = true;
+
+  const item = challenges[currentChallenge];
+  const buttons = questionArea.querySelectorAll(".option");
+  const feedback = document.getElementById("feedback");
+
+  buttons.forEach((button,i)=>{
+    button.disabled = true;
+    if(i === item.answer) button.classList.add("correct");
+    if(i === index && index !== item.answer) button.classList.add("wrong");
+  });
+
+  const correct = index === item.answer;
+
+  if(correct && !solved.has(currentChallenge)){
+    score += 10;
+    solved.add(currentChallenge);
+  } else if(correct) {
+    // لا تُمنح نقاط إضافية عند إعادة نفس التحدي.
+  }
+
+  feedback.className = "feedback show" + (correct ? "" : " bad");
+  feedback.innerHTML = `<strong>${correct ? "إجابة صحيحة! ✓" : "مش بالضبط، جرّب تتعلم من التفسير."}</strong><br>${item.explanation}`;
+
+  document.getElementById("progressFill").style.width = "100%";
+  document.getElementById("nextButton").style.display = "block";
+  document.getElementById("solvedCount").textContent = solved.size;
+  document.getElementById("scoreCount").textContent = score;
+}
+
+function showResult() {
+  const correct = solved.has(currentChallenge);
+  questionArea.innerHTML = `
+    <div class="result">
+      <div class="result-icon">${correct ? "🏆" : "💡"}</div>
+      <h3>${correct ? "أحسنت يا مهندس!" : "المعرفة أهم من النقاط!"}</h3>
+      <p>${correct ? "حلّيت التحدي بشكل صحيح. استمر في تطوير طريقة تفكيرك." : "راجع التفسير، وتقدر تعيد التحدي لتثبيت المعلومة."}</p>
+      <p>إجمالي نقاطك: <strong>${score}</strong></p>
+      <button class="primary" onclick="closeModal()">العودة للتحديات</button>
+    </div>
+  `;
+}
+
+function closeModal() {
+  modal.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+modal.addEventListener("click",function(event){
+  if(event.target === modal) closeModal();
+});
+
+document.addEventListener("keydown",function(event){
+  if(event.key === "Escape") closeModal();
+});
+
+document.querySelectorAll(".filter").forEach(button=>{
+  button.addEventListener("click",function(){
+    document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+    this.classList.add("active");
+    const filter = this.dataset.filter;
+
+    document.querySelectorAll(".card").forEach(card=>{
+      card.style.display = filter === "all" || card.dataset.category === filter
+        ? "flex" : "none";
+    });
+  });
+});
+</script>
+</body>
+</html>

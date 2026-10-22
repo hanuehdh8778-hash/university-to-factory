@@ -1,0 +1,907 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LINKORA | Engineering Labs</title>
+
+<style>
+:root {
+    --navy: #0B1628;
+    --panel: #111F34;
+    --panel2: #172A43;
+    --blue: #1769AA;
+    --sky: #70C5E8;
+    --cyan: #A7E5F8;
+    --white: #F3F8FF;
+    --muted: #9FB2C9;
+    --line: #263B54;
+    --green: #45D6B0;
+    --orange: #FFBE75;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: Tahoma, Arial, sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+}
+
+button, input, select { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+
+.navbar {
+    min-height: 72px;
+    padding: 14px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+    background: #0B1628F2;
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    color: var(--sky);
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.navlinks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.navlinks a:hover { color: var(--sky); }
+
+.page { width: min(1200px, 92%); margin: auto; }
+
+.hero {
+    padding: 65px 0 40px;
+    position: relative;
+}
+
+.eyebrow {
+    color: var(--sky);
+    letter-spacing: 2px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: clamp(30px, 5vw, 48px);
+    line-height: 1.4;
+    margin: 13px 0;
+}
+
+.hero h1 span { color: var(--sky); }
+
+.hero p {
+    max-width: 700px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 2;
+}
+
+.hero-line {
+    width: 90px;
+    height: 4px;
+    background: var(--sky);
+    border-radius: 5px;
+    margin-top: 22px;
+}
+
+.section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 25px 0 20px;
+}
+
+.section-head h2 { font-size: 24px; }
+.section-head p { color: var(--muted); font-size: 13px; margin-top: 6px; }
+
+.status {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    border: 1px solid #45D6B044;
+    color: var(--green);
+    background: #45D6B010;
+    border-radius: 30px;
+    padding: 8px 12px;
+    font-size: 11px;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    background: var(--green);
+    border-radius: 50%;
+    box-shadow: 0 0 10px #45D6B080;
+}
+
+.lab-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    padding-bottom: 55px;
+}
+
+.lab-card {
+    background: linear-gradient(145deg, var(--panel), #0E1A2D);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: .25s;
+}
+
+.lab-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--sky);
+    box-shadow: 0 12px 40px #00000030;
+}
+
+.card-art {
+    height: 175px;
+    background:
+        radial-gradient(circle at 50% 50%, #1769AA55, transparent 55%),
+        linear-gradient(135deg, #142B46, #0B1628);
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    place-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-art::before, .card-art::after {
+    content: "";
+    position: absolute;
+    border: 1px solid #70C5E822;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+}
+
+.card-art::after { width: 160px; height: 160px; }
+
+.art-icon {
+    font-size: 66px;
+    z-index: 1;
+    filter: drop-shadow(0 0 18px #70C5E844);
+}
+
+.art-number {
+    position: absolute;
+    left: 16px;
+    top: 13px;
+    font-size: 12px;
+    color: #70C5E8;
+    letter-spacing: 2px;
+}
+
+.card-body { padding: 22px; }
+
+.card-tag {
+    color: var(--sky);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+}
+
+.card-body h3 { font-size: 20px; margin: 8px 0; }
+
+.card-body p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.9;
+    min-height: 50px;
+}
+
+.card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.small-status { color: var(--green); font-size: 11px; }
+
+.btn {
+    border: 0;
+    border-radius: 9px;
+    background: var(--sky);
+    color: var(--navy);
+    font-weight: bold;
+    padding: 12px 17px;
+    transition: .2s;
+}
+
+.btn:hover { background: var(--cyan); transform: translateY(-1px); }
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--white);
+}
+
+.btn-outline:hover { background: var(--panel2); }
+
+.hidden { display: none !important; }
+
+/* شاشة المعمل الداخلية */
+
+#labScreen { padding: 28px 0 50px; }
+
+.back-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+}
+
+.lab-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.lab-title .sim-icon { font-size: 34px; }
+.lab-title h2 { font-size: clamp(20px, 3vw, 28px); }
+.lab-title p { color: var(--muted); font-size: 12px; margin-top: 5px; }
+
+.workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(270px, .8fr);
+    gap: 18px;
+    align-items: start;
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 15px;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.panel-head {
+    padding: 17px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border-bottom: 1px solid var(--line);
+}
+
+.panel-head h3 { font-size: 14px; }
+
+.panel-head span {
+    font-size: 10px;
+    color: var(--sky);
+    letter-spacing: 1px;
+}
+
+.stage {
+    background:
+        linear-gradient(#70C5E80A 1px, transparent 1px),
+        linear-gradient(90deg, #70C5E80A 1px, transparent 1px),
+        #0D192B;
+    background-size: 25px 25px;
+    min-height: 350px;
+    padding: 18px;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+.stage svg {
+    width: 100%;
+    max-width: 590px;
+    height: auto;
+    overflow: visible;
+}
+
+.stage-caption {
+    position: absolute;
+    bottom: 12px;
+    right: 15px;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.side-stack { display: grid; gap: 18px; }
+
+.control-area { padding: 20px; }
+
+.field { margin-bottom: 22px; }
+
+.field:last-child { margin-bottom: 0; }
+
+.field label {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 11px;
+}
+
+.field label strong { color: var(--sky); }
+
+input[type="range"] {
+    width: 100%;
+    accent-color: var(--sky);
+    cursor: pointer;
+}
+
+.range-ends {
+    display: flex;
+    justify-content: space-between;
+    color: #70869F;
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.readings {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 15px;
+}
+
+.reading {
+    padding: 15px 12px;
+    background: #0B192B;
+    border: 1px solid var(--line);
+    border-radius: 11px;
+    min-width: 0;
+}
+
+.reading span {
+    color: var(--muted);
+    font-size: 11px;
+    display: block;
+}
+
+.reading strong {
+    color: var(--sky);
+    font-size: 23px;
+    display: block;
+    margin-top: 8px;
+    overflow-wrap: anywhere;
+}
+
+.reading small { color: var(--muted); font-size: 10px; }
+
+.info-box {
+    margin: 0 15px 15px;
+    background: #1769AA15;
+    border: 1px solid #1769AA55;
+    border-radius: 10px;
+    padding: 13px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+.info-box strong { color: var(--sky); }
+
+.formula {
+    margin: 15px;
+    padding: 14px;
+    border-radius: 10px;
+    text-align: center;
+    background: #0B192B;
+    border: 1px solid var(--line);
+    color: var(--cyan);
+    font-size: 18px;
+    direction: ltr;
+}
+
+.action-row {
+    display: flex;
+    gap: 10px;
+    padding: 0 15px 15px;
+}
+
+.action-row button { flex: 1; }
+
+.notice {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.9;
+    padding: 18px 0 35px;
+}
+
+footer {
+    text-align: center;
+    color: var(--muted);
+    background: #081221;
+    border-top: 1px solid var(--line);
+    padding: 25px;
+    font-size: 12px;
+}
+
+footer strong { color: var(--sky); }
+
+@media(max-width: 800px) {
+    .workspace { grid-template-columns: 1fr; }
+    .lab-grid { grid-template-columns: 1fr; }
+    .stage { min-height: 280px; }
+}
+
+@media(max-width: 480px) {
+    .navbar { padding: 14px 4%; }
+    .navlinks { gap: 11px; }
+    .navlinks a { font-size: 11px; }
+    .hero { padding-top: 42px; }
+    .stage { padding: 8px; min-height: 245px; }
+    .card-body { padding: 17px; }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <a class="logo" href="../index.html">LINKORA</a>
+    <div class="navlinks">
+        <a href="../index.html">الرئيسية</a>
+        <a href="Opportunities.html">الفرص</a>
+        <a href="Skills.html">المهارات</a>
+        <a href="Challenges.html">التحديات</a>
+        <a href="About.html">عن المنصة</a>
+    </div>
+</nav>
+
+<main class="page">
+
+    <section id="homeScreen">
+        <header class="hero">
+            <div class="eyebrow">LINKORA / ENGINEERING SIMULATION CENTER</div>
+            <h1>المعامل الهندسية <span>الافتراضية</span></h1>
+            <p>
+                بيئة تعليمية تفاعلية تتيح لك تجربة المفاهيم الهندسية،
+                تعديل المتغيرات ومراقبة النتائج لحظيًا، من خلال أربعة تخصصات تقنية.
+            </p>
+            <div class="hero-line"></div>
+        </header>
+
+        <div class="section-head">
+            <div>
+                <h2>اختاري المعمل</h2>
+                <p>افتحي أي تخصص للانتقال إلى مساحة المحاكاة الخاصة به.</p>
+            </div>
+            <div class="status"><span class="dot"></span> المعامل جاهزة للتجربة</div>
+        </div>
+
+        <section class="lab-grid">
+
+            <article class="lab-card">
+                <div class="card-art">
+                    <span class="art-number">LAB 01</span>
+                    <span class="art-icon">⚡</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-tag">ELECTRICAL ENGINEERING</div>
+                    <h3>الكهرباء والإلكترونيات</h3>
+                    <p>اختبري قانون أوم، وتابعي الجهد والتيار والمقاومة والقدرة داخل دائرة تعليمية.</p>
+                    <div class="card-bottom">
+                        <span class="small-status">● محاكاة تفاعلية</span>
+                        <button class="btn" onclick="openLab('electric')">دخول المعمل ←</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="lab-card">
+                <div class="card-art">
+                    <span class="art-number">LAB 02</span>
+                    <span class="art-icon">⚙️</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-tag">MECHANICAL ENGINEERING</div>
+                    <h3>الميكانيكا والإنتاج</h3>
+                    <p>غيّري عدد أسنان التروس وسرعة الدوران، وشاهدي تأثير نسبة النقل على سرعة الخرج.</p>
+                    <div class="card-bottom">
+                        <span class="small-status">● محاكاة تفاعلية</span>
+                        <button class="btn" onclick="openLab('mechanics')">دخول المعمل ←</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="lab-card">
+                <div class="card-art">
+                    <span class="art-number">LAB 03</span>
+                    <span class="art-icon">❄️</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-tag">HVAC ENGINEERING</div>
+                    <h3>التبريد والتكييف</h3>
+                    <p>تحكمي في حرارة الغرفة والهدف المطلوب وقدرة التبريد الافتراضية.</p>
+                    <div class="card-bottom">
+                        <span class="small-status">● محاكاة تفاعلية</span>
+                        <button class="btn" onclick="openLab('hvac')">دخول المعمل ←</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="lab-card">
+                <div class="card-art">
+                    <span class="art-number">LAB 04</span>
+                    <span class="art-icon">🏗️</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-tag">CIVIL ENGINEERING</div>
+                    <h3>الهندسة المدنية والإنشاءات</h3>
+                    <p>استكشفي تأثير الحمل وطول البحر والصلابة على مؤشر الانحناء في نموذج مبسط.</p>
+                    <div class="card-bottom">
+                        <span class="small-status">● محاكاة تفاعلية</span>
+                        <button class="btn" onclick="openLab('civil')">دخول المعمل ←</button>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+    </section>
+
+    <!-- شاشة المعمل الداخلية -->
+    <section id="labScreen" class="hidden">
+
+        <div class="back-row">
+            <button class="btn btn-outline" onclick="backHome()">→ رجوع للمعامل</button>
+            <div class="status"><span class="dot"></span> وضع التجربة</div>
+        </div>
+
+        <div class="lab-title">
+            <span class="sim-icon" id="labIcon">⚡</span>
+            <div>
+                <h2 id="labTitle">معمل الكهرباء والإلكترونيات</h2>
+                <p id="labSubtitle">ELECTRICAL ENGINEERING LAB</p>
+            </div>
+        </div>
+
+        <div class="workspace" style="margin-top:22px;">
+
+            <div class="panel">
+                <div class="panel-head">
+                    <h3 id="stageTitle">منطقة المحاكاة</h3>
+                    <span>LIVE SIMULATION</span>
+                </div>
+                <div class="stage" id="stage"></div>
+                <div class="panel-head">
+                    <h3>القراءات المباشرة</h3>
+                    <span>LIVE DATA</span>
+                </div>
+                <div class="readings" id="readings"></div>
+                <div class="info-box" id="explanation"></div>
+            </div>
+
+            <div class="side-stack">
+                <div class="panel">
+                    <div class="panel-head">
+                        <h3>لوحة التحكم</h3>
+                        <span>CONTROLS</span>
+                    </div>
+                    <div class="control-area" id="controls"></div>
+                    <div class="action-row">
+                        <button class="btn btn-outline" onclick="resetLab()">إعادة ضبط</button>
+                        <button class="btn" onclick="updateLab()">تحديث التجربة</button>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head">
+                        <h3>المبدأ الهندسي</h3>
+                        <span>ENGINEERING</span>
+                    </div>
+                    <div class="formula" id="formula">V = I × R</div>
+                    <div class="info-box" id="lesson"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="notice">
+            تنبيه: هذه النماذج تعليمية مبسطة، وليست بديلًا عن برامج المحاكاة الهندسية
+            المتخصصة أو القياسات المعملية. لا تستخدمي نتائجها لتصميم أو اعتماد أنظمة حقيقية.
+        </div>
+    </section>
+</main>
+
+<footer>
+    <strong>LINKORA</strong> — من الجامعة إلى المصنع
+    <br>تعلّم • جرّب • طوّر مهاراتك
+</footer>
+
+<script>
+const configs = {
+    electric: {
+        title: "معمل الكهرباء والإلكترونيات",
+        subtitle: "ELECTRICAL & ELECTRONICS LAB",
+        icon: "⚡",
+        stageTitle: "دائرة كهربائية تعليمية",
+        formula: "V = I × R",
+        lesson: "قانون أوم يربط الجهد بالتيار والمقاومة. القدرة الكهربائية في هذا النموذج تساوي الجهد مضروبًا في التيار.",
+        controls: [
+            {id:"voltage",label:"الجهد الكهربائي",unit:"V",min:1,max:24,value:12,step:1},
+            {id:"resistance",label:"المقاومة",unit:"Ω",min:1,max:100,value:10,step:1}
+        ]
+    },
+    mechanics: {
+        title: "معمل الميكانيكا والإنتاج",
+        subtitle: "MECHANICS & PRODUCTION LAB",
+        icon: "⚙️",
+        stageTitle: "منظومة نقل الحركة بالتروس",
+        formula: "N₁ × T₁ = N₂ × T₂",
+        lesson: "في زوج تروس مثالي، تتناسب سرعة الدوران عكسيًا مع عدد الأسنان. النموذج لا يحسب الفقد أو عزم الدوران.",
+        controls: [
+            {id:"rpm",label:"سرعة الترس الأول",unit:"RPM",min:30,max:300,value:120,step:10},
+            {id:"teeth",label:"أسنان الترس الثاني",unit:"سن",min:10,max:60,value:10,step:5}
+        ]
+    },
+    hvac: {
+        title: "معمل التبريد والتكييف",
+        subtitle: "REFRIGERATION & HVAC LAB",
+        icon: "❄️",
+        stageTitle: "نموذج تبريد الغرفة",
+        formula: "ΔT = Troom − Ttarget",
+        lesson: "فرق الحرارة هو الفرق بين حرارة الغرفة والهدف. مؤشر القدرة هنا تعليمي، ولا يمثل سعة تبريد فعلية أو زمن وصول للهدف.",
+        controls: [
+            {id:"room",label:"درجة حرارة الغرفة",unit:"°C",min:18,max:40,value:30,step:1},
+            {id:"target",label:"الحرارة المطلوبة",unit:"°C",min:16,max:28,value:24,step:1},
+            {id:"cooling",label:"قدرة التبريد الافتراضية",unit:"%",min:10,max:100,value:60,step:5}
+        ]
+    },
+    civil: {
+        title: "معمل الهندسة المدنية",
+        subtitle: "CIVIL & STRUCTURAL LAB",
+        icon: "🏗️",
+        stageTitle: "نموذج كمرة على دعامتين",
+        formula: "المؤشر ∝ الحمل × البحر³ ÷ الصلابة",
+        lesson: "يوضح النموذج اتجاهات التغير بشكل نسبي فقط. حساب الانحناء الحقيقي يحتاج خواص المادة والمقطع ونوع التحميل وشروط الإسناد.",
+        controls: [
+            {id:"load",label:"الحمل الافتراضي",unit:"kN",min:1,max:20,value:5,step:1},
+            {id:"span",label:"طول البحر",unit:"m",min:2,max:10,value:4,step:1},
+            {id:"stiffness",label:"الصلابة النسبية",unit:"%",min:10,max:100,value:50,step:5}
+        ]
+    }
+};
+
+let currentLab = "electric";
+
+function openLab(id) {
+    currentLab = id;
+    const c = configs[id];
+
+    document.getElementById("homeScreen").classList.add("hidden");
+    document.getElementById("labScreen").classList.remove("hidden");
+
+    document.getElementById("labIcon").textContent = c.icon;
+    document.getElementById("labTitle").textContent = c.title;
+    document.getElementById("labSubtitle").textContent = c.subtitle;
+    document.getElementById("stageTitle").textContent = c.stageTitle;
+    document.getElementById("formula").textContent = c.formula;
+    document.getElementById("lesson").textContent = c.lesson;
+
+    document.getElementById("controls").innerHTML = c.controls.map(x => `
+        <div class="field">
+            <label for="${x.id}">
+                ${x.label}
+                <strong><span id="${x.id}Value">${x.value}</span> ${x.unit}</strong>
+            </label>
+            <input type="range" id="${x.id}" min="${x.min}" max="${x.max}"
+                   value="${x.value}" step="${x.step}">
+            <div class="range-ends"><span>${x.min} ${x.unit}</span><span>${x.max} ${x.unit}</span></div>
+        </div>
+    `).join("");
+
+    c.controls.forEach(x => {
+        document.getElementById(x.id).addEventListener("input", updateLab);
+    });
+
+    updateLab();
+    window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function backHome() {
+    document.getElementById("labScreen").classList.add("hidden");
+    document.getElementById("homeScreen").classList.remove("hidden");
+    window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function val(id) {
+    return Number(document.getElementById(id).value);
+}
+
+function setReading(items) {
+    document.getElementById("readings").innerHTML = items.map(x => `
+        <div class="reading">
+            <span>${x.label}</span>
+            <strong>${x.value}</strong>
+            <small>${x.unit || ""}</small>
+        </div>
+    `).join("");
+}
+
+function updateLabels() {
+    configs[currentLab].controls.forEach(x => {
+        document.getElementById(x.id + "Value").textContent =
+            document.getElementById(x.id).value;
+    });
+}
+
+function updateLab() {
+    updateLabels();
+
+    if (currentLab === "electric") {
+        const V = val("voltage");
+        const R = val("resistance");
+        const I = V / R;
+        const P = V * I;
+
+        setReading([
+            {label:"الجهد",value:V.toFixed(1),unit:"V"},
+            {label:"المقاومة",value:R.toFixed(1),unit:"Ω"},
+            {label:"شدة التيار",value:I.toFixed(2),unit:"A"},
+            {label:"القدرة",value:P.toFixed(2),unit:"W"}
+        ]);
+
+        document.getElementById("stage").innerHTML = `
+        <svg viewBox="0 0 560 310" role="img" aria-label="رسم توضيحي لدائرة كهربائية">
+            <path d="M100 75 H450 V235 H100 Z" fill="none" stroke="#70C5E8" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M100 130 V180" stroke="#A7E5F8" stroke-width="8"/>
+            <path d="M80 145 H120 M80 165 H120" stroke="#A7E5F8" stroke-width="5"/>
+            <rect x="260" y="54" width="100" height="42" rx="8" fill="#1769AA" stroke="#A7E5F8" stroke-width="2"/>
+            <text x="310" y="80" fill="#F3F8FF" font-size="17" text-anchor="middle">${R} Ω</text>
+            <circle cx="275" cy="235" r="31" fill="#111F34" stroke="#70C5E8" stroke-width="3"/>
+            <text x="275" y="243" fill="#A7E5F8" font-size="20" text-anchor="middle">A</text>
+            <text x="100" y="120" fill="#A7E5F8" font-size="15" text-anchor="middle">${V} V</text>
+            <text x="280" y="286" fill="#9FB2C9" font-size="13" text-anchor="middle">I = ${I.toFixed(2)} A</text>
+            <circle cx="450" cy="75" r="6" fill="#45D6B0"/>
+            <circle cx="450" cy="235" r="6" fill="#45D6B0"/>
+            <text x="280" y="25" fill="#70C5E8" font-size="15" text-anchor="middle">OHM'S LAW CIRCUIT</text>
+        </svg>
+        <div class="stage-caption">رسم توضيحي غير مخصص للتوصيل الفعلي</div>`;
+        
+        document.getElementById("explanation").innerHTML =
+            `<strong>تحليل التجربة:</strong> التيار المحسوب ${I.toFixed(2)} أمبير. غيّري الجهد أو المقاومة لملاحظة تأثير كل منهما على الدائرة.`;
+    }
+
+    if (currentLab === "mechanics") {
+        const rpm = val("rpm");
+        const t1 = 20;
+        const t2 = val("teeth");
+        const output = rpm * t1 / t2;
+        const ratio = t1 / t2;
+        const r1 = 65;
+        const r2 = 65 * t2 / t1;
+
+        setReading([
+            {label:"سرعة الدخول",value:rpm,unit:"RPM"},
+            {label:"سرعة الخروج",value:output.toFixed(1),unit:"RPM"},
+            {label:"نسبة السرعة",value:ratio.toFixed(2),unit:"×"},
+            {label:"أسنان الترس الثاني",value:t2,unit:"سن"}
+        ]);
+
+        document.getElementById("stage").innerHTML = `
+        <svg viewBox="0 0 560 310" role="img" aria-label="نموذج تروس متشابكة">
+            <g transform="translate(205 145)">
+                <circle r="${r1}" fill="#1769AA" stroke="#70C5E8" stroke-width="7" stroke-dasharray="8 5"/>
+                <circle r="43" fill="#111F34" stroke="#A7E5F8" stroke-width="2"/>
+                <text y="-4" fill="#F3F8FF" font-size="18" text-anchor="middle">20</text>
+                <text y="17" fill="#9FB2C9" font-size="11" text-anchor="middle">TEETH</text>
+                <path d="M-25 0 H25 M0 -25 V25" stroke="#70C5E8" stroke-width="3"/>
+            </g>
+            <g transform="translate(${205 + r1 + r2 - 5} 145)">
+                <circle r="${r2}" fill="#A47551" stroke="#D6B995" stroke-width="7" stroke-dasharray="8 5"/>
+                <circle r="${Math.max(22,r2*.58)}" fill="#111F34" stroke="#D6B995" stroke-width="2"/>
+                <text y="6" fill="#F3F8FF" font-size="16" text-anchor="middle">${t2}</text>
+            </g>
+            <text x="205" y="255" fill="#70C5E8" font-size="13" text-anchor="middle">${rpm} RPM</text>
+            <text x="${205+r1+r2-5}" y="255" fill="#D6B995" font-size="13" text-anchor="middle">${output.toFixed(1)} RPM</text>
+            <text x="280" y="25" fill="#70C5E8" font-size="15" text-anchor="middle">GEAR TRANSMISSION</text>
+        </svg>
+        <div class="stage-caption">عدد الأسنان وسرعة الخرج يتغيران مع التجربة</div>`;
+
+        document.getElementById("explanation").innerHTML =
+            `<strong>تحليل التجربة:</strong> نسبة سرعة الخرج إلى الدخول ${ratio.toFixed(2)}. عند زيادة عدد أسنان الترس الثاني تقل سرعة دورانه في النموذج المثالي.`;
+    }
+
+    if (currentLab === "hvac") {
+        const room = val("room");
+        const target = val("target");
+        const power = val("cooling");
+        const diff = room - target;
+        let status = diff <= 0 ? "الهدف متحقق" :
+                     power >= 70 ? "مؤشر قدرة مرتفع" :
+                     power >= 40 ? "مؤشر متوسط" : "مؤشر منخفض";
+
+        setReading([
+            {label:"حرارة الغرفة",value:room,unit:"°C"},
+            {label:"الهدف",value:target,unit:"°C"},
+            {label:"فرق الحرارة",value:diff.toFixed(1),unit:"°C"},
+            {label:"قدرة التبريد الافتراضية",value:power,unit:"%"}
+        ]);
+
+        const fillHeight = Math.max(20, Math.min(170, power * 1.7));
+
+        document.getElementById("stage").innerHTML = `
+        <svg viewBox="0 0 560 310" role="img" aria-label="نموذج غرفة وتكييف">
+            <path d="M110 260 V75 H450 V260" fill="#111F34" stroke="#70C5E8" stroke-width="5"/>
+            <path d="M110 260 H450" stroke="#70C5E8" stroke-width="5"/>
+            <rect x="220" y="91" width="120" height="35" rx="7" fill="#1769AA" stroke="#A7E5F8" stroke-width="2"/>
+            <path d="M240 115 H320" stroke="#A7E5F8" stroke-width="3"/>
+            <path d="M245 130 Q230 145 245 160 T245 190 M280 130 Q265 145 280 160 T280 190 M315 130 Q300 145 315 160 T315 190" fill="none" stroke="#70C5E8" stroke-width="4" opacity=".9"/>
+            <rect x="370" y="${245-fillHeight}" width="35" height="${fillHeight}" rx="4" fill="#1769AA" stroke="#70C5E8" stroke-width="2"/>
+            <text x="280" y="225" fill="#A7E5F8" font-size="28" text-anchor="middle">${room}°C</text>
+            <text x="388" y="${235-fillHeight}" fill="#70C5E8" font-size="13" text-anchor="middle">${power}%</text>
+            <text x="280" y="35" fill="#70C5E8" font-size="15" text-anchor="middle">ROOM COOLING MODEL</text>
+            <text x="280" y="286" fill="#9FB2C9" font-size="13" text-anchor="middle">الهدف: ${target}°C</text>
+        </svg>
+        <div class="stage-caption">تصور تعليمي مبسط لحرارة الغرفة ومؤشر القدرة</div>`;
+
+        document.getElementById("explanation").innerHTML =
+            `<strong>حالة النموذج:</strong> ${status}. فرق الحرارة الحالي ${diff.toFixed(1)} درجة. النموذج لا يحاكي دورة التبريد الفعلية أو زمن التشغيل.`;
+    }
+
+    if (currentLab === "civil") {
+        const L = val("load");
+        const span = val("span");
+        const stiffness = val("stiffness");
+        const index = L * Math.pow(span,3) / stiffness;
+        const bend = Math.min(24, index * 0.06);
+
+        setReading([
+            {label:"الحمل",value:L,unit:"kN"},
+            {label:"طول البحر",value:span,unit:"m"},
+            {label:"الصلابة النسبية",value:stiffness,unit:"%"},
+            {label:"مؤشر الانحناء",value:index.toFixed(2),unit:"نسبي"}
+        ]);
+
+        document.getElementById("stage").innerHTML = `
+        <svg viewBox="0 0 560 310" role="img" aria-label="كمرة على دعامتين">
+            <path d="M80 230 L110 270 H50 Z" fill="#1769AA" stroke="#70C5E8" stroke-width="2"/>
+            <path d="M480 230 L510 270 H450 Z" fill="#1769AA" stroke="#70C5E8" stroke-width="2"/>
+            <path d="M80 230 Q280 ${230+bend} 480 230" fill="none" stroke="#70C5E8" stroke-width="12" stroke-linecap="round"/>
+            <path d="M280 75 V160" stroke="#A7E5F8" stroke-width="5"/>
+            <path d="M263 143 L280 164 L297 143" fill="none" stroke="#A7E5F8" stroke-width="5"/>
+            <text x="300" y="70" fill="#A7E5F8" font-size="17">${L} kN</text>
+            <path d="M80 285 H480 M80 278 V292 M480 278 V292" stroke="#9FB2C9" stroke-width="2"/>
+            <text x="280" y="305" fill="#9FB2C9" font-size="14" text-anchor="middle">${span} m</text>
+            <text x="280" y="30" fill="#70C5E8" font-size="15" text-anchor="middle">BEAM DEFLECTION MODEL</text>
+        </svg>
+        <div class="stage-caption">شكل الانحناء مرسوم للتوضيح وليس بمقياس حقيقي</div>`;
+
+        const level = index < 10 ? "منخفض" : index < 35 ? "متوسط" : "مرتفع";
+
+        document.getElementById("explanation").innerHTML =
+            `<strong>المؤشر النسبي:</strong> ${level}. زيادة الحمل أو طول البحر ترفع المؤشر، وزيادة الصلابة تخفضه. لا يمثل المؤشر إزاحة فعلية أو تقييمًا لسلامة المنشأ.`;
+    }
+}
+
+function resetLab() {
+    openLab(currentLab);
+}
+</script>
+
+</body>
+</html>

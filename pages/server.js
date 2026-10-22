@@ -61,6 +61,19 @@ db.serialize(() => {
         )
     `);
 
+    // المصانع
+    db.run(`
+        CREATE TABLE IF NOT EXISTS factories (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            email TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL,
+            field TEXT NOT NULL,
+            location TEXT NOT NULL,
+            description TEXT NOT NULL
+        )
+    `);
+
     // الفرص
     db.run(`
         CREATE TABLE IF NOT EXISTS opportunities (
