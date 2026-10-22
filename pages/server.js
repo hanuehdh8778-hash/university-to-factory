@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const sqlite3 = require("sqlite3").verbose();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // =========================
 // إعدادات السيرفر
@@ -38,28 +38,33 @@ const db = new sqlite3.Database(dbPath, (err) => {
 
 db.serialize(() => {
 
-    // الطلاب
-    db.run(`
-        CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT,
-            email TEXT UNIQUE,
-            password TEXT
-        )
-    `);
-
-    // الشركات
-    db.run(`
-        CREATE TABLE IF NOT EXISTS companies (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT,
-            email TEXT UNIQUE,
-            password TEXT,
-            field TEXT,
-            location TEXT,
-            description TEXT
-        )
-    `);
+   // الطلاب
+db.run(`
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        email TEXT UNIQUE,
+        password TEXT,
+        college TEXT,
+        department TEXT,
+        study_year TEXT,
+        skills TEXT,
+        account_type TEXT DEFAULT 'student'
+    )
+`);
+   // الشركات
+db.run(`
+    CREATE TABLE IF NOT EXISTS companies (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        company_name TEXT,
+        email TEXT UNIQUE,
+        password TEXT,
+        field TEXT,
+        location TEXT,
+        description TEXT
+    )
+`);
 
     // المصانع
     db.run(`
@@ -125,7 +130,46 @@ db.serialize(() => {
 
 });
 
+// =========================
+// تحديث أعمدة قاعدة البيانات القديمة تلقائيًا
+// =========================
 
+function ensureColumn(table, column, definition) {
+    db.all(`PRAGMA table_info(${table})`, [], (err, columns) => {
+        if (err) {
+            console.error(`Error checking ${table}:`, err.message);
+            return;
+        }
+
+        const exists = columns.some(col => col.name === column);
+
+        if (!exists) {
+            db.run(
+                `ALTER TABLE ${table} ADD COLUMN ${column} ${definition}`,
+                (alterErr) => {
+                    if (alterErr) {
+                        console.error(
+                            `Error adding ${table}.${column}:`,
+                            alterErr.message
+                        );
+                    } else {
+                        console.log(`Database updated: ${table}.${column}`);
+                    }
+                }
+            );
+        }
+    });
+}
+
+// أعمدة الطلاب
+ensureColumn("users", "college", "TEXT");
+ensureColumn("users", "department", "TEXT");
+ensureColumn("users", "study_year", "TEXT");
+ensureColumn("users", "skills", "TEXT");
+ensureColumn("users", "account_type", "TEXT DEFAULT 'student'");
+
+// أعمدة الشركات
+ensureColumn("companies", "company_name", "TEXT");
 // =========================
 // الصفحة الرئيسية
 // =========================
